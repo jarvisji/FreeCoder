@@ -1,0 +1,26 @@
+{
+  "name": "FreeCoder",
+  "version": "0.1.0",
+  "description": "A Question Driven Blog system for developers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./app/index.js"
+  },
+  "dependencies": {
+    "mongodb": "^2.0.27",
+    "morgan": "^1.5.2",
+    "restify": "^3.0.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jarvisji/FreeCoder.git"
+  },
+  "author": "Jarvis Ji",
+  "license": "Apache 2",
+  "bugs": {
+    "url": "https://github.com/jarvisji/FreeCoder/issues"
+  },
+  "homepage": "https://github.com/jarvisji/FreeCoder"
+}
