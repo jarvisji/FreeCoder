@@ -1,29 +1,28 @@
 {
   "name": "FreeCoder",
   "version": "0.1.0",
-  "description": "A Question Driven Blog system for developers.",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./app/index.js"
+    "pretest": "jshint ."
   },
   "dependencies": {
-    "mongodb": "^2.0.27",
-    "morgan": "^1.5.2",
-    "passport": "^0.2.1",
-    "passport-local": "^1.0.0",
-    "restify": "^3.0.2",
-    "validator": "^3.39.0"
+    "compression": "^1.0.3",
+    "cors": "^2.5.2",
+    "errorhandler": "^1.1.1",
+    "loopback": "^2.14.0",
+    "loopback-boot": "^2.6.5",
+    "loopback-datasource-juggler": "^2.19.0",
+    "serve-favicon": "^2.0.1"
   },
-  "devDependencies": {},
+  "optionalDependencies": {
+    "loopback-explorer": "^1.1.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.5.6"
+  },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/jarvisji/FreeCoder.git"
+    "type": "",
+    "url": ""
   },
-  "author": "Jarvis Ji",
-  "license": "Apache 2",
-  "bugs": {
-    "url": "https://github.com/jarvisji/FreeCoder/issues"
-  },
-  "homepage": "https://github.com/jarvisji/FreeCoder"
+  "description": "A Question Driven blog system for developers. Record questions, fill answers, publish posts."
 }
