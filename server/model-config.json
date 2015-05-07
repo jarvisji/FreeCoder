@@ -8,22 +8,27 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "mongolab",
+    "public": false
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "mongolab",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "mongolab",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "mongolab",
     "public": false
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "mongolab",
     "public": false
+  },
+  "user": {
+    "dataSource": "mongolab",
+    "public": true
   }
 }
