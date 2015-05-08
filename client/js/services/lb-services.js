@@ -18,13 +18,13 @@
 
   /**
    * @ngdoc object
-   * @name lbServices.User
-   * @header lbServices.User
+   * @name lbServices.Member
+   * @header lbServices.Member
    * @object
    *
    * @description
    *
-   * A $resource object for interacting with the `User` model.
+   * A $resource object for interacting with the `Member` model.
    *
    * ## Example
    *
@@ -34,17 +34,17 @@
    *
    */
   module.factory(
-    "User",
+    "Member",
     ['LoopBackResource', 'LoopBackAuth', '$injector', function (Resource, LoopBackAuth, $injector) {
       var R = Resource(
-        urlBase + "/users/:id",
+        urlBase + "/Members/:id",
         {'id': '@id'},
         {
 
           /**
            * @ngdoc method
-           * @name lbServices.User#prototype$__findById__accessTokens
-           * @methodOf lbServices.User
+           * @name lbServices.Member#prototype$__findById__accessTokens
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -68,18 +68,18 @@
            *
            * <em>
            * (The remote method definition does not provide any description.
-           * This usually means the response is a `User` object.)
+           * This usually means the response is a `Member` object.)
            * </em>
            */
           "prototype$__findById__accessTokens": {
-            url: urlBase + "/users/:id/accessTokens/:fk",
+            url: urlBase + "/Members/:id/accessTokens/:fk",
             method: "GET"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#prototype$__destroyById__accessTokens
-           * @methodOf lbServices.User
+           * @name lbServices.Member#prototype$__destroyById__accessTokens
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -104,14 +104,14 @@
            * This method returns no data.
            */
           "prototype$__destroyById__accessTokens": {
-            url: urlBase + "/users/:id/accessTokens/:fk",
+            url: urlBase + "/Members/:id/accessTokens/:fk",
             method: "DELETE"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#prototype$__updateById__accessTokens
-           * @methodOf lbServices.User
+           * @name lbServices.Member#prototype$__updateById__accessTokens
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -139,22 +139,22 @@
            *
            * <em>
            * (The remote method definition does not provide any description.
-           * This usually means the response is a `User` object.)
+           * This usually means the response is a `Member` object.)
            * </em>
            */
           "prototype$__updateById__accessTokens": {
-            url: urlBase + "/users/:id/accessTokens/:fk",
+            url: urlBase + "/Members/:id/accessTokens/:fk",
             method: "PUT"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#prototype$__get__accessTokens
-           * @methodOf lbServices.User
+           * @name lbServices.Member#prototype$__get__accessTokens
+           * @methodOf lbServices.Member
            *
            * @description
            *
-           * Queries accessTokens of user.
+           * Queries accessTokens of Member.
            *
            * @param {Object=} parameters Request parameters.
            *
@@ -174,19 +174,19 @@
            *
            * <em>
            * (The remote method definition does not provide any description.
-           * This usually means the response is a `User` object.)
+           * This usually means the response is a `Member` object.)
            * </em>
            */
           "prototype$__get__accessTokens": {
             isArray: true,
-            url: urlBase + "/users/:id/accessTokens",
+            url: urlBase + "/Members/:id/accessTokens",
             method: "GET"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#prototype$__create__accessTokens
-           * @methodOf lbServices.User
+           * @name lbServices.Member#prototype$__create__accessTokens
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -212,18 +212,18 @@
            *
            * <em>
            * (The remote method definition does not provide any description.
-           * This usually means the response is a `User` object.)
+           * This usually means the response is a `Member` object.)
            * </em>
            */
           "prototype$__create__accessTokens": {
-            url: urlBase + "/users/:id/accessTokens",
+            url: urlBase + "/Members/:id/accessTokens",
             method: "POST"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#prototype$__delete__accessTokens
-           * @methodOf lbServices.User
+           * @name lbServices.Member#prototype$__delete__accessTokens
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -246,18 +246,18 @@
            * This method returns no data.
            */
           "prototype$__delete__accessTokens": {
-            url: urlBase + "/users/:id/accessTokens",
+            url: urlBase + "/Members/:id/accessTokens",
             method: "DELETE"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#prototype$__count__accessTokens
-           * @methodOf lbServices.User
+           * @name lbServices.Member#prototype$__count__accessTokens
+           * @methodOf lbServices.Member
            *
            * @description
            *
-           * Counts accessTokens of user.
+           * Counts accessTokens of Member.
            *
            * @param {Object=} parameters Request parameters.
            *
@@ -280,14 +280,14 @@
            *  - `count` – `{number=}` -
            */
           "prototype$__count__accessTokens": {
-            url: urlBase + "/users/:id/accessTokens/count",
+            url: urlBase + "/Members/:id/accessTokens/count",
             method: "GET"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#create
-           * @methodOf lbServices.User
+           * @name lbServices.Member#create
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -314,18 +314,18 @@
            *
            * <em>
            * (The remote method definition does not provide any description.
-           * This usually means the response is a `User` object.)
+           * This usually means the response is a `Member` object.)
            * </em>
            */
           "create": {
-            url: urlBase + "/users",
+            url: urlBase + "/Members",
             method: "POST"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#upsert
-           * @methodOf lbServices.User
+           * @name lbServices.Member#upsert
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -352,18 +352,18 @@
            *
            * <em>
            * (The remote method definition does not provide any description.
-           * This usually means the response is a `User` object.)
+           * This usually means the response is a `Member` object.)
            * </em>
            */
           "upsert": {
-            url: urlBase + "/users",
+            url: urlBase + "/Members",
             method: "PUT"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#exists
-           * @methodOf lbServices.User
+           * @name lbServices.Member#exists
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -388,14 +388,14 @@
            *  - `exists` – `{boolean=}` -
            */
           "exists": {
-            url: urlBase + "/users/:id/exists",
+            url: urlBase + "/Members/:id/exists",
             method: "GET"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#findById
-           * @methodOf lbServices.User
+           * @name lbServices.Member#findById
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -419,18 +419,18 @@
            *
            * <em>
            * (The remote method definition does not provide any description.
-           * This usually means the response is a `User` object.)
+           * This usually means the response is a `Member` object.)
            * </em>
            */
           "findById": {
-            url: urlBase + "/users/:id",
+            url: urlBase + "/Members/:id",
             method: "GET"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#find
-           * @methodOf lbServices.User
+           * @name lbServices.Member#find
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -452,19 +452,19 @@
            *
            * <em>
            * (The remote method definition does not provide any description.
-           * This usually means the response is a `User` object.)
+           * This usually means the response is a `Member` object.)
            * </em>
            */
           "find": {
             isArray: true,
-            url: urlBase + "/users",
+            url: urlBase + "/Members",
             method: "GET"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#findOne
-           * @methodOf lbServices.User
+           * @name lbServices.Member#findOne
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -486,18 +486,18 @@
            *
            * <em>
            * (The remote method definition does not provide any description.
-           * This usually means the response is a `User` object.)
+           * This usually means the response is a `Member` object.)
            * </em>
            */
           "findOne": {
-            url: urlBase + "/users/findOne",
+            url: urlBase + "/Members/findOne",
             method: "GET"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#updateAll
-           * @methodOf lbServices.User
+           * @name lbServices.Member#updateAll
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -524,14 +524,14 @@
            * This method returns no data.
            */
           "updateAll": {
-            url: urlBase + "/users/update",
+            url: urlBase + "/Members/update",
             method: "POST"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#deleteById
-           * @methodOf lbServices.User
+           * @name lbServices.Member#deleteById
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -554,14 +554,14 @@
            * This method returns no data.
            */
           "deleteById": {
-            url: urlBase + "/users/:id",
+            url: urlBase + "/Members/:id",
             method: "DELETE"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#count
-           * @methodOf lbServices.User
+           * @name lbServices.Member#count
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -586,14 +586,14 @@
            *  - `count` – `{number=}` -
            */
           "count": {
-            url: urlBase + "/users/count",
+            url: urlBase + "/Members/count",
             method: "GET"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#prototype$updateAttributes
-           * @methodOf lbServices.User
+           * @name lbServices.Member#prototype$updateAttributes
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -619,18 +619,18 @@
            *
            * <em>
            * (The remote method definition does not provide any description.
-           * This usually means the response is a `User` object.)
+           * This usually means the response is a `Member` object.)
            * </em>
            */
           "prototype$updateAttributes": {
-            url: urlBase + "/users/:id",
+            url: urlBase + "/Members/:id",
             method: "PUT"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#login
-           * @methodOf lbServices.User
+           * @name lbServices.Member#login
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -669,7 +669,7 @@
           "login": {
             params: {
               include: "user"
-            },
+          },
             interceptor: {
               response: function (response) {
                 var accessToken = response.data;
@@ -678,15 +678,15 @@
                 LoopBackAuth.save();
                 return response.resource;
               }
-            },
-            url: urlBase + "/users/login",
+          },
+            url: urlBase + "/Members/login",
             method: "POST"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#logout
-           * @methodOf lbServices.User
+           * @name lbServices.Member#logout
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -720,15 +720,15 @@
                 LoopBackAuth.clearStorage();
                 return response.resource;
               }
-            },
-            url: urlBase + "/users/logout",
+          },
+            url: urlBase + "/Members/logout",
             method: "POST"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#confirm
-           * @methodOf lbServices.User
+           * @name lbServices.Member#confirm
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -755,14 +755,14 @@
            * This method returns no data.
            */
           "confirm": {
-            url: urlBase + "/users/confirm",
+            url: urlBase + "/Members/confirm",
             method: "GET"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#resetPassword
-           * @methodOf lbServices.User
+           * @name lbServices.Member#resetPassword
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -790,14 +790,14 @@
            * This method returns no data.
            */
           "resetPassword": {
-            url: urlBase + "/users/reset",
+            url: urlBase + "/Members/reset",
             method: "POST"
           },
 
           /**
            * @ngdoc method
-           * @name lbServices.User#getCurrent
-           * @methodOf lbServices.User
+           * @name lbServices.Member#getCurrent
+           * @methodOf lbServices.Member
            *
            * @description
            *
@@ -815,14 +815,14 @@
            *   from the server.
            */
           "getCurrent": {
-            url: urlBase + "/users" + "/:id",
+            url: urlBase + "/Members" + "/:id",
             method: "GET",
             params: {
               id: function () {
                 var id = LoopBackAuth.currentUserId;
                 if (id == null) id = '__anonymous__';
                 return id;
-              },
+            },
             },
             interceptor: {
               response: function (response) {
@@ -831,15 +831,15 @@
               }
             },
             __isGetCurrentUser__: true
-          }
+        }
         }
       );
 
 
       /**
        * @ngdoc method
-       * @name lbServices.User#updateOrCreate
-       * @methodOf lbServices.User
+       * @name lbServices.Member#updateOrCreate
+       * @methodOf lbServices.Member
        *
        * @description
        *
@@ -866,15 +866,15 @@
        *
        * <em>
        * (The remote method definition does not provide any description.
-       * This usually means the response is a `User` object.)
+       * This usually means the response is a `Member` object.)
        * </em>
        */
       R["updateOrCreate"] = R["upsert"];
 
       /**
        * @ngdoc method
-       * @name lbServices.User#update
-       * @methodOf lbServices.User
+       * @name lbServices.Member#update
+       * @methodOf lbServices.Member
        *
        * @description
        *
@@ -904,8 +904,8 @@
 
       /**
        * @ngdoc method
-       * @name lbServices.User#destroyById
-       * @methodOf lbServices.User
+       * @name lbServices.Member#destroyById
+       * @methodOf lbServices.Member
        *
        * @description
        *
@@ -931,8 +931,8 @@
 
       /**
        * @ngdoc method
-       * @name lbServices.User#removeById
-       * @methodOf lbServices.User
+       * @name lbServices.Member#removeById
+       * @methodOf lbServices.Member
        *
        * @description
        *
@@ -958,18 +958,18 @@
 
       /**
        * @ngdoc method
-       * @name lbServices.User#getCachedCurrent
-       * @methodOf lbServices.User
+       * @name lbServices.Member#getCachedCurrent
+       * @methodOf lbServices.Member
        *
        * @description
        *
        * Get data of the currently logged user that was returned by the last
-       * call to {@link lbServices.User#login} or
-       * {@link lbServices.User#getCurrent}. Return null when there
+       * call to {@link lbServices.Member#login} or
+       * {@link lbServices.Member#getCurrent}. Return null when there
        * is no user logged in or the data of the current user were not fetched
        * yet.
        *
-       * @returns {Object} A User instance.
+       * @returns {Object} A Member instance.
        */
       R.getCachedCurrent = function () {
         var data = LoopBackAuth.currentUserData;
@@ -978,8 +978,8 @@
 
       /**
        * @ngdoc method
-       * @name lbServices.User#isAuthenticated
-       * @methodOf lbServices.User
+       * @name lbServices.Member#isAuthenticated
+       * @methodOf lbServices.Member
        *
        * @returns {boolean} True if the current user is authenticated (logged in).
        */
@@ -989,8 +989,8 @@
 
       /**
        * @ngdoc method
-       * @name lbServices.User#getCurrentId
-       * @methodOf lbServices.User
+       * @name lbServices.Member#getCurrentId
+       * @methodOf lbServices.Member
        *
        * @returns {Object} Id of the currently logged-in user or null.
        */
@@ -1000,13 +1000,13 @@
 
       /**
        * @ngdoc property
-       * @name lbServices.User#modelName
-       * @propertyOf lbServices.User
+       * @name lbServices.Member#modelName
+       * @propertyOf lbServices.Member
        * @description
        * The name of the model represented by this $resource,
-       * i.e. `User`.
+       * i.e. `Member`.
        */
-      R.modelName = "User";
+      R.modelName = "Member";
 
 
       return R;
@@ -1057,7 +1057,7 @@
       return new LoopBackAuth();
 
       // Note: LocalStorage converts the value to string
-      // We are using empty string as a marker for null/undefined values.
+      // We are using empty string as a marker for null/ndefined values.
       function save(storage, name, value) {
         var key = propsPrefix + name;
         if (value == null) value = '';
@@ -1080,7 +1080,7 @@
             // filter out non urlBase requests
             if (config.url.substr(0, urlBase.length) !== urlBase) {
               return config;
-            }
+          }
 
             if (LoopBackAuth.accessTokenId) {
               config.headers[authHeader] = LoopBackAuth.accessTokenId;
@@ -1098,7 +1098,7 @@
               return $q.reject(res);
             }
             return config || $q.when(config);
-          }
+        }
         }
       }])
 
@@ -1162,7 +1162,7 @@
             // that exactly fits our needs.
             var result = resource.upsert.call(this, {}, this, success, error);
             return result.$promise || result;
-          };
+        };
           return resource;
         };
       }];

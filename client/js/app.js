@@ -6,7 +6,12 @@ angular.module('app', ['lbServices', 'ui.router'])
     $stateProvider.state('register', {
       url: '',
       templateUrl: 'views/register.html',
-      controller: 'UserController'
+      controller: 'MemberController'
+    });
+    $stateProvider.state('', {
+      url: '',
+      templateUrl: 'views/register.html',
+      controller: 'MemberController'
     });
     $urlRouterProvider.otherwise('register');
   }]);
