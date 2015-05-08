@@ -3,9 +3,6 @@
  */
 angular.module('app')
   .controller('MemberController', ['$scope', '$state', 'Member', function ($scope, $state, Member) {
-    $scope.members = [];
-
-    console.log($state);
     $scope.addUser = function () {
       Member.create($scope.newUser).$promise.then(function (member) {
         $scope.newUser = '';
