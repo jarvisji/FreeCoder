@@ -9,6 +9,11 @@ angular.module('app', ['lbServices', 'ui.router'])
       templateUrl: 'views/register.html',
       controller: 'MemberController'
     });
+    $stateProvider.state('login', {
+      url: '/login',
+      templateUrl: 'views/login.html',
+      controller: 'MemberController'
+    });
     $stateProvider.state('home', {
       url: '/home',
       templateUrl: 'views/home.html',
