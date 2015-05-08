@@ -11,11 +11,15 @@
   <link href="vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-controller="RootController">
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">FreeCoder</a>
+    </div>
+    <div class="navbar-right">
+      <button type="button" class="btn btn-warning btn-sm navbar-btn" ng-click="logout()" ng-show="isLogin">Sign out
+      </button>
     </div>
   </div>
 </div>
@@ -32,6 +36,6 @@
 <script src="js/services/lb-services.js"></script>
 <script src="js/app.js"></script>
 <script src="js/controllers/memberController.js"></script>
-
+<script src="js/controllers/homeController.js"></script>
 </body>
 </html>

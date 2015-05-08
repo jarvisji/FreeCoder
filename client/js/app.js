@@ -17,7 +17,16 @@ angular.module('app', ['lbServices', 'ui.router'])
     $stateProvider.state('home', {
       url: '/home',
       templateUrl: 'views/home.html',
-      controller: 'MemberController'
+      controller: 'HomeController'
     });
     $urlRouterProvider.otherwise('home');
+  }])
+  .controller('RootController', ['$scope', '$state', '$log', 'Member', function ($scope, $state, $log, Member) {
+    $scope.logout = function () {
+      $log.debug("logging out...");
+      Member.logout().$promise.then(function (data) {
+        $scope.isLogin = Member.isAuthenticated();
+        $state.go('login');
+      });
+    }
   }]);
