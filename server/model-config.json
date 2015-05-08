@@ -11,6 +11,10 @@
     "dataSource": "mongolab",
     "public": false
   },
+  "Email": {
+    "dataSource": "smtp_freecoder",
+    "public": false
+  },
   "AccessToken": {
     "dataSource": "mongolab",
     "public": false
@@ -27,7 +31,7 @@
     "dataSource": "mongolab",
     "public": false
   },
-  "user": {
+  "Member": {
     "dataSource": "mongolab",
     "public": true
   }
