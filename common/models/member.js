@@ -12,7 +12,7 @@ module.exports = function (Member) {
       from: 'support@freecoder.net', //TODO: read from configuration
       subject: 'Thanks for registering.',
       template: path.resolve(__dirname, '../../server/email_templates/registration_verify.ejs'),
-      redirect: '/home'
+      redirect: encodeURIComponent('/#/home')
     };
     member.verify(options, function (err, response) {
       if (err) {
