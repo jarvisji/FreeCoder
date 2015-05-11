@@ -1,21 +1,22 @@
-<h1>Register</h1>
+<h1>Login</h1>
 <hr>
-<form name="memberForm" novalidate ng-submit="addUser()">
+<form name="memberForm" novalidate ng-submit="login()">
   <div class="form-group" ng-class="{'has-error': memberForm.email.$invalid && memberForm.email.$dirty}">
     <input type="email" class="form-control focus" name="email" placeholder="Email" autocomplete="off" required
-           ng-model="newUser.email">
+           ng-model="member.email">
     <span class="has-error control-label" ng-show="memberForm.email.$invalid && memberForm.email.$dirty">
       Email is required.
     </span>
   </div>
   <div class="form-group" ng-class="{'has-error': memberForm.password.$invalid && memberForm.password.$dirty}">
     <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="off" required
-           ng-model="newUser.password">
+           ng-model="member.password">
     <span class="has-error control-label" ng-show="memberForm.password.$invalid && memberForm.password.$dirty">
       Password is required.
     </span>
   </div>
-  <button class="btn btn-primary" ng-disabled="memberForm.$invalid">Register</button>
-  <a ui-sref="login">Login</a>
+  <div class="alert alert-danger" role="alert" ng-show="errorMsg!=undefined">{{errorMsg}}</div>
+  <button class="btn btn-primary" ng-disabled="memberForm.$invalid">Login</button>
+  <a ui-sref="sign-up">Sign up</a>
 </form>
 <hr>
