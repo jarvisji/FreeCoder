@@ -5,3 +5,7 @@ body {
 .glyphicon-remove:hover {
   cursor: pointer
 }
+
+.nav-side {
+  margin-top: 20px;
+}

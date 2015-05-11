@@ -25,7 +25,18 @@
 </div>
 
 <div class="container">
-  <div ui-view></div>
+  <div class="row">
+    <div class="col-sm-3">
+      <nav class="nav-side">
+        <ul class="nav nav-pills nav-stacked">
+          <li><a ui-sref="todo">to-do</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-sm-9">
+      <div ui-view></div>
+    </div>
+  </div>
 </div>
 
 <script src="vendor/jquery/dist/jquery.js"></script>
@@ -38,5 +49,6 @@
 <script src="app/app.js"></script>
 <script src="app/login/login.js"></script>
 <script src="app/dashboard/dashboard.js"></script>
+<script src="app/todo/todo.js"></script>
 </body>
 </html>

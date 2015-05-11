@@ -19,6 +19,11 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'i18nMessages'])
       templateUrl: 'app/dashboard/dashboard.tpl.html',
       controller: 'dashboardCtrl'
     });
+    $stateProvider.state('todo', {
+      url: '/todo',
+      templateUrl: 'app/todo/todo.tpl.html',
+      controller: 'todoCtrl'
+    });
     $urlRouterProvider.otherwise('dashboard');
   }])
   .controller('rootCtrl', ['$scope', '$state', '$log', 'Member', function ($scope, $state, $log, Member) {
