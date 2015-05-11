@@ -12,11 +12,7 @@ angular.module('freeCoderApp')
         $('.focus').focus();
         $scope.errorMsg = undefined;
       }, function (error) {
-        if (error && error.status == '422') {
-          $scope.errorMsg = error.data.error.message;
-        } else {
-          $scope.errorMsg = "Unknown error.";
-        }
+        $scope.errorMsg = error && error.status == '422' ? error.data.error.message : "Unknown error.";
       });
     };
 
@@ -25,11 +21,7 @@ angular.module('freeCoderApp')
         $scope.errorMsg = undefined;
         $state.go('dashboard');
       }, function (error) {
-        if (error && error.status == '401') {
-          $scope.errorMsg = error.data.error.message;
-        } else {
-          $scope.errorMsg = "Unknown error.";
-        }
+        $scope.errorMsg = error && error.status == '401' ? error.data.error.message : "Unknown error.";
       });
     }
   }]);
