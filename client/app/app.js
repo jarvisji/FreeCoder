@@ -1,7 +1,7 @@
 /**
  * Created by Ting on 2015/5/7.
  */
-angular.module('freeCoderApp', ['lbServices', 'ui.router'])
+angular.module('freeCoderApp', ['lbServices', 'ui.router', 'i18nMessages'])
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
     //$locationProvider.html5Mode(true);
     $stateProvider.state('sign-up', {

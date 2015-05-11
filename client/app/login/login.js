@@ -2,7 +2,7 @@
  * Created by Ting on 2015/5/7.
  */
 angular.module('freeCoderApp')
-  .controller('loginCtrl', ['$scope', '$state', 'Member', function ($scope, $state, Member) {
+  .controller('loginCtrl', ['$scope', '$state', 'Member', 'messagesContext', function ($scope, $state, Member, messagesContext) {
     $scope.addUser = function () {
       Member.create($scope.newUser).$promise.then(function (member) {
         $scope.newUser = '';
@@ -12,7 +12,7 @@ angular.module('freeCoderApp')
         $('.focus').focus();
         $scope.errorMsg = undefined;
       }, function (error) {
-        $scope.errorMsg = error && error.status == '422' ? error.data.error.message : "Unknown error.";
+        $scope.errorMsg = error && error.status == '422' ? error.data.error.message : messagesContext.get('common.error.unknown');
       });
     };
 
@@ -21,7 +21,7 @@ angular.module('freeCoderApp')
         $scope.errorMsg = undefined;
         $state.go('dashboard');
       }, function (error) {
-        $scope.errorMsg = error && error.status == '401' ? error.data.error.message : "Unknown error.";
+        $scope.errorMsg = error && error.status == '401' ? error.data.error.message : messagesContext.get('common.error.unknown');
       });
     }
   }]);
