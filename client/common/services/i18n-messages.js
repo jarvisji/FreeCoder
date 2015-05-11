@@ -5,7 +5,7 @@ angular.module('i18nMessages', [])
   .value('i18nMessages', {
     'common.error.unknown': 'Unknown error.'
   })
-  .factory('messageaContext', function ($interpolate, i18nMessages) {
+  .factory('messagesContext', function ($interpolate, i18nMessages) {
     var handleNotFound = function (msg, msgKey) {
       return msg || '?' + msgKey + '?';
     };
