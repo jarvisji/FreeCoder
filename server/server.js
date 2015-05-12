@@ -4,6 +4,8 @@ var path = require('path');
 
 var app = module.exports = loopback();
 app.set('view engine', 'ejs');
+app.use(loopback.context());
+
 app.start = function () {
   // start the web server
   return app.listen(function () {
