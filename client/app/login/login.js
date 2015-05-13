@@ -3,7 +3,7 @@
  */
 angular.module('freeCoderApp')
   .controller('loginCtrl', ['$scope', '$rootScope', '$state', 'Member', 'messagesContext', function ($scope, $rootScope, $state, Member, messagesContext) {
-
+    $scope.rememberMe = false;
     if (Member.isAuthenticated())
       $state.go('dashboard');
 
@@ -21,7 +21,9 @@ angular.module('freeCoderApp')
     };
 
     $scope.login = function () {
-      Member.login($scope.member).$promise.then(function (data) {
+      // For remember me, refer to:
+      // http://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK#AngularJSJavaScriptSDK-Persistingtheaccesstoken
+      Member.login({rememberMe: $scope.rememberMe}, $scope.member).$promise.then(function (data) {
         $scope.errorMsg = undefined;
         $rootScope.sessionInfo.isLogin = Member.isAuthenticated();
         $state.go('dashboard');
