@@ -3,28 +3,30 @@
     <h1>Login</h1>
   </header>
   <form name="memberForm" novalidate ng-submit="login()">
-    <div class="form-group" ng-class="{'has-error': memberForm.email.$invalid && memberForm.email.$dirty}">
+    <div class="form-group col-sm-8" ng-class="{'has-error': memberForm.email.$invalid && memberForm.email.$dirty}">
       <input type="email" class="form-control focus" name="email" placeholder="Email" autocomplete="off" required
              ng-model="member.email">
       <span class="has-error control-label" ng-show="memberForm.email.$invalid && memberForm.email.$dirty">Email is required.</span>
     </div>
 
-    <div class="form-group" ng-class="{'has-error': memberForm.password.$invalid && memberForm.password.$dirty}">
+    <div class="form-group col-sm-8"
+         ng-class="{'has-error': memberForm.password.$invalid && memberForm.password.$dirty}">
       <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="off" required
              ng-model="member.password">
       <span class="has-error control-label" ng-show="memberForm.password.$invalid && memberForm.password.$dirty">Password is required.</span>
     </div>
 
-    <div class="alert alert-danger" role="alert" ng-show="errorMsg!=undefined">{{errorMsg}}</div>
+    <div class="alert alert-danger col-sm-8" role="alert" ng-show="errorMsg!=undefined">{{errorMsg}}</div>
 
-    <div class="checkbox">
+    <div class="checkbox col-sm-8">
       <label>
         <input type="checkbox" ng-model="rememberMe"> Remember me
       </label>
     </div>
 
-    <button class="btn btn-primary" ng-disabled="memberForm.$invalid">Login</button>
-    <a ui-sref="sign-up">Sign up</a>
+    <div class="col-sm-8">
+      <button class="btn btn-primary" ng-disabled="memberForm.$invalid">Login</button>
+      <a ui-sref="sign-up">Sign up</a>
+    </div>
   </form>
-  <hr>
 </div>
