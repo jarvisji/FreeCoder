@@ -25,16 +25,17 @@ module.exports = function (Member) {
     });
   });
 
+  /**
+   * Change user password by verify old password first.
+   * @param access_token
+   * @param options
+   * @param cb
+   */
   Member.changePassword = function (access_token, options, cb) {
     debug('> Member.changePassword().', access_token, options);
 
     Member.validatePassword(options.oldPass);
     Member.validatePassword(options.newPass);
-    //if (!options.oldPass || !options.newPass) {
-    //  var msg = 'oldPass or newPass is invalid.';
-    //  debug(msg);
-    //  cb(msg)
-    //}
 
     var ctx = loopback.getCurrentContext();
     var accessToken = ctx.get('accessToken');
@@ -66,6 +67,9 @@ module.exports = function (Member) {
     });
   };
 
+  /**
+   * Define REST API for change password.
+   */
   Member.remoteMethod('changePassword', {
     description: "Change password by verify current password.",
     http: {verb: 'post', path: '/changePassword'},
