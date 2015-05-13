@@ -796,6 +796,45 @@
 
           /**
            * @ngdoc method
+           * @name lbServices.Member#changePassword
+           * @methodOf lbServices.Member
+           *
+           * @description
+           *
+           * Change password by verify current password.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *   This method does not accept any parameters.
+           *   Supply an empty object or omit this argument altogether.
+           *
+           * @param {Object} postData Request data.
+           *
+           *  - `access_token` – `{string}` -
+           *
+           *  - `options` – `{object}` -
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * Data properties:
+           *
+           *  - `` – `{undefined=}` -
+           */
+          "changePassword": {
+            url: urlBase + "/Members/changePassword",
+            method: "POST"
+          },
+
+          /**
+           * @ngdoc method
            * @name lbServices.Member#getCurrent
            * @methodOf lbServices.Member
            *
@@ -1057,7 +1096,7 @@
       return new LoopBackAuth();
 
       // Note: LocalStorage converts the value to string
-      // We are using empty string as a marker for null/ndefined values.
+      // We are using empty string as a marker for null/undefined values.
       function save(storage, name, value) {
         var key = propsPrefix + name;
         if (value == null) value = '';

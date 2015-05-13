@@ -19,6 +19,11 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'i18nMessages'])
       templateUrl: 'app/dashboard/dashboard.tpl.html',
       controller: 'dashboardCtrl'
     });
+    $stateProvider.state('profile', {
+      url: '/profile',
+      templateUrl: 'app/profile/user-profile.tpl.html',
+      controller: 'userProfileCtrl'
+    });
     $stateProvider.state('todo', {
       url: '/todo',
       templateUrl: 'app/todo/todo.tpl.html',

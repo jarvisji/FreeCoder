@@ -3,7 +3,9 @@
  */
 angular.module('i18nMessages', [])
   .value('i18nMessages', {
-    'common.error.unknown': 'Unknown error.'
+    'common.error.unknown': 'Unknown error.',
+    'common.error.occurred': 'Error occurred: {{msg}}',
+    'user.profile.changePassword.success': 'Password was changed successfully.'
   })
   .factory('messagesContext', function ($interpolate, i18nMessages) {
     var handleNotFound = function (msg, msgKey) {
