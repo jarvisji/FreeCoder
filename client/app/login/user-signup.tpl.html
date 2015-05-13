@@ -1,22 +1,25 @@
-<h1>Register</h1>
-<hr>
-<form name="memberForm" novalidate ng-submit="addUser()">
-  <div class="form-group" ng-class="{'has-error': memberForm.email.$invalid && memberForm.email.$dirty}">
-    <input type="email" class="form-control focus" name="email" placeholder="Email" autocomplete="off" required
-           ng-model="newUser.email">
+<div class="row">
+  <header class="page-header">
+    <h1>Register</h1>
+  </header>
+  <form name="memberForm" novalidate ng-submit="addUser()">
+    <div class="form-group" ng-class="{'has-error': memberForm.email.$invalid && memberForm.email.$dirty}">
+      <input type="email" class="form-control focus" name="email" placeholder="Email" autocomplete="off" required
+             ng-model="newUser.email">
     <span class="has-error control-label" ng-show="memberForm.email.$invalid && memberForm.email.$dirty">
       Email is required.
     </span>
-  </div>
-  <div class="form-group" ng-class="{'has-error': memberForm.password.$invalid && memberForm.password.$dirty}">
-    <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="off" required
-           ng-model="newUser.password">
+    </div>
+    <div class="form-group" ng-class="{'has-error': memberForm.password.$invalid && memberForm.password.$dirty}">
+      <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="off" required
+             ng-model="newUser.password">
     <span class="has-error control-label" ng-show="memberForm.password.$invalid && memberForm.password.$dirty">
       Password is required.
     </span>
-  </div>
-  <div class="alert alert-danger" role="alert" ng-show="errorMsg!=undefined">{{errorMsg}}</div>
-  <button class="btn btn-primary" ng-disabled="memberForm.$invalid">Register</button>
-  <a ui-sref="login">Login</a>
-</form>
-<hr>
+    </div>
+    <div class="alert alert-danger" role="alert" ng-show="errorMsg!=undefined">{{errorMsg}}</div>
+    <button class="btn btn-primary" ng-disabled="memberForm.$invalid">Register</button>
+    <a ui-sref="login">Login</a>
+  </form>
+  <hr>
+</div>
