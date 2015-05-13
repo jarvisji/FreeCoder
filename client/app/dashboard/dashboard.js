@@ -3,7 +3,6 @@
  */
 angular.module('freeCoderApp')
   .controller('dashboardCtrl', ['$scope', '$state', 'Member', function ($scope, $state, Member) {
-    $scope.$parent.isLogin = Member.isAuthenticated();
     if (!Member.isAuthenticated()) {
       $state.go('login');
     }

@@ -18,7 +18,8 @@
       <a class="navbar-brand" href="#">FreeCoder</a>
     </div>
     <div class="navbar-right">
-      <button type="button" class="btn btn-warning btn-sm navbar-btn" ng-click="logout()" ng-show="isLogin">Sign out
+      <button type="button" class="btn btn-warning btn-sm navbar-btn" ng-click="logout()" ng-show="sessionInfo.isLogin">
+        Sign out
       </button>
     </div>
   </div>
@@ -45,6 +46,7 @@
 <script src="vendor/angular/angular.js"></script>
 <script src="vendor/angular-resource/angular-resource.js"></script>
 <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="vendor/angular-cookies/angular-cookies.js"></script>
 <script src="common/services/lb-services.js"></script>
 <script src="common/services/i18n-messages.js"></script>
 <script src="app/app.js"></script>
