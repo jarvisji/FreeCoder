@@ -835,6 +835,47 @@
 
           /**
            * @ngdoc method
+           * @name lbServices.Member#resetPasswordConfirm
+           * @methodOf lbServices.Member
+           *
+           * @description
+           *
+           * Confirm a user reset password with email verification token
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *   This method does not accept any parameters.
+           *   Supply an empty object or omit this argument altogether.
+           *
+           * @param {Object} postData Request data.
+           *
+           *  - `uid` – `{string}` -
+           *
+           *  - `token` – `{string}` -
+           *
+           *  - `options` – `{object}` -
+           *
+           *  - `redirect` – `{string=}` -
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * This method returns no data.
+           */
+          "resetPasswordConfirm": {
+            url: urlBase + "/Members/resetConfirm",
+            method: "POST"
+          },
+
+          /**
+           * @ngdoc method
            * @name lbServices.Member#getCurrent
            * @methodOf lbServices.Member
            *

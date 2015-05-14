@@ -1,4 +1,5 @@
 {
+  "protocol": "http",
   "restApiRoot": "/api",
   "host": "0.0.0.0",
   "port": 3000,
@@ -23,5 +24,6 @@
       "disableStackTrace": false
     }
   },
-  "legacyExplorer": false
+  "legacyExplorer": false,
+  "supportEmail": "support@freecoder.net"
 }

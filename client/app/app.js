@@ -14,6 +14,16 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ngCookies', 'i18nMes
       templateUrl: 'app/login/user-login.tpl.html',
       controller: 'loginCtrl'
     });
+    $stateProvider.state('forgot', {
+      url: '/forgot',
+      templateUrl: 'app/login/user-forgot.tpl.html',
+      controller: 'loginCtrl'
+    });
+    $stateProvider.state('reset', {
+      url: '/reset',
+      templateUrl: 'app/login/user-reset.tpl.html',
+      controller: 'loginCtrl'
+    });
     $stateProvider.state('dashboard', {
       url: '/dashboard',
       templateUrl: 'app/dashboard/dashboard.tpl.html',

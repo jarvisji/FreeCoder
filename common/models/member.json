@@ -20,6 +20,12 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "changePassword"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "resetPasswordConfirm"
     }
   ],
   "methods": []
