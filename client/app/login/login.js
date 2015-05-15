@@ -7,6 +7,7 @@ angular.module('freeCoderApp')
       $state.go('dashboard');
     $scope.rememberMe = false;
     $scope.validateRet = {};
+    $rootScope.sessionInfo = {};
 
     $scope.testJasmine = function () {
       $scope.val = 1;
