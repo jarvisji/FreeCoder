@@ -8,6 +8,10 @@ angular.module('freeCoderApp')
     $scope.rememberMe = false;
     $scope.validateRet = {};
 
+    $scope.testJasmine = function () {
+      $scope.val = 1;
+    };
+
     // check url parameters for /reset
     if ($location.path() == '/reset') {
       var emailToken = $location.search();
