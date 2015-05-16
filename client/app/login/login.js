@@ -5,13 +5,10 @@ angular.module('freeCoderApp')
   .controller('loginCtrl', ['$scope', '$rootScope', '$state', '$location', '$timeout', 'Member', 'messagesContext', function ($scope, $rootScope, $state, $location, $timeout, Member, messagesContext) {
     if (Member.isAuthenticated())
       $state.go('dashboard');
+
     $scope.rememberMe = false;
     $scope.validateRet = {};
     $rootScope.sessionInfo = {};
-
-    $scope.testJasmine = function () {
-      $scope.val = 1;
-    };
 
     // check url parameters for /reset
     if ($location.path() == '/reset') {
