@@ -2,7 +2,7 @@
   <header class="page-header">
     <h1>Register</h1>
   </header>
-  <form name="memberForm" novalidate ng-submit="addUser()">
+  <form name="memberForm" novalidate ng-submit="register()">
     <div class="form-group col-sm-8" ng-class="{'has-error': memberForm.email.$invalid && memberForm.email.$dirty}">
       <input type="email" class="form-control focus" name="email" placeholder="Email" autocomplete="off" required
              ng-model="newUser.email">
@@ -15,7 +15,7 @@
       <span class="has-error control-label" ng-show="memberForm.password.$invalid && memberForm.password.$dirty">Password is required.</span>
     </div>
 
-    <div class="alert alert-danger col-sm-8" role="alert" ng-show="errorMsg!=undefined">{{errorMsg}}</div>
+    <div class="alert col-sm-8" role="alert" ng-class="alert.style" ng-show="alert">{{alert.message}}</div>
 
     <div class="col-sm-8">
       <button class="btn btn-primary" ng-disabled="memberForm.$invalid">Register</button>

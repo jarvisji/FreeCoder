@@ -7,7 +7,7 @@ angular.module('freeCoderApp')
       $state.go('dashboard');
 
     $scope.rememberMe = false;
-    $scope.validateRet = {};
+    $scope.alert = {};
     $rootScope.sessionInfo = {};
 
     // check url parameters for /reset
@@ -18,16 +18,16 @@ angular.module('freeCoderApp')
       }
     }
 
-    $scope.addUser = function () {
+    $scope.register = function () {
       Member.create($scope.newUser).$promise.then(function (member) {
         $scope.newUser = '';
-        $scope.result = "success:" + member.id;
+        $scope.alert.message = messagesContext.get('user.register.success');
+        $scope.alert.style = 'alert-success';
         $scope.memberForm.email.$setPristine();
         $scope.memberForm.password.$setPristine();
-        $('.focus').focus();
-        $scope.errorMsg = undefined;
       }, function (error) {
-        $scope.errorMsg = error && error.status == '422' ? error.data.error.message : messagesContext.get('common.error.unknown');
+        $scope.alert.message = error && error.status == '422' ? error.data.error.message : messagesContext.get('common.error.unknown');
+        $scope.alert.style = 'alert-danger';
       });
     };
 
@@ -44,33 +44,32 @@ angular.module('freeCoderApp')
     };
 
     $scope.forgot = function () {
-      Member.resetPassword({email: $scope.resetOption.email}, function (successValue, successResp) {
-        $scope.validateRet.alertStyle = "alert-success";
-        $scope.validateRet.message = messagesContext.get('user.reset.password.email.sent');
+      Member.resetPassword({email: $scope.resetOption.email}).$promise.then(function (successValue, successResp) {
+        $scope.alert.style = "alert-success";
+        $scope.alert.message = messagesContext.get('user.reset.password.email.sent');
       }, function (errorResp) {
-        $scope.validateRet.alertStyle = "alert-danger";
-        $scope.validateRet.message = messagesContext.get('common.error.occurred');
+        $scope.alert.style = "alert-danger";
+        $scope.alert.message = messagesContext.get('common.error.occurred');
       });
     };
 
     $scope.reset = function () {
-      $scope.validateRet = {};
       if ($scope.resetOption.password != $scope.resetOption.repeatPassword) {
         $scope.resetForm.repeatPassword.$invalid = true;
-        $scope.validateRet.alertStyle = 'alert-danger';
-        $scope.validateRet.message = messagesContext.get('user.reset.password.not.same');
+        $scope.alert.style = 'alert-danger';
+        $scope.alert.message = messagesContext.get('user.reset.password.not.same');
       } else {
         $scope.resetForm.repeatPassword.$invalid = false;
-        Member.resetPasswordConfirm(emailToken, $scope.resetOption, function (successValue, successResp) {
-          $scope.validateRet.alertStyle = 'alert-success';
-          $scope.validateRet.message = messagesContext.get('user.reset.password.success');
+        Member.resetPasswordConfirm(emailToken, $scope.resetOption).$promise.then(function (successValue, successResp) {
+          $scope.alert.style = 'alert-success';
+          $scope.alert.message = messagesContext.get('user.reset.password.success');
           Member.logout();
           $timeout(function () {
             $state.go('login');
           }, 3000);
         }, function (errorResp) {
-          $scope.validateRet.alertStyle = 'alert-danger';
-          $scope.validateRet.message = errorResp.data.error.message;
+          $scope.alert.style = 'alert-danger';
+          $scope.alert.message = errorResp.data.error.message;
         })
       }
     }

@@ -21,12 +21,10 @@ module.exports = function (config) {
       'client/vendor/angular-cookies/angular-cookies.js',
       'client/vendor/angular-mocks/angular-mocks.js',
       'client/app/**/*.js',
+      'client/app/**/*.tpl.html', // for test templates
       'client/common/**/*.js',
       'test/**/*Spec.js'
     ],
-
-    exclude: [],
-
 
     // list of files to exclude
     exclude: [],
@@ -34,8 +32,18 @@ module.exports = function (config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {},
+    preprocessors: {
+      'client/app/**/*.tpl.html': ['ng-html2js']
+    },
 
+    // refer to https://github.com/karma-runner/karma-ng-html2js-preprocessor
+    ngHtml2JsPreprocessor: {
+      // strip this from the file path
+      stripPrefix: 'client/',
+      // setting this option will create only a single module that contains templates
+      // from all the files, so you can load them all with module('foo')
+      moduleName: 'templates'
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

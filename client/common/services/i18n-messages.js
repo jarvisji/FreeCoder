@@ -5,6 +5,7 @@ angular.module('i18nMessages', [])
   .value('i18nMessages', {
     'common.error.unknown': 'Unknown error.',
     'common.error.occurred': 'Error occurred: {{msg}}',
+    'user.register.success': 'Thanks for sign up, and email is on its way with a link to activate your account, please check it.',
     'user.profile.changePassword.success': 'Password was changed successfully.',
     'user.reset.password.email.sent': 'An email is on its way with a link to reset your password. But hurry, it expires in 15 minutes.',
     'user.reset.password.link.error': 'The request link is not valid, please open link via received email.',

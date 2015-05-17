@@ -5,13 +5,12 @@
   <form name="resetForm" novalidate ng-submit="forgot()">
     <div class="form-group col-sm-8" ng-class="{'has-error': resetForm.email.$invalid && resetForm.email.$dirty}">
       <input type="email" class="form-control focus" name="email" placeholder="Input your email" autocomplete="off"
-             required
-             ng-model="resetOption.email">
+             required ng-model="resetOption.email">
       <span class="has-error control-label" ng-show="resetForm.email.$invalid && resetForm.email.$dirty">Invalid email address..</span>
     </div>
 
-    <div class="alert col-sm-8" role="alert" ng-class="validateRet.alertStyle"
-         ng-show="validateRet.alertStyle!=undefined">{{validateRet.message}}
+    <div class="alert col-sm-8" role="alert" ng-class="alert.style"
+         ng-show="alert">{{alert.message}}
     </div>
 
     <div class="col-sm-8">
