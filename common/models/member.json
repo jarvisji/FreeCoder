@@ -8,9 +8,9 @@
   "properties": {},
   "validations": [],
   "relations": {
-    "todos": {
+    "tasks": {
       "type": "hasMany",
-      "model": "Todo",
+      "model": "Task",
       "foreignKey": "memberId"
     }
   },
