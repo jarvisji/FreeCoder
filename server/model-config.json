@@ -34,5 +34,9 @@
   "Member": {
     "dataSource": "mongolab",
     "public": true
+  },
+  "Todo": {
+    "dataSource": "mongolab",
+    "public": true
   }
 }
