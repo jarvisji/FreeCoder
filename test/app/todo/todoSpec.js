@@ -31,6 +31,7 @@ describe('Todo controller cases.', function () {
       }
     }
   };
+  var mockCurrentUserId = '554c81e5d8404b7007865c2e';
 
   beforeEach(module('freeCoderApp'));
   beforeEach(module('templates'));
@@ -47,13 +48,14 @@ describe('Todo controller cases.', function () {
       $scope: $scope,
       Member: Member,
       Task: Task,
-      messagesContext: messagesContext
+      messagesContext: messagesContext,
+      userTasks: angular.copy(mockTasks)
     })
   }));
 
   it('Test create todo item success.', function () {
     // verify before
-    expect($scope.tasks).toEqual([]);
+    expect($scope.tasks.length).toEqual(mockTasks.length);
     expect($scope.newTask).toEqual({});
 
     // mock
@@ -67,15 +69,13 @@ describe('Todo controller cases.', function () {
 
     // verify after
     expect($scope.newTask).toEqual({});
-    expect($scope.tasks.length).toEqual(1);
+    expect($scope.tasks.length).toEqual(mockTasks.length + 1);
   });
 
   it('Test create todo item failed.', function () {
     // mock
     $scope.newTask = mockTasks[0];
     spyOn(Task, 'create').and.returnValue({$promise: deferred.promise});
-    //var template = $templateCache.get('app/todo/todo.tpl.html');
-    //$compile(template)($scope);
 
     // run
     $scope.createTask();
@@ -84,7 +84,7 @@ describe('Todo controller cases.', function () {
 
     // verify after
     expect($scope.newTask).toEqual(mockTasks[0]);
-    expect($scope.tasks.length).toEqual(0);
+    expect($scope.tasks.length).toEqual(mockTasks.length);
     expect($scope.alert.style).toEqual('alert-danger');
     expect($scope.alert.message).toBeDefined();
   });
@@ -95,11 +95,35 @@ describe('Todo controller cases.', function () {
   });
 
   it('Test list of todo items.', function () {
+    // mock
+    spyOn(Member, 'tasks').and.returnValue({$promise: deferred.promise});
+    spyOn(Member, 'getCurrentId').and.returnValue(mockCurrentUserId);
+    $scope.uiText.noTasks = 'should be delete if get tasks.';
 
+    // run
+    $scope.getTasks();
+    deferred.resolve(mockTasks);
+    $scope.$digest();
+
+    // verify after
+    expect($scope.tasks.length).toEqual(mockTasks.length);
+    expect($scope.alert).toEqual({});
+    expect($scope.uiText.noTasks).toBeUndefined();
   });
 
   it('Test blank list of todo items.', function () {
+    // mock
+    spyOn(Member, 'tasks').and.returnValue({$promise: deferred.promise});
+    spyOn(Member, 'getCurrentId').and.returnValue(mockCurrentUserId);
 
+    // run
+    $scope.getTasks();
+    deferred.resolve([]);
+    $scope.$digest();
+
+    // verify after
+    expect($scope.tasks.length).toEqual(0);
+    expect($scope.uiText.noTasks).not.toBeUndefined();
   });
 
   it('Test delete todo item success.', function () {

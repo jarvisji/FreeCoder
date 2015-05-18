@@ -37,7 +37,12 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ngCookies', 'i18nMes
     $stateProvider.state('todo', {
       url: '/todo',
       templateUrl: 'app/todo/todo.tpl.html',
-      controller: 'todoCtrl'
+      controller: 'todoCtrl',
+      resolve: {
+        userTasks: function (Member) {
+          return Member.tasks({id: Member.getCurrentId()}).$promise;
+        }
+      }
     });
     $urlRouterProvider.otherwise('dashboard');
   }])
