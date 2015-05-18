@@ -1,5 +1,6 @@
 /**
- * For each our own defined models, handle 'created' and 'lastUpdated' automatically.
+ * 1. For each our own defined models, handle 'created' and 'lastUpdated' automatically.
+ * 2. Replace 'memberId' according to current accessToken, avoid user change it in client.
  * Refer to: http://docs.strongloop.com/display/public/LB/Operation+hooks
  * Created by Ting on 2015/5/18.
  */

@@ -10,7 +10,8 @@ angular.module('i18nMessages', [])
     'user.reset.password.email.sent': 'An email is on its way with a link to reset your password. But hurry, it expires in 15 minutes.',
     'user.reset.password.link.error': 'The request link is not valid, please open link via received email.',
     'user.reset.password.not.same': 'Passwords are not same.',
-    'user.reset.password.success': 'Password was reset, will jump to login page in 3 seconds.'
+    'user.reset.password.success': 'Password was reset, will jump to login page in 3 seconds.',
+    'todo.new.placeholder': 'Type your to-do items, tasks, questions, memos... anything here.'
   })
   .factory('messagesContext', function ($interpolate, i18nMessages) {
     var handleNotFound = function (msg, msgKey) {
