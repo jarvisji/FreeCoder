@@ -24,7 +24,7 @@
               ng-repeat="task in tasks | filter: filterCompletedTasks()"
               ng-class="{selected: task.isCompleted}"
               ng-mouseover="mouseOverIndex=$index" ng-mouseleave="mouseOverIndex=undefined">
-            <input type="checkbox" class="ace" ng-model="task.isCompleted" ng-change="finishTask($index)">
+            <input type="checkbox" class="ace" name="chbTask" ng-model="task.isCompleted" ng-change="finishTask(task)">
             <span class="lbl">  {{task.title}}</span>
 
             <div class="pull-right action-buttons" ng-show="!dragging && mouseOverIndex == $index">
@@ -35,6 +35,7 @@
         </ul>
         <span ng-show="uiText.noTasks">{{uiText.noTasks}}</span>
       </div>
+      <pre>{{tasks|json}}</pre>
     </div>
   </div>
 </div>

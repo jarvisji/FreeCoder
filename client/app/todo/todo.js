@@ -52,9 +52,8 @@ angular.module('freeCoderApp')
       });
     };
 
-    $scope.finishTask = function (index) {
-      var task = $scope.tasks[index];
-      $log.debug('Changing task completion. index, id, isCompleted:', index, task.id, task.isCompleted);
+    $scope.finishTask = function (task) {
+      $log.debug('Changing task completion. id, isCompleted:', task.id, task.isCompleted);
       task.isCompleted ? task.completionTime = new Date().getTime() : task.completionTime = '';
       Task.update({where: {id: task.id}}, task).$promise.then(function (value, respHeader) {
         $log.debug('Updated task completion successful. id, isCompleted, completionTime:', value.id, value.isCompleted, value.completionTime);
