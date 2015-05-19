@@ -20,6 +20,7 @@ module.exports = function (config) {
       'client/vendor/angular-ui-router/release/angular-ui-router.js',
       'client/vendor/angular-cookies/angular-cookies.js',
       'client/vendor/angular-mocks/angular-mocks.js',
+      'client/vendor/angular-ui-tree/dist/angular-ui-tree.js',
       'client/app/**/*.js',
       'client/app/**/*.tpl.html', // for test templates
       'client/common/**/*.js',

@@ -12,9 +12,14 @@
       </div>
     </form>
     <hr>
-    <ul class="list-group">
-      <li class="list-group-item" ng-repeat="task in tasks">{{task.title}}</li>
-    </ul>
-    <span ng-show="uiText.noTasks">{{uiText.noTasks}}</span>
+    <div ui-tree="treeOptions" data-empty-placeholder-enabled="false">
+      <ul class="list-group" ui-tree-nodes ng-model="tasks">
+        <li class="list-group-item" ng-repeat="task in tasks" ui-tree-node ui-tree-handle>
+          {{task.title}}
+        </li>
+      </ul>
+      <span ng-show="uiText.noTasks">{{uiText.noTasks}}</span>
+    </div>
+    <div>{{tasks|json}}</div>
   </div>
 </div>

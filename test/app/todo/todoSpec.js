@@ -5,18 +5,28 @@ describe('Todo controller cases.', function () {
   var $scope, $compile, $templateCache, Task, Member, messagesContext, deferred;
   var mockTasks = [
     {
-      "title": "This is the first task.",
-      "created": "2015-05-18T07:45:44.509Z",
-      "lastUpdated": "2015-05-18T07:45:44.509Z",
-      "id": "555998a87ed9b4bc26dca7ce",
-      "memberId": "554c81e5d8404b7007865c2e"
+      "title": "jj3",
+      "order": 1432000333232,
+      "created": "2015-05-19T01:52:13.232Z",
+      "lastUpdated": "2015-05-19T01:52:13.232Z",
+      "id": "555a974d685fe21c2e3fd8b5",
+      "memberId": "555843ab7585689c19c3d11b"
     },
     {
-      "title": "Buy something for wife's birthday.",
-      "created": "2015-05-18T07:45:48.699Z",
-      "lastUpdated": "2015-05-18T07:45:48.699Z",
-      "id": "555998ac7ed9b4bc26dca7cf",
-      "memberId": "554c81e5d8404b7007865c2e"
+      "title": "jj2",
+      "order": 1432000328897,
+      "created": "2015-05-19T01:52:08.898Z",
+      "lastUpdated": "2015-05-19T01:52:08.898Z",
+      "id": "555a9748685fe21c2e3fd8b4",
+      "memberId": "555843ab7585689c19c3d11b"
+    },
+    {
+      "title": "jj1",
+      "order": 1432000324479,
+      "created": "2015-05-19T01:52:04.480Z",
+      "lastUpdated": "2015-05-19T01:52:04.480Z",
+      "id": "555a9744685fe21c2e3fd8b3",
+      "memberId": "555843ab7585689c19c3d11b"
     }
   ];
   var mockErrorReturn = {
@@ -35,7 +45,7 @@ describe('Todo controller cases.', function () {
 
   beforeEach(module('freeCoderApp'));
   beforeEach(module('templates'));
-  beforeEach(inject(function ($rootScope, $controller, $q, _$compile_, _$templateCache_, _Task_, _Member_, _messagesContext_) {
+  beforeEach(inject(function ($rootScope, $controller, $q, _$compile_, _$templateCache_, _$log_, _Task_, _Member_, _messagesContext_) {
     $scope = $rootScope.$new();
     $compile = _$compile_;
     $templateCache = _$templateCache_;
@@ -44,13 +54,14 @@ describe('Todo controller cases.', function () {
     messagesContext = _messagesContext_;
     deferred = $q.defer();
 
-    $controller('todoCtrl', {
+    var controller = $controller('todoCtrl as todoCtrl', {
       $scope: $scope,
+      $log: _$log_,
       Member: Member,
       Task: Task,
       messagesContext: messagesContext,
       userTasks: angular.copy(mockTasks)
-    })
+    });
   }));
 
   it('Test create todo item success.', function () {
@@ -124,6 +135,39 @@ describe('Todo controller cases.', function () {
     // verify after
     expect($scope.tasks.length).toEqual(0);
     expect($scope.uiText.noTasks).not.toBeUndefined();
+  });
+
+  it('Test change task order.', function () {
+    // mock
+    spyOn(Task, 'prototype$updateAttributes').and.returnValue({$promise: deferred.promise}); // do not really execute this method.
+
+    /* move the last task to the first */
+    $scope.tasks.unshift($scope.tasks.pop());
+    expect($scope.tasks[0].order < $scope.tasks[1].order).toBe(true);
+    // run
+    var mockEvent = {dest: {index: 0}};
+    $scope.treeOptions.dropped(mockEvent);
+    // verify
+    expect($scope.tasks[0].order < $scope.tasks[1].order).toBe(false);
+
+    /* move the first task to the last */
+    $scope.tasks.push($scope.tasks.shift());
+    expect($scope.tasks[$scope.tasks.length - 1].order > $scope.tasks[$scope.tasks.length - 2].order).toBe(true);
+    // run
+    var mockEvent = {dest: {index: $scope.tasks.length - 1}};
+    $scope.treeOptions.dropped(mockEvent);
+    // verify
+    expect($scope.tasks[$scope.tasks.length - 1].order > $scope.tasks[$scope.tasks.length - 2].order).toBe(false);
+
+    /* move the first task to the middle */
+    $scope.tasks.splice(1, 0, $scope.tasks.shift());
+    expect($scope.tasks[0].order < $scope.tasks[1].order).toBe(true);
+    // run
+    var mockEvent = {dest: {index: 1}};
+    $scope.treeOptions.dropped(mockEvent);
+    // verify
+    expect($scope.tasks[0].order > $scope.tasks[1].order).toBe(true);
+    expect($scope.tasks[1].order > $scope.tasks[2].order).toBe(true);
   });
 
   it('Test delete todo item success.', function () {

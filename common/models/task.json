@@ -16,6 +16,9 @@
     "parentId": {
       "type": "string"
     },
+    "order": {
+      "type": "number"
+    },
     "created": {
       "type": "date"
     },

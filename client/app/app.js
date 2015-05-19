@@ -1,7 +1,7 @@
 /**
  * Created by Ting on 2015/5/7.
  */
-angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ngCookies', 'i18nMessages'])
+angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies', 'i18nMessages'])
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
     //$locationProvider.html5Mode(true);
     $stateProvider.state('sign-up', {
@@ -40,7 +40,7 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ngCookies', 'i18nMes
       controller: 'todoCtrl',
       resolve: {
         userTasks: function (Member) {
-          return Member.tasks({id: Member.getCurrentId()}).$promise;
+          return Member.tasks({id: Member.getCurrentId(), filter: {order: 'order DESC'}}).$promise;
         }
       }
     });
