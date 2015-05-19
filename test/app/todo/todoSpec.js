@@ -218,11 +218,13 @@ describe('Todo controller cases.', function () {
 
   it('Test change completion status of task.', function () {
     spyOn(Task, 'update').and.returnValue({$promise: deferred.promise});
+    // the verify of click again only work when showing all tasks, because if hide completed task, the first task will not consist.
+    $scope.isDisplayCompletedTasks = true;
     var template = $templateCache.get('app/todo/todo.tpl.html');
     var element = $compile(template)($scope);
     $scope.$digest();
 
-    var checkbox = $(element).find('input:checkbox')[0];
+    var checkbox = $(element).find('input:checkbox[name="chbTask"]')[0];
 
     // before click
     expect($scope.tasks[0].isCompleted).toBeFalsy();
