@@ -215,4 +215,25 @@ describe('Todo controller cases.', function () {
     $scope.treeOptions.dragStop();
     expect($scope.dragging).toBeFalsy();
   });
+
+  it('Test change completion status of task.', function () {
+    spyOn(Task, 'update').and.returnValue({$promise: deferred.promise});
+    var template = $templateCache.get('app/todo/todo.tpl.html');
+    var element = $compile(template)($scope);
+    $scope.$digest();
+
+    var checkbox = $(element).find('input:checkbox')[0];
+
+    // before click
+    expect($scope.tasks[0].isCompleted).toBeFalsy();
+    expect($scope.tasks[0].completionTime).toBeUndefined();
+    // after click
+    checkbox.click();
+    expect($scope.tasks[0].isCompleted).toBeTruthy();
+    expect($scope.tasks[0].completionTime).toBeGreaterThan(0);
+    // click again
+    checkbox.click();
+    expect($scope.tasks[0].isCompleted).toBeFalsy();
+    expect($scope.tasks[0].completionTime).toEqual("");
+  });
 });

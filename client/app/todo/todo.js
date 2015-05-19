@@ -50,6 +50,17 @@ angular.module('freeCoderApp')
       });
     };
 
+    $scope.finishTask = function (index) {
+      var task = $scope.tasks[index];
+      $log.debug('Changing task completion. index, id, isCompleted:', index, task.id, task.isCompleted);
+      task.isCompleted ? task.completionTime = new Date().getTime() : task.completionTime = '';
+      Task.update({where: {id: task.id}}, task).$promise.then(function (value, respHeader) {
+        $log.debug('Updated task completion successful. id, isCompleted, completionTime:', value.id, value.isCompleted, value.completionTime);
+      }, function (errResp) {
+        alertRequestError(errResp);
+      });
+    };
+
     $scope.treeOptions = {
       // recalculate 'order' value when changed task position in list.
       dropped: function (event) {
@@ -87,5 +98,9 @@ angular.module('freeCoderApp')
     var alertRequestError = function (errResp) {
       $scope.alert.style = 'alert-danger';
       $scope.alert.message = errResp.data.error.message;
-    }
+    };
+
+    var clearAlert = function () {
+      $scope.alert = {};
+    };
   }]);

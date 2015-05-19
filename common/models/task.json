@@ -19,6 +19,15 @@
     "order": {
       "type": "number"
     },
+    "targetTime": {
+      "type": "date"
+    },
+    "isCompleted": {
+      "type": "boolean"
+    },
+    "completionTime": {
+      "type": "date"
+    },
     "created": {
       "type": "date"
     },
