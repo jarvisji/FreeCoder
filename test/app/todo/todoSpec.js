@@ -171,10 +171,25 @@ describe('Todo controller cases.', function () {
   });
 
   it('Test delete todo item success.', function () {
+    spyOn(Task, 'deleteById').and.returnValue({$promise: deferred.promise});
 
+    $scope.deleteTask(0);
+    deferred.resolve();
+    $scope.$digest();
+
+    expect($scope.tasks.length).toEqual(mockTasks.length - 1);
+    expect($scope.alert).toEqual({});
   });
 
   it('Test delete todo item failed.', function () {
+    spyOn(Task, 'deleteById').and.returnValue({$promise: deferred.promise});
 
+    $scope.deleteTask(0);
+    deferred.reject(mockErrorReturn);
+    $scope.$digest();
+
+    expect($scope.tasks.length).toEqual(mockTasks.length);
+    expect($scope.alert.style).toEqual('alert-danger');
+    expect($scope.alert.message).toBeDefined();
   });
 });

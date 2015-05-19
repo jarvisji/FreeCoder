@@ -13,3 +13,11 @@ body {
 .view-content {
   margin-top: 20px;
 }
+
+.action-buttons {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}

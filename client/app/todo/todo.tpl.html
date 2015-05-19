@@ -14,8 +14,13 @@
     <hr>
     <div ui-tree="treeOptions" data-empty-placeholder-enabled="false">
       <ul class="list-group" ui-tree-nodes ng-model="tasks">
-        <li class="list-group-item" ng-repeat="task in tasks" ui-tree-node ui-tree-handle>
+        <li class="list-group-item" ng-repeat="task in tasks" ui-tree-node ui-tree-handle
+            ng-mouseover="mouseOverIndex=$index" ng-mouseleave="mouseOverIndex=undefined">
           {{task.title}}
+          <div class="pull-right action-buttons" ng-show="!dragging && mouseOverIndex == $index">
+            <button class="btn btn-success center-block">Done</button>
+            <button class="btn btn-danger center-block" ng-click="deleteTask($index)">Delete</button>
+          </div>
         </li>
       </ul>
       <span ng-show="uiText.noTasks">{{uiText.noTasks}}</span>

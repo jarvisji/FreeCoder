@@ -7,6 +7,7 @@ angular.module('freeCoderApp')
     $scope.alert = {};
     $scope.newTask = {};
     $scope.tasks = userTasks;
+    $scope.mouseOverIndex;
 
     var checkTasksCount = function () {
       if ($scope.tasks.length == 0) {
@@ -39,6 +40,16 @@ angular.module('freeCoderApp')
         })
     };
 
+    $scope.deleteTask = function (index) {
+      var taskId = $scope.tasks[index].id;
+      $log.debug('Deleting task. index, id:', index, taskId);
+      Task.deleteById({id: taskId}).$promise.then(function (value, respHeader) {
+        $scope.tasks.splice(index, 1);
+      }, function (errResp) {
+        alertRequestError(errResp);
+      });
+    };
+
     $scope.treeOptions = {
       // recalculate 'order' value when changed task position in list.
       dropped: function (event) {
@@ -62,6 +73,12 @@ angular.module('freeCoderApp')
         }, function (errResp) {
           alertRequestError(errResp);
         });
+      },
+      dragStart: function (event) {
+        $scope.dragging = true;
+      },
+      dragStop: function (event) {
+        $scope.dragging = false;
       }
     };
 
