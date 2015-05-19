@@ -2,12 +2,14 @@
  * Created by jiting on 15/5/11.
  */
 angular.module('freeCoderApp')
-  .controller('todoCtrl', ['$scope', '$log', 'Member', 'Task', 'messagesContext', 'userTasks', function ($scope, $log, Member, Task, messagesContext, userTasks) {
-    $scope.uiText = {newTaskTitlePlaceholder: messagesContext.get('todo.new.placeholder')};
+  .controller('todoCtrl', ['$scope', '$log', '$filter', 'Member', 'Task', 'messagesContext', 'userTasks', function ($scope, $log, $filter, Member, Task, messagesContext, userTasks) {
+    $scope.uiText = {
+      newTaskTitlePlaceholder: messagesContext.get('todo.new.placeholder'),
+      displayCompletedTasks: messagesContext.get('todo.filter.display.completed.tasks')
+    };
     $scope.alert = {};
     $scope.newTask = {};
     $scope.tasks = userTasks;
-    $scope.mouseOverIndex;
 
     var checkTasksCount = function () {
       if ($scope.tasks.length == 0) {
@@ -61,6 +63,18 @@ angular.module('freeCoderApp')
       });
     };
 
+    $scope.filterCompletedTasks = function () {
+      if ($scope.isDisplayCompletedTasks) {
+        return '';
+      } else {
+        return function (task, index) {
+          if (task.isCompleted == undefined || task.isCompleted == false) {
+            return true;
+          }
+        }
+      }
+    };
+
     $scope.treeOptions = {
       // recalculate 'order' value when changed task position in list.
       dropped: function (event) {
@@ -96,6 +110,7 @@ angular.module('freeCoderApp')
     };
 
     var alertRequestError = function (errResp) {
+      //TODO: move class to template.
       $scope.alert.style = 'alert-danger';
       $scope.alert.message = errResp.data.error.message;
     };

@@ -12,7 +12,8 @@ angular.module('i18nMessages', [])
     'user.reset.password.not.same': 'Passwords are not same.',
     'user.reset.password.success': 'Password was reset, will jump to login page in 3 seconds.',
     'todo.new.placeholder': 'Type your to-do items, tasks, questions, memos... anything here.',
-    'todo.list.no.tasks': 'No tasks, try to create your first task now.'
+    'todo.list.no.tasks': 'No tasks, try to create your first task now.',
+    'todo.filter.display.completed.tasks': 'Show completed tasks'
   })
   .factory('messagesContext', function ($interpolate, i18nMessages) {
     var handleNotFound = function (msg, msgKey) {
