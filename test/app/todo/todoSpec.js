@@ -192,4 +192,14 @@ describe('Todo controller cases.', function () {
     expect($scope.alert.style).toEqual('alert-danger');
     expect($scope.alert.message).toBeDefined();
   });
+
+  it('Test drag start and stop flag.', function () {
+    expect($scope.dragging).toBeFalsy();
+
+    $scope.treeOptions.dragStart();
+    expect($scope.dragging).toBeTruthy();
+
+    $scope.treeOptions.dragStop();
+    expect($scope.dragging).toBeFalsy();
+  });
 });
