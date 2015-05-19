@@ -137,37 +137,50 @@ describe('Todo controller cases.', function () {
     expect($scope.uiText.noTasks).not.toBeUndefined();
   });
 
-  it('Test change task order.', function () {
+  it('Test move the last task to the first.', function () {
     // mock
-    spyOn(Task, 'prototype$updateAttributes').and.returnValue({$promise: deferred.promise}); // do not really execute this method.
+    spyOn(Task, 'prototype$updateAttributes').and.returnValue({$promise: deferred.promise});
 
-    /* move the last task to the first */
     $scope.tasks.unshift($scope.tasks.pop());
     expect($scope.tasks[0].order < $scope.tasks[1].order).toBe(true);
     // run
-    var mockEvent = {dest: {index: 0}};
+    var mockEvent = {dest: {index: 0}, source: {index: $scope.tasks.length - 1}};
     $scope.treeOptions.dropped(mockEvent);
     // verify
     expect($scope.tasks[0].order < $scope.tasks[1].order).toBe(false);
+    expect(Task.prototype$updateAttributes).toHaveBeenCalled();
+  });
 
-    /* move the first task to the last */
+  it('Test  move the first task to the last.', function () {
+    spyOn(Task, 'prototype$updateAttributes').and.returnValue({$promise: deferred.promise});
     $scope.tasks.push($scope.tasks.shift());
     expect($scope.tasks[$scope.tasks.length - 1].order > $scope.tasks[$scope.tasks.length - 2].order).toBe(true);
     // run
-    var mockEvent = {dest: {index: $scope.tasks.length - 1}};
+    var mockEvent = {dest: {index: $scope.tasks.length - 1}, source: {index: 0}};
     $scope.treeOptions.dropped(mockEvent);
     // verify
     expect($scope.tasks[$scope.tasks.length - 1].order > $scope.tasks[$scope.tasks.length - 2].order).toBe(false);
+    expect(Task.prototype$updateAttributes).toHaveBeenCalled();
+  });
 
-    /* move the first task to the middle */
+  it('Test move the first task to the middle.', function () {
+    spyOn(Task, 'prototype$updateAttributes').and.returnValue({$promise: deferred.promise});
     $scope.tasks.splice(1, 0, $scope.tasks.shift());
     expect($scope.tasks[0].order < $scope.tasks[1].order).toBe(true);
     // run
-    var mockEvent = {dest: {index: 1}};
+    var mockEvent = {dest: {index: 1}, source: {index: 0}};
     $scope.treeOptions.dropped(mockEvent);
     // verify
     expect($scope.tasks[0].order > $scope.tasks[1].order).toBe(true);
     expect($scope.tasks[1].order > $scope.tasks[2].order).toBe(true);
+    expect(Task.prototype$updateAttributes).toHaveBeenCalled();
+  });
+
+  it('Test drag but not change the order.', function () {
+    spyOn(Task, 'prototype$updateAttributes').and.returnValue({$promise: deferred.promise});
+    var mockEvent = {dest: {index: 0}, source: {index: 0}};
+    $scope.treeOptions.dropped(mockEvent);
+    expect(Task.prototype$updateAttributes).not.toHaveBeenCalled();
   });
 
   it('Test delete todo item success.', function () {

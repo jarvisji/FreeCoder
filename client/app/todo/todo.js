@@ -53,26 +53,28 @@ angular.module('freeCoderApp')
     $scope.treeOptions = {
       // recalculate 'order' value when changed task position in list.
       dropped: function (event) {
-        var newPositionIdx = event.dest.index;
-        var movedTask = $scope.tasks[newPositionIdx];
-        if (newPositionIdx == 0) {
-          movedTask.order = new Date().getTime();
-        } else if (newPositionIdx == $scope.tasks.length - 1) {
-          var beforeTask = $scope.tasks[newPositionIdx - 1];
-          movedTask.order = beforeTask.order - 10000;
-        } else {
-          var beforeTask = $scope.tasks[newPositionIdx - 1];
-          var afterTask = $scope.tasks[newPositionIdx + 1];
-          movedTask.order = afterTask.order + parseInt((beforeTask.order - afterTask.order) / 2);
-          $log.debug("Moved task position, new order value to before:", beforeTask.order - movedTask.order);
-          $log.debug(".. new order value to after:", movedTask.order - afterTask.order);
+        if (event.dest.index != event.source.index) {
+          var newPositionIdx = event.dest.index;
+          var movedTask = $scope.tasks[newPositionIdx];
+          if (newPositionIdx == 0) {
+            movedTask.order = new Date().getTime();
+          } else if (newPositionIdx == $scope.tasks.length - 1) {
+            var beforeTask = $scope.tasks[newPositionIdx - 1];
+            movedTask.order = beforeTask.order - 10000;
+          } else {
+            var beforeTask = $scope.tasks[newPositionIdx - 1];
+            var afterTask = $scope.tasks[newPositionIdx + 1];
+            movedTask.order = afterTask.order + parseInt((beforeTask.order - afterTask.order) / 2);
+            $log.debug("Moved task position, new order value to before:", beforeTask.order - movedTask.order);
+            $log.debug(".. new order value to after:", movedTask.order - afterTask.order);
+          }
+          // save to db.
+          Task.prototype$updateAttributes({id: movedTask.id}, {order: movedTask.order}).$promise.then(function (value, respHeader) {
+            $log.debug('Updated task order successful. id, order:', value.id, value.order);
+          }, function (errResp) {
+            alertRequestError(errResp);
+          });
         }
-        // save to db.
-        Task.prototype$updateAttributes({id: movedTask.id}, {order: movedTask.order}).$promise.then(function (value, respHeader) {
-          $log.debug('Updated task order successful. id, order:', value.id, value.order);
-        }, function (errResp) {
-          alertRequestError(errResp);
-        });
       },
       dragStart: function (event) {
         $scope.dragging = true;
