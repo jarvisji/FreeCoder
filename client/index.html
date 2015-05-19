@@ -16,12 +16,12 @@
   <link href="assets/css/styles.css" rel="stylesheet">
 </head>
 <body ng-app="freeCoderApp" ng-controller="rootCtrl">
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="navbar-container">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">FreeCoder</a>
     </div>
-    <div class="navbar-right">
+    <div class="navbar-buttons navbar-header pull-right">
       <button type="button" class="btn btn-warning btn-sm navbar-btn" ng-click="logout()" ng-show="sessionInfo.isLogin">
         Sign out
       </button>
@@ -29,20 +29,19 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-3">
-      <nav class="nav-side">
-        <ul class="nav nav-pills nav-stacked">
-          <li><a ui-sref="dashboard">dashboard</a></li>
-          <li><a ui-sref="todo">to-do</a></li>
-          <li><a ui-sref="profile">profile</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="col-sm-9">
-      <div ui-view></div>
-    </div>
+<div class="main-container">
+  <div class="sidebar">
+    <nav class="nav-side">
+      <ul class="nav nav-pills nav-stacked">
+        <li><a ui-sref="dashboard">dashboard</a></li>
+        <li><a ui-sref="todo">to-do</a></li>
+        <li><a ui-sref="profile">profile</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <div ui-view class="page-content"></div>
   </div>
 </div>
 
