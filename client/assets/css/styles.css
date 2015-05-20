@@ -21,3 +21,19 @@ body {
   bottom: 0;
   overflow: hidden;
 }
+
+.angular-ui-tree-placeholder {
+  background: #f0f9ff;
+  border: 2px dashed #bed2db;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 2px 0;
+}
+
+.angular-ui-tree-empty {
+  /*border: 1px dashed #bbb;*/
+  border: 0;
+  min-height: 30px;
+  background-color: #ffffff;
+}

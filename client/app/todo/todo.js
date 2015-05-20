@@ -2,14 +2,34 @@
  * Created by jiting on 15/5/11.
  */
 angular.module('freeCoderApp')
-  .controller('todoCtrl', ['$scope', '$log', '$filter', 'Member', 'Task', 'messagesContext', 'userTasks', function ($scope, $log, $filter, Member, Task, messagesContext, userTasks) {
+  .controller('todoCtrl', ['$scope', '$log', '$filter', 'Member', 'Task', 'messagesContext', 'fcDateUtils', 'userTasks', function ($scope, $log, $filter, Member, Task, messagesContext, fcDateUtils, userTasks) {
     $scope.uiText = {
       newTaskTitlePlaceholder: messagesContext.get('todo.new.placeholder'),
       displayCompletedTasks: messagesContext.get('todo.filter.display.completed.tasks')
     };
     $scope.alert = {};
     $scope.newTask = {};
-    $scope.tasks = userTasks;
+    $scope.todayTasks = [];
+    $scope.todayCompletedTasks = [];
+    $scope.tasks = [];
+    $scope.scopes = {}; // record scope information of tree-nodes.
+
+
+    /**
+     * Split today tasks and to-do tasks out.
+     */
+    var splitTasks = function (allTasks) {
+      $scope.todayTasks = [];
+      $scope.tasks = [];
+      for (var i = 0; i < allTasks.length; i++) {
+        var task = allTasks[i];
+        if (fcDateUtils.isInToday(task.targetTime)) {
+          $scope.todayTasks.push(angular.copy(task));
+        } else {
+          $scope.tasks.push(angular.copy(task));
+        }
+      }
+    };
 
     var checkTasksCount = function () {
       if ($scope.tasks.length == 0) {
@@ -18,7 +38,6 @@ angular.module('freeCoderApp')
         delete $scope.uiText.noTasks;
       }
     };
-    checkTasksCount();
 
     $scope.createTask = function () {
       Task.create($scope.newTask).$promise.then(function (value, responseHeaders) {
@@ -54,7 +73,7 @@ angular.module('freeCoderApp')
 
     $scope.finishTask = function (task) {
       $log.debug('Changing task completion. id, isCompleted:', task.id, task.isCompleted);
-      task.isCompleted ? task.completionTime = new Date().getTime() : task.completionTime = '';
+      task.completionTime = task.isCompleted ? new Date().getTime() : 0;
       Task.update({where: {id: task.id}}, task).$promise.then(function (value, respHeader) {
         $log.debug('Updated task completion successful. id, isCompleted, completionTime:', value.id, value.isCompleted, value.completionTime);
       }, function (errResp) {
@@ -62,40 +81,69 @@ angular.module('freeCoderApp')
       });
     };
 
-    $scope.filterCompletedTasks = function () {
-      if ($scope.isDisplayCompletedTasks) {
-        return '';
-      } else {
-        return function (task, index) {
-          if (task.isCompleted == undefined || task.isCompleted == false) {
-            return true;
-          }
-        }
-      }
-    };
+    //$scope.filterCompletedTodayTasks = function () {
+    //  if ($scope.isShowCompletedTodayTasks) {
+    //    $scope.todayTasks = $scope.todayTasks.concat($scope.todayCompletedTasks);
+    //    $scope.todayCompletedTasks = [];
+    //    $filter('orderBy')($scope.todayTasks, 'order', true);
+    //  } else {
+    //    $scope.todayCompletedTasks = [];
+    //    for (var i = 0; i < $scope.todayTasks.length; i++) {
+    //      if ($scope.todayTasks[i].isCompleted) {
+    //        $scope.todayCompletedTasks.push($scope.todayTasks.splice(i, 1));
+    //      }
+    //    }
+    //    $filter('orderBy')($scope.todayCompletedTasks, 'order', true);
+    //  }
+    //};
 
     $scope.treeOptions = {
-      // recalculate 'order' value when changed task position in list.
       dropped: function (event) {
-        if (event.dest.index != event.source.index) {
+        if (event.dest.nodesScope.$id != event.source.nodesScope.$id) {
+          // from a tree-nodes to another tree-nodes.
+          var targetChangedTask = event.source.nodeScope.$modelValue;
+          if (event.dest.nodesScope.$id == $scope.scopes.todayTasksTreeNodesScopeId) {
+            // move task to today.
+            targetChangedTask.targetTime = fcDateUtils.getTodayTimestampRange().start;
+          } else if (event.dest.nodesScope.$id == $scope.scopes.tasksTreeNodesScopeId) {
+            // move task to to-do.
+            targetChangedTask.targetTime = 0;
+          }
+          $log.debug('Update task target time:', targetChangedTask);
+          Task.prototype$updateAttributes({id: targetChangedTask.id}, {targetTime: targetChangedTask.targetTime}).$promise.then(function (value, respHeader) {
+            $log.debug('Update task target time successful: ', value);
+          }, function (errResp) {
+            $log.error('Update task target time failed: ', errResp);
+            alertRequestError(errResp);
+          });
+        }
+
+        // recalculate 'order' value when changed task position in list.
+        if (event.dest.index != event.source.index || event.dest.nodesScope.$id != event.source.nodesScope.$id) {
+          var taskArray = 'tasks';
+          if (event.dest.nodesScope.$id == $scope.scopes.todayTasksTreeNodesScopeId) {
+            taskArray = 'todayTasks';
+          }
           var newPositionIdx = event.dest.index;
-          var movedTask = $scope.tasks[newPositionIdx];
+          var orderChangedTask = $scope[taskArray][newPositionIdx];
           if (newPositionIdx == 0) {
-            movedTask.order = new Date().getTime();
-          } else if (newPositionIdx == $scope.tasks.length - 1) {
-            var beforeTask = $scope.tasks[newPositionIdx - 1];
-            movedTask.order = beforeTask.order - 10000;
+            orderChangedTask.order = new Date().getTime();
+          } else if (newPositionIdx == $scope[taskArray].length - 1) {
+            var beforeTask = $scope[taskArray][newPositionIdx - 1];
+            orderChangedTask.order = beforeTask.order - 10000;
           } else {
-            var beforeTask = $scope.tasks[newPositionIdx - 1];
-            var afterTask = $scope.tasks[newPositionIdx + 1];
-            movedTask.order = afterTask.order + parseInt((beforeTask.order - afterTask.order) / 2);
-            $log.debug("Moved task position, new order value to before:", beforeTask.order - movedTask.order);
-            $log.debug(".. new order value to after:", movedTask.order - afterTask.order);
+            var beforeTask = $scope[taskArray][newPositionIdx - 1];
+            var afterTask = $scope[taskArray][newPositionIdx + 1];
+            orderChangedTask.order = afterTask.order + parseInt((beforeTask.order - afterTask.order) / 2);
+            $log.debug("Moved task position, new order value to before:", beforeTask.order - orderChangedTask.order);
+            $log.debug(".. new order value to after:", orderChangedTask.order - afterTask.order);
           }
           // save to db.
-          Task.prototype$updateAttributes({id: movedTask.id}, {order: movedTask.order}).$promise.then(function (value, respHeader) {
-            $log.debug('Updated task order successful. id, order:', value.id, value.order);
+          $log.debug('Update task order:', orderChangedTask);
+          Task.prototype$updateAttributes({id: orderChangedTask.id}, {order: orderChangedTask.order}).$promise.then(function (value, respHeader) {
+            $log.debug('Update task order successful:', value);
           }, function (errResp) {
+            $log.error('Update task target time failed: ', errResp);
             alertRequestError(errResp);
           });
         }
@@ -117,4 +165,13 @@ angular.module('freeCoderApp')
     var clearAlert = function () {
       $scope.alert = {};
     };
+
+    var updateDbTasks = function (task) {
+
+    };
+
+    // controller init:
+    splitTasks(userTasks);
+    checkTasksCount();
   }]);
+

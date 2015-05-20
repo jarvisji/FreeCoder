@@ -12,16 +12,44 @@
                  placeholder="{{uiText.newTaskTitlePlaceholder}}">
         </div>
       </form>
-      <hr>
-      <label class="inline">
-        <input type="checkbox" class="ace" ng-model="isDisplayCompletedTasks" ng-change="filterCompletedTasks()">
-        <span class="lbl">  {{uiText.displayCompletedTasks}}</span>
-      </label>
 
-      <div ui-tree="treeOptions" data-empty-placeholder-enabled="false">
-        <ul class="list-group item-list" ui-tree-nodes ng-model="tasks">
+      <hr>
+      <!-- today's tasks -->
+      <div>
+        <h4>Today</h4>
+        <!--<label class="inline">-->
+        <!--<input type="checkbox" class="ace" ng-model="isShowCompletedTodayTasks"-->
+        <!--ng-change="filterCompletedTodayTasks()">-->
+        <!--<span class="lbl">  {{uiText.displayCompletedTasks}}</span>-->
+        <!--</label>-->
+      </div>
+      <div ui-tree="treeOptions">
+        <ul class="list-group item-list" ui-tree-nodes ng-model="todayTasks"
+            ng-init="scopes.todayTasksTreeNodesScopeId=$id">
+          <li class="list-group-item" ui-tree-node
+              ng-repeat="task in todayTasks"
+              ng-class="{selected: task.isCompleted}"
+              ng-mouseover="mouseOverIndex=$index" ng-mouseleave="mouseOverIndex=undefined">
+            <div ui-tree-handle>
+              <input type="checkbox" class="ace" name="chbTodayTask" ng-model="task.isCompleted"
+                     ng-change="finishTask(task)">
+              <span class="lbl">  {{task.title}}</span>
+
+              <div class="pull-right action-buttons" ng-show="!dragging && mouseOverIndex == $index">
+                <button class="btn btn-success center-block">Done</button>
+                <button class="btn btn-danger center-block" ng-click="deleteTask($index)">Delete</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <hr>
+      <!-- all tasks -->
+      <div ui-tree="treeOptions">
+        <ul class="list-group item-list" ui-tree-nodes ng-model="tasks" ng-init="scopes.tasksTreeNodesScopeId=$id">
           <li class="list-group-item" ui-tree-node ui-tree-handle
-              ng-repeat="task in tasks | filter: filterCompletedTasks()"
+              ng-repeat="task in tasks"
               ng-class="{selected: task.isCompleted}"
               ng-mouseover="mouseOverIndex=$index" ng-mouseleave="mouseOverIndex=undefined">
             <input type="checkbox" class="ace" name="chbTask" ng-model="task.isCompleted" ng-change="finishTask(task)">
@@ -35,7 +63,6 @@
         </ul>
         <span ng-show="uiText.noTasks">{{uiText.noTasks}}</span>
       </div>
-      <pre>{{tasks|json}}</pre>
     </div>
   </div>
 </div>

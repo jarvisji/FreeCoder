@@ -26,9 +26,19 @@ describe('Todo controller cases.', function () {
       "created": "2015-05-19T01:52:04.480Z",
       "lastUpdated": "2015-05-19T01:52:04.480Z",
       "id": "555a9744685fe21c2e3fd8b3",
-      "memberId": "555843ab7585689c19c3d11b"
+      "memberId": "555843ab7585689c19c3d11b",
+      'isCompleted': true
     }
   ];
+  var mockNewTask = {
+    "title": "4th",
+    "order": 1432111676765,
+    "targetTime": "2015-05-19T16:00:00.000Z",
+    "created": "2015-05-19T14:22:18.886Z",
+    "lastUpdated": "2015-05-20T09:02:41.997Z",
+    "id": "555b471a18cb003812d93343",
+    "memberId": "554c81e5d8404b7007865c2e"
+  };
   var mockErrorReturn = {
     "data": {
       "error": {
@@ -42,6 +52,7 @@ describe('Todo controller cases.', function () {
     }
   };
   var mockCurrentUserId = '554c81e5d8404b7007865c2e';
+  var mockEvent = {dest: {nodesScope: {$id: 0}}, source: {nodesScope: {$id: 0}}};
 
   beforeEach(module('freeCoderApp'));
   beforeEach(module('templates'));
@@ -144,7 +155,9 @@ describe('Todo controller cases.', function () {
     $scope.tasks.unshift($scope.tasks.pop());
     expect($scope.tasks[0].order < $scope.tasks[1].order).toBe(true);
     // run
-    var mockEvent = {dest: {index: 0}, source: {index: $scope.tasks.length - 1}};
+
+    mockEvent.dest.index = 0;
+    mockEvent.source.index = $scope.tasks.length - 1;
     $scope.treeOptions.dropped(mockEvent);
     // verify
     expect($scope.tasks[0].order < $scope.tasks[1].order).toBe(false);
@@ -156,7 +169,8 @@ describe('Todo controller cases.', function () {
     $scope.tasks.push($scope.tasks.shift());
     expect($scope.tasks[$scope.tasks.length - 1].order > $scope.tasks[$scope.tasks.length - 2].order).toBe(true);
     // run
-    var mockEvent = {dest: {index: $scope.tasks.length - 1}, source: {index: 0}};
+    mockEvent.dest.index = $scope.tasks.length - 1;
+    mockEvent.source.index = 0;
     $scope.treeOptions.dropped(mockEvent);
     // verify
     expect($scope.tasks[$scope.tasks.length - 1].order > $scope.tasks[$scope.tasks.length - 2].order).toBe(false);
@@ -168,7 +182,8 @@ describe('Todo controller cases.', function () {
     $scope.tasks.splice(1, 0, $scope.tasks.shift());
     expect($scope.tasks[0].order < $scope.tasks[1].order).toBe(true);
     // run
-    var mockEvent = {dest: {index: 1}, source: {index: 0}};
+    mockEvent.dest.index = 1;
+    mockEvent.source.index = 0;
     $scope.treeOptions.dropped(mockEvent);
     // verify
     expect($scope.tasks[0].order > $scope.tasks[1].order).toBe(true);
@@ -178,7 +193,8 @@ describe('Todo controller cases.', function () {
 
   it('Test drag but not change the order.', function () {
     spyOn(Task, 'prototype$updateAttributes').and.returnValue({$promise: deferred.promise});
-    var mockEvent = {dest: {index: 0}, source: {index: 0}};
+    mockEvent.dest.index = 0;
+    mockEvent.source.index = 0;
     $scope.treeOptions.dropped(mockEvent);
     expect(Task.prototype$updateAttributes).not.toHaveBeenCalled();
   });
@@ -236,6 +252,38 @@ describe('Todo controller cases.', function () {
     // click again
     checkbox.click();
     expect($scope.tasks[0].isCompleted).toBeFalsy();
-    expect($scope.tasks[0].completionTime).toEqual("");
+    expect($scope.tasks[0].completionTime).toEqual(0);
   });
+
+  xit('Test update dbTasks.', function () {
+    expect($scope.dbTasks.length).toEqual(mockTasks.length);
+    // insert a new task
+    $scope.updateDbTasks(mockNewTask);
+    expect($scope.dbTasks.length).toEqual(mockTasks.length + 1);
+    expect($scope.dbTasks[0].id).toEqual(mockNewTask.id);
+    // update an exist task
+
+  });
+
+  //it('Test filter today completed tasks.', function () {
+  //  $scope.todayTasks = angular.copy(mockTasks);
+  //
+  //  // run
+  //  $scope.isShowCompletedTodayTasks = false;
+  //  $scope.filterCompletedTodayTasks();
+  //  // verify
+  //  expect($scope.todayTasks.length).toEqual(mockTasks.length - 1);
+  //  expect($scope.todayCompletedTasks.length).toEqual(1);
+  //  console.log($scope.todayTasks, $scope.todayCompletedTasks);
+  //
+  //  // run
+  //  $scope.isShowCompletedTodayTasks = true;
+  //  $scope.filterCompletedTodayTasks();
+  //  // verify
+  //  expect($scope.todayTasks.length).toEqual(mockTasks.length);
+  //  expect($scope.todayCompletedTasks.length).toEqual(0);
+  //  for (var i = 1; i < $scope.todayTasks.length; i++) {
+  //    expect($scope.todayTasks[i - 1].order > $scope.todayTasks[i].order).toEqual(true);
+  //  }
+  //});
 });
