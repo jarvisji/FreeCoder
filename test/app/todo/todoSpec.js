@@ -111,11 +111,6 @@ describe('Todo controller cases.', function () {
     expect($scope.alert.message).toBeDefined();
   });
 
-  it('Test uiText of todo page.', function () {
-    expect($scope.uiText).toBeDefined();
-    expect($scope.uiText).not.toEqual({});
-  });
-
   it('Test list of todo items.', function () {
     // mock
     spyOn(Member, 'tasks').and.returnValue({$promise: deferred.promise});

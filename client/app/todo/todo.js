@@ -5,7 +5,8 @@ angular.module('freeCoderApp')
   .controller('todoCtrl', ['$scope', '$log', '$filter', 'Member', 'Task', 'messagesContext', 'fcDateUtils', 'userTasks', function ($scope, $log, $filter, Member, Task, messagesContext, fcDateUtils, userTasks) {
     $scope.uiText = {
       newTaskTitlePlaceholder: messagesContext.get('todo.new.placeholder'),
-      displayCompletedTasks: messagesContext.get('todo.filter.display.completed.tasks')
+      displayCompletedTasks: messagesContext.get('todo.filter.display.completed.tasks'),
+      delete: messagesContext.get('todo.button.delete')
     };
     $scope.alert = {};
     $scope.newTask = {};

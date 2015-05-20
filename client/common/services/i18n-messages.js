@@ -3,6 +3,7 @@
  */
 angular.module('i18nMessages', [])
   .value('i18nMessages', {
+    'app.name': 'FreeCoder',
     'common.error.unknown': 'Unknown error.',
     'common.error.occurred': 'Error occurred: {{msg}}',
     'user.register.success': 'Thanks for sign up, and email is on its way with a link to activate your account, please check it.',
@@ -11,9 +12,12 @@ angular.module('i18nMessages', [])
     'user.reset.password.link.error': 'The request link is not valid, please open link via received email.',
     'user.reset.password.not.same': 'Passwords are not same.',
     'user.reset.password.success': 'Password was reset, will jump to login page in 3 seconds.',
+    'todo.page.header': 'TODO',
     'todo.new.placeholder': 'Type your to-do items, tasks, questions, memos... anything here.',
     'todo.list.no.tasks': 'No tasks, try to create your first task now.',
-    'todo.filter.display.completed.tasks': 'Show completed tasks'
+    'todo.filter.display.completed.tasks': 'Show completed tasks',
+    'todo.today': 'Today',
+    'todo.button.delete': 'Delete'
   })
   .factory('messagesContext', function ($interpolate, i18nMessages) {
     var handleNotFound = function (msg, msgKey) {

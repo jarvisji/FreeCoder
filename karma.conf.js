@@ -25,7 +25,8 @@ module.exports = function (config) {
       'client/app/**/*.js',
       'client/app/**/*.tpl.html', // for test templates
       'client/common/**/*.js',
-      'test/**/*Spec.js'
+      'test/**/*Spec.js',
+      'test/**/*.spec.js'
     ],
 
     // list of files to exclude

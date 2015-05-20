@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="freeCoderApp" ng-controller="rootCtrl">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/">
-  <title>FreeCoder</title>
+  <title fc-i18n="app.name"></title>
 
   <!-- Bootstrap -->
   <link href="vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
@@ -15,11 +15,11 @@
   <link href="vendor/angular-ui-tree/dist/angular-ui-tree.min.css" rel="stylesheet">
   <link href="assets/css/styles.css" rel="stylesheet">
 </head>
-<body ng-app="freeCoderApp" ng-controller="rootCtrl">
+<body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="navbar-container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">FreeCoder</a>
+      <a class="navbar-brand" href="#" fc-i18n="app.name"></a>
     </div>
     <div class="navbar-buttons navbar-header pull-right">
       <button type="button" class="btn btn-warning btn-sm navbar-btn" ng-click="logout()" ng-show="sessionInfo.isLogin">
@@ -57,6 +57,7 @@
 <script src="common/services/i18n-messages.js"></script>
 <script src="common/services/fcUtils.js"></script>
 <script src="app/app.js"></script>
+<script src="common/directives/fc-i18n.js"></script>
 <script src="app/login/login.js"></script>
 <script src="app/dashboard/dashboard.js"></script>
 <script src="app/todo/todo.js"></script>
