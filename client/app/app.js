@@ -44,6 +44,11 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
         }
       }
     });
+    $stateProvider.state('pomodoro', {
+      url: '/pomodoro',
+      templateUrl: 'app/pomodoro/pomodoro.tpl.html',
+      controller: 'pomodoroCtrl'
+    });
     $urlRouterProvider.otherwise('dashboard');
   }])
   .controller('rootCtrl', ['$scope', '$rootScope', '$state', '$log', 'Member', function ($scope, $rootScope, $state, $log, Member) {
