@@ -6,28 +6,33 @@ angular.module('freeCoderApp')
   .directive('fcPomodoroTimer', function ($interval, $log, Member, Pomodoro, messagesContext) {
     return {
       restrict: 'E',
-      template: '<span></span>',
+      template: '<div><span></span></div><div class="panel panel-default"><div class="panel-body"></div></div>',
       link: function (scope, element, attr) {
         console.log(arguments);
-        var timer, startTs;
+        var timer, startTs, pomodoro;
         var userId = attr.userId || Member.getCurrentId();
-        Member.pomodoros({id: userId, filter: {where: {status: 'inProgress'}}}, function (value, respHeader) {
+        Member.pomodoros({
+          id: userId,
+          filter: {where: {status: 'inProgress'}, include: 'task'}
+        }, function (value, respHeader) {
           //value = [{startTime: new Date().getTime() - 60000, duration: 60000}];
           if (value.length == 0) {
             element.text(messagesContext.get('pomodoro.directive.no.active'));
           } else {
+            pomodoro = value[0];
             console.log('pomodoro task: ', pomodoro.task);
-            handlePomodoro(value[0]);
+            console.log($(element).find('.panel-body'));
+            handlePomodoro();
           }
         }, function (errResp) {
           console.log(errResp);
         });
 
-        var handlePomodoro = function (pomodoro) {
+        var handlePomodoro = function () {
           var now = new Date().getTime();
-          var pomodoroEndTime = pomodoro.startTime + pomodoro.duration;
+          var pomodoroEndTime = Date.parse(pomodoro.startTime) + pomodoro.duration;
           var remainDuration = Number.parseInt((pomodoroEndTime - now) / 1000);
-          console.log('remainDuration:', now, pomodoroEndTime, remainDuration);
+          //console.log('remainDuration:', now, pomodoroEndTime, remainDuration);
           if (remainDuration > 1) {
             // continue timer
             startTimer(remainDuration);
@@ -50,6 +55,8 @@ angular.module('freeCoderApp')
             element.text(timeStr);
             if (remainDuration == 0) {
               stopTimer();
+              $log.debug('Pomodoro time up, update status to finished.');
+              Pomodoro.finishPomodoro({id: pomodoro.id});
             }
           }, 1000);
         };
