@@ -9,7 +9,7 @@ module.exports = function (Pomodoro) {
     'FINISHED': 'finished'
   };
   Pomodoro.beforeRemote('create', function (ctx, modelInstance, next) {
-    console.log(arguments);
+    debug('before create Pomodoro.', ctx.req.body);
     // Fill default values if not set.
     var reqBody = ctx.req.body;
     if (!reqBody.duration) {

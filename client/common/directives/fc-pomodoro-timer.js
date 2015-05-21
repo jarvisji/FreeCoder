@@ -82,7 +82,9 @@ angular.module('freeCoderApp')
 
         // for test, easy to get text and compare with element.
         var getTimeString = function (minutes, seconds) {
-          return minutes + " : " + seconds;
+          var minutesStr = minutes < 10 ? '0' + minutes : '' + minutes;
+          var secondsStr = seconds < 10 ? '0' + seconds : '' + seconds;
+          return minutesStr + " : " + secondsStr;
         };
 
         scope.$on('$destroy', function () {
