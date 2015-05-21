@@ -64,7 +64,7 @@ module.exports = function (Pomodoro) {
       checkPomodoroInstance(pomodoro, cb);
       checkPomodoroStatus(pomodoro, cb);
       debug('Setting pomodoro status to "finished" of id:', id);
-      pomodoro.updateAttribute('status', STATUS.SKIPPED, function (err, inst) {
+      pomodoro.updateAttribute('status', STATUS.FINISHED, function (err, inst) {
         if (err)
           cb(err);
         debug('..success');
