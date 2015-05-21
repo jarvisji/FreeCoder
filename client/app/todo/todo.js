@@ -2,7 +2,7 @@
  * Created by jiting on 15/5/11.
  */
 angular.module('freeCoderApp')
-  .controller('todoCtrl', ['$scope', '$log', '$filter', 'Member', 'Task', 'Pomodoro', 'messagesContext', 'fcDateUtils', 'userTasks', function ($scope, $log, $filter, Member, Task, Pomodoro, messagesContext, fcDateUtils, userTasks) {
+  .controller('todoCtrl', ['$scope', '$log', '$filter', '$state', 'Member', 'Task', 'Pomodoro', 'messagesContext', 'fcDateUtils', 'userTasks', function ($scope, $log, $filter, $state, Member, Task, Pomodoro, messagesContext, fcDateUtils, userTasks) {
     $scope.uiText = {
       newTaskTitlePlaceholder: messagesContext.get('todo.new.placeholder'),
       displayCompletedTasks: messagesContext.get('todo.filter.display.completed.tasks'),
@@ -85,9 +85,31 @@ angular.module('freeCoderApp')
 
     $scope.startPomodoro = function (task) {
       var now = new Date().getTime();
-      //TODO: check exist before create.
-      Pomodoro.create({startTime: now, taskId: task.id}).$promise.then(function (value, respHeaders) {
-        console.log(value);
+      Member.pomodoros({
+        id: Member.getCurrentId(),
+        filter: {where: {status: 'inProgress'}}
+      }, function (value, respHeader) {
+        var remainDuration;
+        if (value.length > 0) {
+          // if there is in progress pomodoro but time out, then finish it.
+          var pomodoro = value[0];
+          var pomodoroEndTime = Date.parse(pomodoro.startTime) + pomodoro.duration;
+          remainDuration = pomodoroEndTime - new Date().getTime();
+          if (remainDuration <= 0) {
+            Pomodoro.finishPomodoro({id: pomodoro.id});
+          }
+        }
+
+        if (value.length == 0 || remainDuration <= 0) {
+          Pomodoro.create({startTime: now, taskId: task.id}).$promise.then(function (value, respHeaders) {
+            $state.go('pomodoro');
+          }, function (errResp) {
+            alertRequestError(errResp);
+          });
+        } else {
+          $scope.alert.style = 'alert-warning';
+          $scope.alert.message = messagesContext.get('pomodoro.error.exist.inprogress.pomodoro');
+        }
       }, function (errResp) {
         alertRequestError(errResp);
       });
