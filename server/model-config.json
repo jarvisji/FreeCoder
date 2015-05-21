@@ -38,5 +38,9 @@
   "Task": {
     "dataSource": "mongolab",
     "public": true
+  },
+  "Pomodoro": {
+    "dataSource": "mongolab",
+    "public": true
   }
 }

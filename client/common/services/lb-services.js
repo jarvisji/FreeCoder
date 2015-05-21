@@ -165,6 +165,24 @@
             method: "PUT"
           },
 
+          // INTERNAL. Use Member.pomodoros.findById() instead.
+          "prototype$__findById__pomodoros": {
+            url: urlBase + "/Members/:id/pomodoros/:fk",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Member.pomodoros.destroyById() instead.
+          "prototype$__destroyById__pomodoros": {
+            url: urlBase + "/Members/:id/pomodoros/:fk",
+            method: "DELETE"
+          },
+
+          // INTERNAL. Use Member.pomodoros.updateById() instead.
+          "prototype$__updateById__pomodoros": {
+            url: urlBase + "/Members/:id/pomodoros/:fk",
+            method: "PUT"
+          },
+
           /**
            * @ngdoc method
            * @name lbServices.Member#prototype$__get__accessTokens
@@ -324,6 +342,31 @@
           // INTERNAL. Use Member.tasks.count() instead.
           "prototype$__count__tasks": {
             url: urlBase + "/Members/:id/tasks/count",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Member.pomodoros() instead.
+          "prototype$__get__pomodoros": {
+            isArray: true,
+            url: urlBase + "/Members/:id/pomodoros",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Member.pomodoros.create() instead.
+          "prototype$__create__pomodoros": {
+            url: urlBase + "/Members/:id/pomodoros",
+            method: "POST"
+          },
+
+          // INTERNAL. Use Member.pomodoros.destroyAll() instead.
+          "prototype$__delete__pomodoros": {
+            url: urlBase + "/Members/:id/pomodoros",
+            method: "DELETE"
+          },
+
+          // INTERNAL. Use Member.pomodoros.count() instead.
+          "prototype$__count__pomodoros": {
+            url: urlBase + "/Members/:id/pomodoros/count",
             method: "GET"
           },
 
@@ -923,6 +966,12 @@
             method: "GET"
           },
 
+          // INTERNAL. Use Pomodoro.member() instead.
+          "::get::Pomodoro::member": {
+            url: urlBase + "/Pomodoros/:id/member",
+            method: "GET"
+          },
+
           /**
            * @ngdoc method
            * @name lbServices.Member#getCurrent
@@ -1400,6 +1449,269 @@
         var action = TargetResource["::updateById::Member::tasks"];
         return action.apply(R, arguments);
       };
+      /**
+       * @ngdoc object
+       * @name lbServices.Member.pomodoros
+       * @header lbServices.Member.pomodoros
+       * @object
+       * @description
+       *
+       * The object `Member.pomodoros` groups methods
+       * manipulating `Pomodoro` instances related to `Member`.
+       *
+       * Call {@link lbServices.Member#pomodoros Member.pomodoros()}
+       * to query all related instances.
+       */
+
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Member#pomodoros
+       * @methodOf lbServices.Member
+       *
+       * @description
+       *
+       * Queries pomodoros of Member.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - User id
+       *
+       *  - `filter` – `{object=}` -
+       *
+       * @param {function(Array.<Object>,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Array.<Object>} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Pomodoro` object.)
+       * </em>
+       */
+      R.pomodoros = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::get::Member::pomodoros"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Member.pomodoros#count
+       * @methodOf lbServices.Member.pomodoros
+       *
+       * @description
+       *
+       * Counts pomodoros of Member.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - User id
+       *
+       *  - `where` – `{object=}` - Criteria to match model instances
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * Data properties:
+       *
+       *  - `count` – `{number=}` -
+       */
+      R.pomodoros.count = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::count::Member::pomodoros"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Member.pomodoros#create
+       * @methodOf lbServices.Member.pomodoros
+       *
+       * @description
+       *
+       * Creates a new instance in pomodoros of this model.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - User id
+       *
+       * @param {Object} postData Request data.
+       *
+       * This method expects a subset of model properties as request parameters.
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Pomodoro` object.)
+       * </em>
+       */
+      R.pomodoros.create = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::create::Member::pomodoros"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Member.pomodoros#destroyAll
+       * @methodOf lbServices.Member.pomodoros
+       *
+       * @description
+       *
+       * Deletes all pomodoros of this model.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - User id
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R.pomodoros.destroyAll = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::delete::Member::pomodoros"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Member.pomodoros#destroyById
+       * @methodOf lbServices.Member.pomodoros
+       *
+       * @description
+       *
+       * Delete a related item by id for pomodoros.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - User id
+       *
+       *  - `fk` – `{*}` - Foreign key for pomodoros
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R.pomodoros.destroyById = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::destroyById::Member::pomodoros"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Member.pomodoros#findById
+       * @methodOf lbServices.Member.pomodoros
+       *
+       * @description
+       *
+       * Find a related item by id for pomodoros.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - User id
+       *
+       *  - `fk` – `{*}` - Foreign key for pomodoros
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Pomodoro` object.)
+       * </em>
+       */
+      R.pomodoros.findById = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::findById::Member::pomodoros"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Member.pomodoros#updateById
+       * @methodOf lbServices.Member.pomodoros
+       *
+       * @description
+       *
+       * Update a related item by id for pomodoros.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - User id
+       *
+       *  - `fk` – `{*}` - Foreign key for pomodoros
+       *
+       * @param {Object} postData Request data.
+       *
+       * This method expects a subset of model properties as request parameters.
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Pomodoro` object.)
+       * </em>
+       */
+      R.pomodoros.updateById = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::updateById::Member::pomodoros"];
+        return action.apply(R, arguments);
+      };
 
       return R;
     }]);
@@ -1820,6 +2132,30 @@
             url: urlBase + "/Members/:id/tasks/count",
             method: "GET"
           },
+
+          // INTERNAL. Use Pomodoro.task() instead.
+          "::get::Pomodoro::task": {
+            url: urlBase + "/Pomodoros/:id/task",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Pomodoro.task.create() instead.
+          "::create::Pomodoro::task": {
+            url: urlBase + "/Pomodoros/:id/task",
+            method: "POST"
+          },
+
+          // INTERNAL. Use Pomodoro.task.update() instead.
+          "::update::Pomodoro::task": {
+            url: urlBase + "/Pomodoros/:id/task",
+            method: "PUT"
+          },
+
+          // INTERNAL. Use Pomodoro.task.destroy() instead.
+          "::destroy::Pomodoro::task": {
+            url: urlBase + "/Pomodoros/:id/task",
+            method: "DELETE"
+          },
       }
       );
 
@@ -1989,6 +2325,848 @@
       R.member = function () {
         var TargetResource = $injector.get("Member");
         var action = TargetResource["::get::Task::member"];
+        return action.apply(R, arguments);
+      };
+
+      return R;
+    }]);
+
+  /**
+   * @ngdoc object
+   * @name lbServices.Pomodoro
+   * @header lbServices.Pomodoro
+   * @object
+   *
+   * @description
+   *
+   * A $resource object for interacting with the `Pomodoro` model.
+   *
+   * ## Example
+   *
+   * See
+   * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+   * for an example of using this object.
+   *
+   */
+  module.factory(
+    "Pomodoro",
+    ['LoopBackResource', 'LoopBackAuth', '$injector', function (Resource, LoopBackAuth, $injector) {
+      var R = Resource(
+        urlBase + "/Pomodoros/:id",
+        {'id': '@id'},
+        {
+
+          // INTERNAL. Use Pomodoro.member() instead.
+          "prototype$__get__member": {
+            url: urlBase + "/Pomodoros/:id/member",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Pomodoro.task() instead.
+          "prototype$__get__task": {
+            url: urlBase + "/Pomodoros/:id/task",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Pomodoro.task.create() instead.
+          "prototype$__create__task": {
+            url: urlBase + "/Pomodoros/:id/task",
+            method: "POST"
+          },
+
+          // INTERNAL. Use Pomodoro.task.update() instead.
+          "prototype$__update__task": {
+            url: urlBase + "/Pomodoros/:id/task",
+            method: "PUT"
+          },
+
+          // INTERNAL. Use Pomodoro.task.destroy() instead.
+          "prototype$__destroy__task": {
+            url: urlBase + "/Pomodoros/:id/task",
+            method: "DELETE"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Pomodoro#create
+           * @methodOf lbServices.Pomodoro
+           *
+           * @description
+           *
+           * Create a new instance of the model and persist it into the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *   This method does not accept any parameters.
+           *   Supply an empty object or omit this argument altogether.
+           *
+           * @param {Object} postData Request data.
+           *
+           * This method expects a subset of model properties as request parameters.
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Pomodoro` object.)
+           * </em>
+           */
+          "create": {
+            url: urlBase + "/Pomodoros",
+            method: "POST"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Pomodoro#upsert
+           * @methodOf lbServices.Pomodoro
+           *
+           * @description
+           *
+           * Update an existing model instance or insert a new one into the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *   This method does not accept any parameters.
+           *   Supply an empty object or omit this argument altogether.
+           *
+           * @param {Object} postData Request data.
+           *
+           * This method expects a subset of model properties as request parameters.
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Pomodoro` object.)
+           * </em>
+           */
+          "upsert": {
+            url: urlBase + "/Pomodoros",
+            method: "PUT"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Pomodoro#exists
+           * @methodOf lbServices.Pomodoro
+           *
+           * @description
+           *
+           * Check whether a model instance exists in the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `id` – `{*}` - Model id
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * Data properties:
+           *
+           *  - `exists` – `{boolean=}` -
+           */
+          "exists": {
+            url: urlBase + "/Pomodoros/:id/exists",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Pomodoro#findById
+           * @methodOf lbServices.Pomodoro
+           *
+           * @description
+           *
+           * Find a model instance by id from the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `id` – `{*}` - Model id
+           *
+           *  - `filter` – `{object=}` - Filter defining fields and include
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Pomodoro` object.)
+           * </em>
+           */
+          "findById": {
+            url: urlBase + "/Pomodoros/:id",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Pomodoro#find
+           * @methodOf lbServices.Pomodoro
+           *
+           * @description
+           *
+           * Find all instances of the model matched by filter from the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+           *
+           * @param {function(Array.<Object>,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Array.<Object>} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Pomodoro` object.)
+           * </em>
+           */
+          "find": {
+            isArray: true,
+            url: urlBase + "/Pomodoros",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Pomodoro#findOne
+           * @methodOf lbServices.Pomodoro
+           *
+           * @description
+           *
+           * Find first instance of the model matched by filter from the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Pomodoro` object.)
+           * </em>
+           */
+          "findOne": {
+            url: urlBase + "/Pomodoros/findOne",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Pomodoro#updateAll
+           * @methodOf lbServices.Pomodoro
+           *
+           * @description
+           *
+           * Update instances of the model matched by where from the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `where` – `{object=}` - Criteria to match model instances
+           *
+           * @param {Object} postData Request data.
+           *
+           * This method expects a subset of model properties as request parameters.
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * This method returns no data.
+           */
+          "updateAll": {
+            url: urlBase + "/Pomodoros/update",
+            method: "POST"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Pomodoro#deleteById
+           * @methodOf lbServices.Pomodoro
+           *
+           * @description
+           *
+           * Delete a model instance by id from the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `id` – `{*}` - Model id
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * This method returns no data.
+           */
+          "deleteById": {
+            url: urlBase + "/Pomodoros/:id",
+            method: "DELETE"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Pomodoro#count
+           * @methodOf lbServices.Pomodoro
+           *
+           * @description
+           *
+           * Count instances of the model matched by where from the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `where` – `{object=}` - Criteria to match model instances
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * Data properties:
+           *
+           *  - `count` – `{number=}` -
+           */
+          "count": {
+            url: urlBase + "/Pomodoros/count",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Pomodoro#prototype$updateAttributes
+           * @methodOf lbServices.Pomodoro
+           *
+           * @description
+           *
+           * Update attributes for a model instance and persist it into the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `id` – `{*}` - PersistedModel id
+           *
+           * @param {Object} postData Request data.
+           *
+           * This method expects a subset of model properties as request parameters.
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Pomodoro` object.)
+           * </em>
+           */
+          "prototype$updateAttributes": {
+            url: urlBase + "/Pomodoros/:id",
+            method: "PUT"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Pomodoro#skipPomodoro
+           * @methodOf lbServices.Pomodoro
+           *
+           * @description
+           *
+           * Skip a in progress pomodoro.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *   This method does not accept any parameters.
+           *   Supply an empty object or omit this argument altogether.
+           *
+           * @param {Object} postData Request data.
+           *
+           *  - `id` – `{string}` -
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * This method returns no data.
+           */
+          "skipPomodoro": {
+            url: urlBase + "/Pomodoros/:id/status/skipped",
+            method: "PUT"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Pomodoro#finishPomodoro
+           * @methodOf lbServices.Pomodoro
+           *
+           * @description
+           *
+           * Finish a in progress pomodoro.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *   This method does not accept any parameters.
+           *   Supply an empty object or omit this argument altogether.
+           *
+           * @param {Object} postData Request data.
+           *
+           *  - `id` – `{string}` -
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * This method returns no data.
+           */
+          "finishPomodoro": {
+            url: urlBase + "/Pomodoros/:id/status/finished",
+            method: "PUT"
+          },
+
+          // INTERNAL. Use Member.pomodoros.findById() instead.
+          "::findById::Member::pomodoros": {
+            url: urlBase + "/Members/:id/pomodoros/:fk",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Member.pomodoros.destroyById() instead.
+          "::destroyById::Member::pomodoros": {
+            url: urlBase + "/Members/:id/pomodoros/:fk",
+            method: "DELETE"
+          },
+
+          // INTERNAL. Use Member.pomodoros.updateById() instead.
+          "::updateById::Member::pomodoros": {
+            url: urlBase + "/Members/:id/pomodoros/:fk",
+            method: "PUT"
+          },
+
+          // INTERNAL. Use Member.pomodoros() instead.
+          "::get::Member::pomodoros": {
+            isArray: true,
+            url: urlBase + "/Members/:id/pomodoros",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Member.pomodoros.create() instead.
+          "::create::Member::pomodoros": {
+            url: urlBase + "/Members/:id/pomodoros",
+            method: "POST"
+          },
+
+          // INTERNAL. Use Member.pomodoros.destroyAll() instead.
+          "::delete::Member::pomodoros": {
+            url: urlBase + "/Members/:id/pomodoros",
+            method: "DELETE"
+          },
+
+          // INTERNAL. Use Member.pomodoros.count() instead.
+          "::count::Member::pomodoros": {
+            url: urlBase + "/Members/:id/pomodoros/count",
+            method: "GET"
+          },
+      }
+      );
+
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Pomodoro#updateOrCreate
+       * @methodOf lbServices.Pomodoro
+       *
+       * @description
+       *
+       * Update an existing model instance or insert a new one into the data source.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *   This method does not accept any parameters.
+       *   Supply an empty object or omit this argument altogether.
+       *
+       * @param {Object} postData Request data.
+       *
+       * This method expects a subset of model properties as request parameters.
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Pomodoro` object.)
+       * </em>
+       */
+      R["updateOrCreate"] = R["upsert"];
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Pomodoro#update
+       * @methodOf lbServices.Pomodoro
+       *
+       * @description
+       *
+       * Update instances of the model matched by where from the data source.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `where` – `{object=}` - Criteria to match model instances
+       *
+       * @param {Object} postData Request data.
+       *
+       * This method expects a subset of model properties as request parameters.
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R["update"] = R["updateAll"];
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Pomodoro#destroyById
+       * @methodOf lbServices.Pomodoro
+       *
+       * @description
+       *
+       * Delete a model instance by id from the data source.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - Model id
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R["destroyById"] = R["deleteById"];
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Pomodoro#removeById
+       * @methodOf lbServices.Pomodoro
+       *
+       * @description
+       *
+       * Delete a model instance by id from the data source.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - Model id
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R["removeById"] = R["deleteById"];
+
+
+      /**
+       * @ngdoc property
+       * @name lbServices.Pomodoro#modelName
+       * @propertyOf lbServices.Pomodoro
+       * @description
+       * The name of the model represented by this $resource,
+       * i.e. `Pomodoro`.
+       */
+      R.modelName = "Pomodoro";
+
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Pomodoro#member
+       * @methodOf lbServices.Pomodoro
+       *
+       * @description
+       *
+       * Fetches belongsTo relation member.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       *  - `refresh` – `{boolean=}` -
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Member` object.)
+       * </em>
+       */
+      R.member = function () {
+        var TargetResource = $injector.get("Member");
+        var action = TargetResource["::get::Pomodoro::member"];
+        return action.apply(R, arguments);
+      };
+      /**
+       * @ngdoc object
+       * @name lbServices.Pomodoro.task
+       * @header lbServices.Pomodoro.task
+       * @object
+       * @description
+       *
+       * The object `Pomodoro.task` groups methods
+       * manipulating `Task` instances related to `Pomodoro`.
+       *
+       * Call {@link lbServices.Pomodoro#task Pomodoro.task()}
+       * to query all related instances.
+       */
+
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Pomodoro#task
+       * @methodOf lbServices.Pomodoro
+       *
+       * @description
+       *
+       * Fetches hasOne relation task.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       *  - `refresh` – `{boolean=}` -
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Task` object.)
+       * </em>
+       */
+      R.task = function () {
+        var TargetResource = $injector.get("Task");
+        var action = TargetResource["::get::Pomodoro::task"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Pomodoro.task#create
+       * @methodOf lbServices.Pomodoro.task
+       *
+       * @description
+       *
+       * Creates a new instance in task of this model.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       * @param {Object} postData Request data.
+       *
+       * This method expects a subset of model properties as request parameters.
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Task` object.)
+       * </em>
+       */
+      R.task.create = function () {
+        var TargetResource = $injector.get("Task");
+        var action = TargetResource["::create::Pomodoro::task"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Pomodoro.task#destroy
+       * @methodOf lbServices.Pomodoro.task
+       *
+       * @description
+       *
+       * Deletes task of this model.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R.task.destroy = function () {
+        var TargetResource = $injector.get("Task");
+        var action = TargetResource["::destroy::Pomodoro::task"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Pomodoro.task#update
+       * @methodOf lbServices.Pomodoro.task
+       *
+       * @description
+       *
+       * Update task of this model.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       * @param {Object} postData Request data.
+       *
+       * This method expects a subset of model properties as request parameters.
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Task` object.)
+       * </em>
+       */
+      R.task.update = function () {
+        var TargetResource = $injector.get("Task");
+        var action = TargetResource["::update::Pomodoro::task"];
         return action.apply(R, arguments);
       };
 

@@ -12,6 +12,11 @@
       "type": "hasMany",
       "model": "Task",
       "foreignKey": "memberId"
+    },
+    "pomodoros": {
+      "type": "hasMany",
+      "model": "Pomodoro",
+      "foreignKey": "memberId"
     }
   },
   "acls": [
