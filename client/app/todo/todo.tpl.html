@@ -36,7 +36,8 @@
               <span class="lbl">  {{task.title}}</span>
 
               <div class="pull-right action-buttons" ng-show="!dragging && mouseOverIndex == $index">
-                <button class="btn btn-success center-block"></button>
+                <button class="btn btn-success center-block" ng-click="startPomodoro(task)">{{uiText.pomodoro}}
+                </button>
                 <button class="btn btn-danger center-block" ng-click="deleteTask($index)">{{uiText.delete}}</button>
               </div>
             </div>
@@ -56,7 +57,7 @@
             <span class="lbl">  {{task.title}}</span>
 
             <div class="pull-right action-buttons" ng-show="!dragging && mouseOverIndex == $index">
-              <button class="btn btn-success center-block"></button>
+              <button class="btn btn-success center-block" ng-click="startPomodoro(task)">{{uiText.pomodoro}}</button>
               <button class="btn btn-danger center-block" ng-click="deleteTask($index)">{{uiText.delete}}</button>
             </div>
           </li>

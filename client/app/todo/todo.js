@@ -2,11 +2,12 @@
  * Created by jiting on 15/5/11.
  */
 angular.module('freeCoderApp')
-  .controller('todoCtrl', ['$scope', '$log', '$filter', 'Member', 'Task', 'messagesContext', 'fcDateUtils', 'userTasks', function ($scope, $log, $filter, Member, Task, messagesContext, fcDateUtils, userTasks) {
+  .controller('todoCtrl', ['$scope', '$log', '$filter', 'Member', 'Task', 'Pomodoro', 'messagesContext', 'fcDateUtils', 'userTasks', function ($scope, $log, $filter, Member, Task, Pomodoro, messagesContext, fcDateUtils, userTasks) {
     $scope.uiText = {
       newTaskTitlePlaceholder: messagesContext.get('todo.new.placeholder'),
       displayCompletedTasks: messagesContext.get('todo.filter.display.completed.tasks'),
-      delete: messagesContext.get('todo.button.delete')
+      delete: messagesContext.get('todo.button.delete'),
+      pomodoro: messagesContext.get('todo.button.pomodoro')
     };
     $scope.alert = {};
     $scope.newTask = {};
@@ -77,6 +78,16 @@ angular.module('freeCoderApp')
       task.completionTime = task.isCompleted ? new Date().getTime() : 0;
       Task.update({where: {id: task.id}}, task).$promise.then(function (value, respHeader) {
         $log.debug('Updated task completion successful. id, isCompleted, completionTime:', value.id, value.isCompleted, value.completionTime);
+      }, function (errResp) {
+        alertRequestError(errResp);
+      });
+    };
+
+    $scope.startPomodoro = function (task) {
+      var now = new Date().getTime();
+      //TODO: check exist before create.
+      Pomodoro.create({startTime: now, taskId: task.id}).$promise.then(function (value, respHeaders) {
+        console.log(value);
       }, function (errResp) {
         alertRequestError(errResp);
       });
