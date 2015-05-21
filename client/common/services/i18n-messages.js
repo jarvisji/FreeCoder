@@ -17,7 +17,10 @@ angular.module('i18nMessages', [])
     'todo.list.no.tasks': 'No tasks, try to create your first task now.',
     'todo.filter.display.completed.tasks': 'Show completed tasks',
     'todo.today': 'Today',
-    'todo.button.delete': 'Delete'
+    'todo.button.delete': 'Delete',
+    'todo.button.pomodoro': 'Start Pomodoro',
+    'pomodoro.page.header': 'Pomodoro',
+    'pomodoro.directive.no.active': 'There is no active pomodoro, let\'s start one from task list.'
   })
   .factory('messagesContext', function ($interpolate, i18nMessages) {
     var handleNotFound = function (msg, msgKey) {
