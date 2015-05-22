@@ -27,6 +27,11 @@ body {
   border-top: 1px solid #ddd;
 }
 
+/* show a dashed border when the placeholder is both first-child and last-child, that is only child, means tree-nodes are empty */
+.angular-ui-tree-placeholder:first-child.angular-ui-tree-placeholder:last-child {
+  border: 1px dashed #bed2db;
+}
+
 .angular-ui-tree-placeholder {
   border: 0;
 }
