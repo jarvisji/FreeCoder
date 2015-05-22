@@ -101,7 +101,7 @@ angular.module('freeCoderApp')
         }
 
         if (value.length == 0 || remainDuration <= 0) {
-          Pomodoro.create({startTime: now, taskId: task.id}).$promise.then(function (value, respHeaders) {
+          Pomodoro.create({startTime: now, taskId: task.id, type: 'work'}).$promise.then(function (value, respHeaders) {
             $state.go('pomodoro');
           }, function (errResp) {
             alertRequestError(errResp);
