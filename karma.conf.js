@@ -23,8 +23,9 @@ module.exports = function (config) {
       'client/vendor/angular-mocks/angular-mocks.js',
       'client/vendor/angular-ui-tree/dist/angular-ui-tree.js',
       'client/app/**/*.js',
-      'client/app/**/*.tpl.html', // for test templates
       'client/common/**/*.js',
+      'client/app/**/*.tpl.html', // for test templates
+      'client/common/**/*.tpl.html',
       'test/**/*Spec.js',
       'test/**/*.spec.js'
     ],
@@ -36,7 +37,7 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'client/app/**/*.tpl.html': ['ng-html2js']
+      'client/**/*.tpl.html': ['ng-html2js']
     },
 
     // refer to https://github.com/karma-runner/karma-ng-html2js-preprocessor
