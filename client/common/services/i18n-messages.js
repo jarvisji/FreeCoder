@@ -21,7 +21,8 @@ angular.module('i18nMessages', [])
     'todo.button.pomodoro': 'Start Pomodoro',
     'pomodoro.page.header': 'Pomodoro',
     'pomodoro.error.exist.inprogress.pomodoro': 'There is already pomodoro running, cannot start another one.',
-    'pomodoro.directive.no.active': 'There is no active pomodoro, let\'s start one from task list.'
+    'pomodoro.directive.no.active': 'There is no active pomodoro, let\'s start one from task list.',
+    'pomodoro.directive.no.task': 'Related task information unavailable.'
   })
   .factory('messagesContext', function ($interpolate, i18nMessages) {
     var handleNotFound = function (msg, msgKey) {

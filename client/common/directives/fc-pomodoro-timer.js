@@ -6,33 +6,36 @@ angular.module('freeCoderApp')
   .directive('fcPomodoroTimer', function ($interval, $log, Member, Pomodoro, messagesContext) {
     return {
       restrict: 'E',
-      template: '<div><span></span></div><div class="panel panel-default"><div class="panel-body"></div></div>',
+      templateUrl: 'common/directives/fc-pomodoro-timer.tpl.html',
       link: function (scope, element, attr) {
-        console.log(arguments);
+        $log.debug('fcPomodoroTimer:', arguments);
         var timer, startTs, pomodoro;
         var userId = attr.userId || Member.getCurrentId();
         Member.pomodoros({
           id: userId,
-          filter: {where: {status: 'inProgress'}, include: 'task'}
-        }, function (value, respHeader) {
-          //value = [{startTime: new Date().getTime() - 60000, duration: 60000}];
-          if (value.length == 0) {
-            element.text(messagesContext.get('pomodoro.directive.no.active'));
-          } else {
-            pomodoro = value[0];
-            console.log('pomodoro task: ', pomodoro.task);
-            console.log($(element).find('.panel-body'));
-            handlePomodoro();
-          }
-        }, function (errResp) {
-          console.log(errResp);
-        });
+          filter: {where: {status: 'inProgress'}, include: {task: 'pomodoros'}}
+        }).$promise.then(function (value, respHeader) {
+            $log.debug('Query in progress pomodoro: ', value);
+            if (value.length == 0) {
+              element.text(messagesContext.get('pomodoro.directive.no.active'));
+            } else {
+              pomodoro = value[0];
+              if (!pomodoro.task) {
+                $(element).find('.panel-body').text(messagesContext.get('pomodoro.directive.no.task'));
+              } else {
+                $(element).find('.panel-body').text(pomodoro.task.title + ' (' + pomodoro.task.pomodoros.length + 'Pomodoros)');
+              }
+              handlePomodoro();
+            }
+          }, function (errResp) {
+            console.log(errResp);
+          });
 
         var handlePomodoro = function () {
           var now = new Date().getTime();
           var pomodoroEndTime = Date.parse(pomodoro.startTime) + pomodoro.duration;
           var remainDuration = Number.parseInt((pomodoroEndTime - now) / 1000);
-          //console.log('remainDuration:', now, pomodoroEndTime, remainDuration);
+          $log.debug('handlePomodoro. now, pomodoroEndTime, remainDuration:', now, pomodoroEndTime, remainDuration);
           if (remainDuration > 1) {
             // continue timer
             startTimer(remainDuration);
@@ -52,7 +55,7 @@ angular.module('freeCoderApp')
           timer = $interval(function () {
             remainDuration = remainDuration - 1;
             var timeStr = formatDuration(remainDuration);
-            element.text(timeStr);
+            $(element).find('.fc-pomodoro-timer').text(timeStr);
             if (remainDuration == 0) {
               stopTimer();
               $log.debug('Pomodoro time up, update status to finished.');
