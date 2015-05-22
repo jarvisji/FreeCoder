@@ -37,6 +37,12 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "resetPasswordConfirm"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "__create__pomodoros"
     }
   ],
   "methods": []

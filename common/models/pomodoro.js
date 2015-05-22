@@ -8,12 +8,32 @@ module.exports = function (Pomodoro) {
     'SKIPPED': 'skipped',
     'FINISHED': 'finished'
   };
+  var TYPE = {
+    'WORK': 'work',
+    'BREAK': 'break'
+  };
   Pomodoro.beforeRemote('create', function (ctx, modelInstance, next) {
-    debug('before create Pomodoro.', ctx.req.body);
-    // Fill default values if not set.
+    var accessToken = ctx.req.accessToken;
     var reqBody = ctx.req.body;
+    debug('before create Pomodoro.');
+    debug('.. data: ', reqBody);
+    debug('.. accessToken: ', accessToken);
+
+    if (!accessToken) {
+      next(getAuthorizationError());
+    }
+
+    // always set memberId according to current access token.
+    reqBody.memberId = accessToken.userId;
+
+    // Fill default values if not set.
     if (!reqBody.duration) {
-      reqBody.duration = 25 * 60 * 1000; // default is 25 minutes, TODO: read this from user config.
+      if (reqBody.type == TYPE.WORK) {
+        reqBody.duration = 25 * 60 * 1000; // default is 25 minutes, TODO: read this from user config.
+      }
+      if (reqBody.type == TYPE.BREAK) {
+        reqBody.duration = 5 * 60 * 1000; // default is 5 minutes, TODO: read this from user config.
+      }
     }
     if (!reqBody.status) {
       reqBody.status = STATUS.INPROGRESS;
@@ -84,10 +104,17 @@ module.exports = function (Pomodoro) {
 
   var checkPomodoroStatus = function (pomodoro, cb) {
     if (pomodoro.status != STATUS.INPROGRESS) {
-      e = new Error('Incorrect status of Pomodoro');
+      var e = new Error('Incorrect status of Pomodoro');
       e.status = e.statusCode = 400;
       e.code = 'BAD_REQUEST';
       cb(e);
     }
   };
+
+  var getAuthorizationError = function () {
+    var e = new Error('Authorization Required');
+    e.status = e.statusCode = 401;
+    e.code = 'AUTHORIZATION_REQUIRED';
+    return e;
+  }
 };
