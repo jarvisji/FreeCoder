@@ -20,14 +20,21 @@ module.exports = function (app) {
           ctx.instance.created = now;
           ctx.instance.lastUpdated = now;
           // Replace 'memberId' according to current accessToken, avoid user change it in client.
-          ctx.instance.memberId = accessToken.userId;
+          overwriteMemberIdIfValueNotMatchCurrentToken(ctx.instance, accessToken);
         } else {
           ctx.data.lastUpdated = now;
-          ctx.data.memberId = accessToken.userId;
+          // always add memberId according to current access token when create model.
+          if (accessToken)
+            ctx.data.memberId = accessToken.userId;
         }
         next();
       });
     }
   });
+
+  function overwriteMemberIdIfValueNotMatchCurrentToken(inst, accessToken) {
+    if (inst.memberId && accessToken && inst.memberId != accessToken.userId)
+      inst.memberId = accessToken.userId;
+  }
 };
 
