@@ -1747,6 +1747,49 @@
             method: "GET"
           },
 
+          // INTERNAL. Use Task.pomodoros.findById() instead.
+          "prototype$__findById__pomodoros": {
+            url: urlBase + "/Tasks/:id/pomodoros/:fk",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Task.pomodoros.destroyById() instead.
+          "prototype$__destroyById__pomodoros": {
+            url: urlBase + "/Tasks/:id/pomodoros/:fk",
+            method: "DELETE"
+          },
+
+          // INTERNAL. Use Task.pomodoros.updateById() instead.
+          "prototype$__updateById__pomodoros": {
+            url: urlBase + "/Tasks/:id/pomodoros/:fk",
+            method: "PUT"
+          },
+
+          // INTERNAL. Use Task.pomodoros() instead.
+          "prototype$__get__pomodoros": {
+            isArray: true,
+            url: urlBase + "/Tasks/:id/pomodoros",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Task.pomodoros.create() instead.
+          "prototype$__create__pomodoros": {
+            url: urlBase + "/Tasks/:id/pomodoros",
+            method: "POST"
+          },
+
+          // INTERNAL. Use Task.pomodoros.destroyAll() instead.
+          "prototype$__delete__pomodoros": {
+            url: urlBase + "/Tasks/:id/pomodoros",
+            method: "DELETE"
+          },
+
+          // INTERNAL. Use Task.pomodoros.count() instead.
+          "prototype$__count__pomodoros": {
+            url: urlBase + "/Tasks/:id/pomodoros/count",
+            method: "GET"
+          },
+
           /**
            * @ngdoc method
            * @name lbServices.Task#create
@@ -2138,25 +2181,7 @@
             url: urlBase + "/Pomodoros/:id/task",
             method: "GET"
           },
-
-          // INTERNAL. Use Pomodoro.task.create() instead.
-          "::create::Pomodoro::task": {
-            url: urlBase + "/Pomodoros/:id/task",
-            method: "POST"
-          },
-
-          // INTERNAL. Use Pomodoro.task.update() instead.
-          "::update::Pomodoro::task": {
-            url: urlBase + "/Pomodoros/:id/task",
-            method: "PUT"
-          },
-
-          // INTERNAL. Use Pomodoro.task.destroy() instead.
-          "::destroy::Pomodoro::task": {
-            url: urlBase + "/Pomodoros/:id/task",
-            method: "DELETE"
-          },
-      }
+        }
       );
 
 
@@ -2327,6 +2352,269 @@
         var action = TargetResource["::get::Task::member"];
         return action.apply(R, arguments);
       };
+      /**
+       * @ngdoc object
+       * @name lbServices.Task.pomodoros
+       * @header lbServices.Task.pomodoros
+       * @object
+       * @description
+       *
+       * The object `Task.pomodoros` groups methods
+       * manipulating `Pomodoro` instances related to `Task`.
+       *
+       * Call {@link lbServices.Task#pomodoros Task.pomodoros()}
+       * to query all related instances.
+       */
+
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Task#pomodoros
+       * @methodOf lbServices.Task
+       *
+       * @description
+       *
+       * Queries pomodoros of Task.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       *  - `filter` – `{object=}` -
+       *
+       * @param {function(Array.<Object>,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Array.<Object>} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Pomodoro` object.)
+       * </em>
+       */
+      R.pomodoros = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::get::Task::pomodoros"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Task.pomodoros#count
+       * @methodOf lbServices.Task.pomodoros
+       *
+       * @description
+       *
+       * Counts pomodoros of Task.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       *  - `where` – `{object=}` - Criteria to match model instances
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * Data properties:
+       *
+       *  - `count` – `{number=}` -
+       */
+      R.pomodoros.count = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::count::Task::pomodoros"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Task.pomodoros#create
+       * @methodOf lbServices.Task.pomodoros
+       *
+       * @description
+       *
+       * Creates a new instance in pomodoros of this model.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       * @param {Object} postData Request data.
+       *
+       * This method expects a subset of model properties as request parameters.
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Pomodoro` object.)
+       * </em>
+       */
+      R.pomodoros.create = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::create::Task::pomodoros"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Task.pomodoros#destroyAll
+       * @methodOf lbServices.Task.pomodoros
+       *
+       * @description
+       *
+       * Deletes all pomodoros of this model.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R.pomodoros.destroyAll = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::delete::Task::pomodoros"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Task.pomodoros#destroyById
+       * @methodOf lbServices.Task.pomodoros
+       *
+       * @description
+       *
+       * Delete a related item by id for pomodoros.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       *  - `fk` – `{*}` - Foreign key for pomodoros
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R.pomodoros.destroyById = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::destroyById::Task::pomodoros"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Task.pomodoros#findById
+       * @methodOf lbServices.Task.pomodoros
+       *
+       * @description
+       *
+       * Find a related item by id for pomodoros.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       *  - `fk` – `{*}` - Foreign key for pomodoros
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Pomodoro` object.)
+       * </em>
+       */
+      R.pomodoros.findById = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::findById::Task::pomodoros"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Task.pomodoros#updateById
+       * @methodOf lbServices.Task.pomodoros
+       *
+       * @description
+       *
+       * Update a related item by id for pomodoros.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       *  - `fk` – `{*}` - Foreign key for pomodoros
+       *
+       * @param {Object} postData Request data.
+       *
+       * This method expects a subset of model properties as request parameters.
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Pomodoro` object.)
+       * </em>
+       */
+      R.pomodoros.updateById = function () {
+        var TargetResource = $injector.get("Pomodoro");
+        var action = TargetResource["::updateById::Task::pomodoros"];
+        return action.apply(R, arguments);
+      };
 
       return R;
     }]);
@@ -2366,24 +2654,6 @@
           "prototype$__get__task": {
             url: urlBase + "/Pomodoros/:id/task",
             method: "GET"
-          },
-
-          // INTERNAL. Use Pomodoro.task.create() instead.
-          "prototype$__create__task": {
-            url: urlBase + "/Pomodoros/:id/task",
-            method: "POST"
-          },
-
-          // INTERNAL. Use Pomodoro.task.update() instead.
-          "prototype$__update__task": {
-            url: urlBase + "/Pomodoros/:id/task",
-            method: "PUT"
-          },
-
-          // INTERNAL. Use Pomodoro.task.destroy() instead.
-          "prototype$__destroy__task": {
-            url: urlBase + "/Pomodoros/:id/task",
-            method: "DELETE"
           },
 
           /**
@@ -2841,6 +3111,49 @@
             url: urlBase + "/Members/:id/pomodoros/count",
             method: "GET"
           },
+
+          // INTERNAL. Use Task.pomodoros.findById() instead.
+          "::findById::Task::pomodoros": {
+            url: urlBase + "/Tasks/:id/pomodoros/:fk",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Task.pomodoros.destroyById() instead.
+          "::destroyById::Task::pomodoros": {
+            url: urlBase + "/Tasks/:id/pomodoros/:fk",
+            method: "DELETE"
+          },
+
+          // INTERNAL. Use Task.pomodoros.updateById() instead.
+          "::updateById::Task::pomodoros": {
+            url: urlBase + "/Tasks/:id/pomodoros/:fk",
+            method: "PUT"
+          },
+
+          // INTERNAL. Use Task.pomodoros() instead.
+          "::get::Task::pomodoros": {
+            isArray: true,
+            url: urlBase + "/Tasks/:id/pomodoros",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Task.pomodoros.create() instead.
+          "::create::Task::pomodoros": {
+            url: urlBase + "/Tasks/:id/pomodoros",
+            method: "POST"
+          },
+
+          // INTERNAL. Use Task.pomodoros.destroyAll() instead.
+          "::delete::Task::pomodoros": {
+            url: urlBase + "/Tasks/:id/pomodoros",
+            method: "DELETE"
+          },
+
+          // INTERNAL. Use Task.pomodoros.count() instead.
+          "::count::Task::pomodoros": {
+            url: urlBase + "/Tasks/:id/pomodoros/count",
+            method: "GET"
+          },
       }
       );
 
@@ -3012,20 +3325,6 @@
         var action = TargetResource["::get::Pomodoro::member"];
         return action.apply(R, arguments);
       };
-      /**
-       * @ngdoc object
-       * @name lbServices.Pomodoro.task
-       * @header lbServices.Pomodoro.task
-       * @object
-       * @description
-       *
-       * The object `Pomodoro.task` groups methods
-       * manipulating `Task` instances related to `Pomodoro`.
-       *
-       * Call {@link lbServices.Pomodoro#task Pomodoro.task()}
-       * to query all related instances.
-       */
-
 
       /**
        * @ngdoc method
@@ -3034,7 +3333,7 @@
        *
        * @description
        *
-       * Fetches hasOne relation task.
+       * Fetches belongsTo relation task.
        *
        * @param {Object=} parameters Request parameters.
        *
@@ -3060,113 +3359,6 @@
       R.task = function () {
         var TargetResource = $injector.get("Task");
         var action = TargetResource["::get::Pomodoro::task"];
-        return action.apply(R, arguments);
-      };
-
-      /**
-       * @ngdoc method
-       * @name lbServices.Pomodoro.task#create
-       * @methodOf lbServices.Pomodoro.task
-       *
-       * @description
-       *
-       * Creates a new instance in task of this model.
-       *
-       * @param {Object=} parameters Request parameters.
-       *
-       *  - `id` – `{*}` - PersistedModel id
-       *
-       * @param {Object} postData Request data.
-       *
-       * This method expects a subset of model properties as request parameters.
-       *
-       * @param {function(Object,Object)=} successCb
-       *   Success callback with two arguments: `value`, `responseHeaders`.
-       *
-       * @param {function(Object)=} errorCb Error callback with one argument:
-       *   `httpResponse`.
-       *
-       * @returns {Object} An empty reference that will be
-       *   populated with the actual data once the response is returned
-       *   from the server.
-       *
-       * <em>
-       * (The remote method definition does not provide any description.
-       * This usually means the response is a `Task` object.)
-       * </em>
-       */
-      R.task.create = function () {
-        var TargetResource = $injector.get("Task");
-        var action = TargetResource["::create::Pomodoro::task"];
-        return action.apply(R, arguments);
-      };
-
-      /**
-       * @ngdoc method
-       * @name lbServices.Pomodoro.task#destroy
-       * @methodOf lbServices.Pomodoro.task
-       *
-       * @description
-       *
-       * Deletes task of this model.
-       *
-       * @param {Object=} parameters Request parameters.
-       *
-       *  - `id` – `{*}` - PersistedModel id
-       *
-       * @param {function(Object,Object)=} successCb
-       *   Success callback with two arguments: `value`, `responseHeaders`.
-       *
-       * @param {function(Object)=} errorCb Error callback with one argument:
-       *   `httpResponse`.
-       *
-       * @returns {Object} An empty reference that will be
-       *   populated with the actual data once the response is returned
-       *   from the server.
-       *
-       * This method returns no data.
-       */
-      R.task.destroy = function () {
-        var TargetResource = $injector.get("Task");
-        var action = TargetResource["::destroy::Pomodoro::task"];
-        return action.apply(R, arguments);
-      };
-
-      /**
-       * @ngdoc method
-       * @name lbServices.Pomodoro.task#update
-       * @methodOf lbServices.Pomodoro.task
-       *
-       * @description
-       *
-       * Update task of this model.
-       *
-       * @param {Object=} parameters Request parameters.
-       *
-       *  - `id` – `{*}` - PersistedModel id
-       *
-       * @param {Object} postData Request data.
-       *
-       * This method expects a subset of model properties as request parameters.
-       *
-       * @param {function(Object,Object)=} successCb
-       *   Success callback with two arguments: `value`, `responseHeaders`.
-       *
-       * @param {function(Object)=} errorCb Error callback with one argument:
-       *   `httpResponse`.
-       *
-       * @returns {Object} An empty reference that will be
-       *   populated with the actual data once the response is returned
-       *   from the server.
-       *
-       * <em>
-       * (The remote method definition does not provide any description.
-       * This usually means the response is a `Task` object.)
-       * </em>
-       */
-      R.task.update = function () {
-        var TargetResource = $injector.get("Task");
-        var action = TargetResource["::update::Pomodoro::task"];
         return action.apply(R, arguments);
       };
 
