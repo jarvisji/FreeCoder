@@ -42,3 +42,10 @@ body {
   min-height: 30px;
   background-color: #ffffff;
 }
+
+.fc-pomodoro-timer {
+  color: red;
+  font-family: fantasy;
+  font-size: 50px;
+  text-align: center;
+}
