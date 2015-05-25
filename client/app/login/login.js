@@ -9,6 +9,13 @@ angular.module('freeCoderApp')
     $scope.rememberMe = false;
     $scope.alert = {};
     $rootScope.sessionInfo = {};
+    $scope.uiText = {
+      placeholderEmail: messagesContext.get('user.forget.email.placeholder'),
+      placeholderLoginEmail: messagesContext.get('user.login.email.placeholder'),
+      placeholderLoginPassword: messagesContext.get('user.login.password.placeholder'),
+      placeholderResetPassword: messagesContext.get('user.reset.password.new'),
+      placeholderResetPasswordAgain: messagesContext.get('user.reset.password.again')
+    };
 
     // check url parameters for /reset
     if ($location.path() == '/reset') {

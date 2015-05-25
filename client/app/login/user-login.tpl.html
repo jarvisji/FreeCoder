@@ -1,34 +1,37 @@
 <div class="row">
   <header class="page-header">
-    <h1>Login</h1>
+    <h1 fc-i18n="user.login.page.header"></h1>
   </header>
   <form name="memberForm" novalidate ng-submit="login()">
     <div class="form-group col-sm-8" ng-class="{'has-error': memberForm.email.$invalid && memberForm.email.$dirty}">
-      <input type="email" class="form-control focus" name="email" placeholder="Email" autocomplete="off" required
+      <input type="email" class="form-control focus" name="email" placeholder="{{uiText.placeholderLoginEmail}}"
+             autocomplete="off" required
              ng-model="member.email">
-      <span class="has-error control-label" ng-show="memberForm.email.$invalid && memberForm.email.$dirty">Email is required.</span>
+      <span class="has-error control-label" ng-show="memberForm.email.$invalid && memberForm.email.$dirty"
+            fc-i18n="user.login.email.invalid"></span>
     </div>
 
     <div class="form-group col-sm-8"
          ng-class="{'has-error': memberForm.password.$invalid && memberForm.password.$dirty}">
-      <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="off" required
-             ng-model="member.password">
-      <span class="has-error control-label" ng-show="memberForm.password.$invalid && memberForm.password.$dirty">Password is required.</span>
+      <input type="password" class="form-control" name="password" placeholder="{{uiText.placeholderLoginPassword}}"
+             autocomplete="off" required ng-model="member.password">
+      <span class="has-error control-label" ng-show="memberForm.password.$invalid && memberForm.password.$dirty"
+            fc-i18n="user.login.password.invalid"></span>
     </div>
 
     <div class="alert alert-danger col-sm-8" role="alert" ng-show="errorMsg!=undefined">{{errorMsg}}</div>
 
     <div class="checkbox col-sm-8">
       <label>
-        <input type="checkbox" ng-model="rememberMe"> Remember me
+        <input type="checkbox" ng-model="rememberMe"><span fc-i18n="user.login.remember.me"></span>
       </label>
     </div>
 
     <div class="col-sm-8">
-      <button class="btn btn-primary" ng-disabled="memberForm.$invalid">Login</button>
-      <a ui-sref="forgot">Forgot?</a>
+      <button class="btn btn-primary" ng-disabled="memberForm.$invalid" fc-i18n="user.login.login"></button>
+      <a ui-sref="forgot" fc-i18n="user.login.forgot"></a>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <a ui-sref="sign-up">Sign up</a>
+      <a ui-sref="sign-up" fc-i18n="user.login.sign.up"></a>
     </div>
   </form>
 </div>

@@ -1,12 +1,14 @@
 <div class="row">
   <header class="page-header">
-    <h1>Reset your password</h1>
+    <h1 fc-i18n="user.forget.page.header"></h1>
   </header>
   <form name="resetForm" novalidate ng-submit="forgot()">
     <div class="form-group col-sm-8" ng-class="{'has-error': resetForm.email.$invalid && resetForm.email.$dirty}">
-      <input type="email" class="form-control focus" name="email" placeholder="Input your email" autocomplete="off"
+      <input type="email" class="form-control focus" name="email" placeholder="{{uiText.placeholderEmail}}"
+             autocomplete="off"
              required ng-model="resetOption.email">
-      <span class="has-error control-label" ng-show="resetForm.email.$invalid && resetForm.email.$dirty">Invalid email address..</span>
+      <span class="has-error control-label" ng-show="resetForm.email.$invalid && resetForm.email.$dirty"
+            fc-i18n="user.forget.email.invalid"></span>
     </div>
 
     <div class="alert col-sm-8" role="alert" ng-class="alert.style"
@@ -14,7 +16,7 @@
     </div>
 
     <div class="col-sm-8">
-      <button class="btn btn-primary" ng-disabled="resetForm.$invalid">Submit</button>
+      <button class="btn btn-primary" ng-disabled="resetForm.$invalid" fc-i18n="user.forget.submit"></button>
     </div>
   </form>
 </div>
