@@ -77,7 +77,7 @@ angular.module('freeCoderApp')
         }, function (errorResp) {
           $scope.alert.style = 'alert-danger';
           $scope.alert.message = errorResp.data.error.message;
-        })
+        });
       }
-    }
+    };
   }]);

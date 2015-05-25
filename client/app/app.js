@@ -60,5 +60,5 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
         $rootScope.sessionInfo.isLogin = Member.isAuthenticated();
         $state.go('login');
       });
-    }
+    };
   }]);
