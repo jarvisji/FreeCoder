@@ -1,2 +1,4 @@
-/client/
-/node_modules/
+client/vendor/**
+node_modules/**
+client/assets/**
+client/common/services/lb-services.js
