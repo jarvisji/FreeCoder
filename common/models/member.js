@@ -8,15 +8,28 @@ module.exports = function (Member) {
   // refer to http://docs.strongloop.com/display/public/LB/Remote+hooks
   Member.afterRemote('create', function (context, member, next) {
     debug('> Member.afterRemote("create") triggered');
+    var app = Member.app;
+    var protocol = app.get('extProtocol');
+    var host = app.get('extHost');
+    var port = app.get('extPort');
+    var restApiRoot = app.get('restApiRoot');
+    var redirect = encodeURIComponent('/#/dashboard');
+    var userModel = member.constructor;
+    var verifyHref;
+    if (port) {
+      verifyHref = protocol + '://' + host + ':' + port + restApiRoot + userModel.http.path + userModel.sharedClass.find('confirm', true).http.path +
+      '?uid=' + member.id + '&redirect=' + redirect;
+    } else {
+      verifyHref = protocol + '://' + host + restApiRoot + userModel.http.path + userModel.sharedClass.find('confirm', true).http.path +
+      '?uid=' + member.id + '&redirect=' + redirect;
+    }
     var options = {
-      host: Member.app.get('extHost'),
-      port: Member.app.get('extPort'),
       type: 'email',
       to: member.email,
       from: Member.app.get('supportEmail'),
       subject: 'Thanks for registering.',
       template: path.resolve(__dirname, '../../server/email_templates/registration_verify.ejs'),
-      redirect: encodeURIComponent('/#/dashboard')
+      verifyHref: verifyHref
     };
     member.verify(options, function (err, response) {
       if (err) {
@@ -39,13 +52,19 @@ module.exports = function (Member) {
     var port = app.get('extPort');
     var restApiRoot = app.get('restApiRoot');
     var redirect = encodeURIComponent('/#/reset');
+    var resetHref;
+    if (port) {
+      resetHref = protocol + '://' + host + ':' + port + '/#/reset' + '?uid=' + info.accessToken.userId + '&token=' + info.accessToken.id + '&redirect=' + redirect
+    } else {
+      resetHref = protocol + '://' + host + '/#/reset' + '?uid=' + info.accessToken.userId + '&token=' + info.accessToken.id + '&redirect=' + redirect
+    }
     var options = {
       type: 'email',
       to: info.email,
       from: Member.app.get('supportEmail'),
       subject: 'Get your account back.',
       template: path.resolve(__dirname, '../../server/email_templates/forgot_password.ejs'),
-      resetHref: protocol + '://' + host + ':' + port + '/#/reset' + '?uid=' + info.accessToken.userId + '&token=' + info.accessToken.id + '&redirect=' + redirect
+      resetHref: resetHref
     };
     var template = loopback.template(options.template);
     options.html = template(options);

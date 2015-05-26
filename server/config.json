@@ -26,6 +26,7 @@
   },
   "legacyExplorer": false,
   "supportEmail": "support@freecoder.net",
-  "extHost": "www.freecoder.net",
-  "extPort": ""
+  "extProtocol": "http",
+  "extHost": "localhost",
+  "extPort": "3000"
 }
