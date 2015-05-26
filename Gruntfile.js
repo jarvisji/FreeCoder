@@ -19,16 +19,15 @@ module.exports = function (grunt) {
     copy: {
       client: {
         expand: true,
-        cwd: 'client/',
-        src: ['**', '!vendor/**', '!assets/ace/**', '!assets/css/**'],
+        src: ['client/**', '!client/vendor/**', '!client/assets/ace/**', '!client/assets/css/**', 'server/**', 'common/**'],
         dest: 'dist'
       }
     },
     useminPrepare: {
-      html: 'dist/index.html'
+      html: 'dist/client/index.html'
     },
     usemin: {
-      html: ['dist/index.html']
+      html: ['dist/client/index.html']
     },
     concat: {
       dist: {
@@ -55,10 +54,10 @@ module.exports = function (grunt) {
     uglify: {
       dist: {
         files: [{
-          dest: 'dist/assets/js/3rd.min.js',
+          dest: 'dist/client/assets/js/3rd.min.js',
           src: ['.tmp/concat/js/3rd.js']
         }, {
-          dest: 'dist/assets/js/app.min.js',
+          dest: 'dist/client/assets/js/app.min.js',
           src: ['.tmp/concat/js/app.js']
         }]
       }
@@ -66,15 +65,15 @@ module.exports = function (grunt) {
     cssmin: {
       dist: {
         files: [{
-          'dist/assets/css/ace.min.css': ['client/assets/css/ace*.css']
+          'dist/client/assets/css/ace.min.css': ['client/assets/css/ace*.css']
         }, {
-          'dist/assets/css/app.min.css': ['client/vendor/angular-ui-tree/dist/angular-ui-tree.min.css', 'client/assets/css/styles.css']
+          'dist/client/assets/css/app.min.css': ['client/vendor/angular-ui-tree/dist/angular-ui-tree.min.css', 'client/assets/css/styles.css']
         }]
       }
     },
     rev: {
       files: {
-        src: ['dist/assets/**/*.{js,css}']
+        src: ['dist/client/assets/**/*.{js,css}']
       }
     }
   });

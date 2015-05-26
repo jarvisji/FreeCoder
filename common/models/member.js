@@ -9,6 +9,8 @@ module.exports = function (Member) {
   Member.afterRemote('create', function (context, member, next) {
     debug('> Member.afterRemote("create") triggered');
     var options = {
+      host: Member.app.get('extHost'),
+      port: Member.app.get('extPort'),
       type: 'email',
       to: member.email,
       from: Member.app.get('supportEmail'),
@@ -33,8 +35,8 @@ module.exports = function (Member) {
     debug('> on resetPasswordRequest:', info); // the email of the requested user
     var app = Member.app;
     var protocol = app.get('protocol');
-    var host = app.get('host');
-    var port = app.get('port');
+    var host = app.get('extHost');
+    var port = app.get('extPort');
     var restApiRoot = app.get('restApiRoot');
     var redirect = encodeURIComponent('/#/reset');
     var options = {

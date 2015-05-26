@@ -25,5 +25,7 @@
     }
   },
   "legacyExplorer": false,
-  "supportEmail": "support@freecoder.net"
+  "supportEmail": "support@freecoder.net",
+  "extHost": "www.freecoder.net",
+  "extPort": ""
 }
