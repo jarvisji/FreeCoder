@@ -51,7 +51,7 @@ angular.module('i18nMessages', [])
     'pomodoro.directive.no.active': 'There is no active pomodoro, let\'s start one from task list.',
     'pomodoro.directive.no.task': 'Related task information unavailable.'
   })
-  .factory('messagesContext', function ($interpolate, i18nMessages) {
+  .factory('messagesContext', ['$interpolate', 'i18nMessages', function ($interpolate, i18nMessages) {
     var handleNotFound = function (msg, msgKey) {
       return msg || '?' + msgKey + '?';
     };
@@ -66,4 +66,4 @@ angular.module('i18nMessages', [])
         }
       }
     };
-  });
+  }]);

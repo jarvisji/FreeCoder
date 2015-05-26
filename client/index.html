@@ -7,13 +7,16 @@
   <base href="/">
   <title fc-i18n="app.name"></title>
 
-  <!-- Bootstrap -->
-  <link href="vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-  <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+  <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- build:css assets/css/ace.min.css -->
   <link href="assets/css/ace-fonts.css" rel="stylesheet">
-  <link href="assets/css/ace.min.css" rel="stylesheet">
+  <link href="assets/css/ace.css" rel="stylesheet">
+  <!-- endbuild -->
+  <!-- build:css assets/css/app.min.css -->
   <link href="vendor/angular-ui-tree/dist/angular-ui-tree.min.css" rel="stylesheet">
   <link href="assets/css/styles.css" rel="stylesheet">
+  <!-- endbuild -->
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -46,18 +49,20 @@
   </div>
 </div>
 
-<script src="vendor/jquery/dist/jquery.js"></script>
-<script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
-<script src="vendor/angular/angular.js"></script>
+<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://cdn.bootcss.com/angular.js/1.3.15/angular.min.js"></script>
+<script src="http://cdn.bootcss.com/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+<!-- build:js assets/js/3rd.min.js -->
 <script src="vendor/angular-resource/angular-resource.js"></script>
-<script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="vendor/angular-cookies/angular-cookies.js"></script>
 <script src="vendor/angular-ui-tree/dist/angular-ui-tree.js"></script>
-
+<!-- endbuild -->
+<!-- build:js assets/js/app.min.js -->
 <script src="common/services/lb-services.js"></script>
+<script src="app/app.js"></script>
 <script src="common/services/i18n-messages.js"></script>
 <script src="common/services/fcUtils.js"></script>
-<script src="app/app.js"></script>
 <script src="common/directives/fc-i18n.js"></script>
 <script src="common/directives/fc-pomodoro-timer.js"></script>
 <script src="app/login/login.js"></script>
@@ -65,5 +70,6 @@
 <script src="app/todo/todo.js"></script>
 <script src="app/profile/user-profile.js"></script>
 <script src="app/pomodoro/pomodoro.js"></script>
+<!-- endbuild -->
 </body>
 </html>

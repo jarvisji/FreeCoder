@@ -21,3 +21,6 @@ npm-debug.log
 server/datasources.json
 client/vendor
 client/assets/ace
+.tmp
+dist
+jshint-report.txt
