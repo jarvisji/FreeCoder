@@ -8,7 +8,7 @@
     ]
   },
   "User": {
-    "dataSource": "mongolab",
+    "dataSource": "mongolocal",
     "public": false
   },
   "Email": {
@@ -16,31 +16,31 @@
     "public": false
   },
   "AccessToken": {
-    "dataSource": "mongolab",
+    "dataSource": "mongolocal",
     "public": false
   },
   "ACL": {
-    "dataSource": "mongolab",
+    "dataSource": "mongolocal",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "mongolab",
+    "dataSource": "mongolocal",
     "public": false
   },
   "Role": {
-    "dataSource": "mongolab",
+    "dataSource": "mongolocal",
     "public": false
   },
   "Member": {
-    "dataSource": "mongolab",
+    "dataSource": "mongolocal",
     "public": true
   },
   "Task": {
-    "dataSource": "mongolab",
+    "dataSource": "mongolocal",
     "public": true
   },
   "Pomodoro": {
-    "dataSource": "mongolab",
+    "dataSource": "mongolocal",
     "public": true
   }
 }
