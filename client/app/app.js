@@ -39,9 +39,9 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
       templateUrl: 'app/todo/todo.tpl.html',
       controller: 'todoCtrl',
       resolve: {
-        userTasks: function (Member) {
+        userTasks: ['Member', function (Member) {
           return Member.tasks({id: Member.getCurrentId(), filter: {order: 'order DESC'}}).$promise;
-        }
+        }]
       }
     });
     $stateProvider.state('pomodoro', {
