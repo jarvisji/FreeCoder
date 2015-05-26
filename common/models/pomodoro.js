@@ -116,5 +116,5 @@ module.exports = function (Pomodoro) {
     e.status = e.statusCode = 401;
     e.code = 'AUTHORIZATION_REQUIRED';
     return e;
-  }
+  };
 };
