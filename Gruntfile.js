@@ -19,7 +19,7 @@ module.exports = function (grunt) {
     copy: {
       client: {
         expand: true,
-        src: ['client/**', '!client/vendor/**', '!client/assets/ace/**', '!client/assets/css/**', 'server/**', 'common/**'],
+        src: ['package.json', 'client/**', '!client/vendor/**', '!client/assets/ace/**', '!client/assets/css/**', 'server/**', 'common/**'],
         dest: 'dist'
       }
     },
