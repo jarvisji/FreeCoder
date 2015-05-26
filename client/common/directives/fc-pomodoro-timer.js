@@ -3,7 +3,7 @@
  * Created by Ting on 2015/5/21.
  */
 angular.module('freeCoderApp')
-  .directive('fcPomodoroTimer', function ($interval, $log, Member, Pomodoro, messagesContext) {
+  .directive('fcPomodoroTimer', ['$interval', '$log', 'Member', 'Pomodoro', 'messagesContext', function ($interval, $log, Member, Pomodoro, messagesContext) {
     return {
       restrict: 'E',
       templateUrl: 'common/directives/fc-pomodoro-timer.tpl.html',
@@ -96,4 +96,4 @@ angular.module('freeCoderApp')
         });
       }
     };
-  });
+  }]);
