@@ -11,8 +11,8 @@ angular.module('freeCoderApp')
     return {
       restrict: 'A',
       compile: function (element, attr) {
-        var text = messagesContext.get(attr['fcI18n']);
+        var text = messagesContext.get(attr.fcI18n);
         element.text(text);
       }
-    }
+    };
   }]);

@@ -35,8 +35,8 @@ angular.module('freeCoderApp')
         }, function (errorRes) {
           $scope.changePasswordResult.alertStyle = "alert-danger";
           $scope.changePasswordResult.message = messagesContext.get('common.error.occurred', {msg: errorRes.data.error.message});
-        })
+        });
       }
-    }
+    };
 
   }]);

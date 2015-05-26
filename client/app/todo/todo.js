@@ -34,7 +34,7 @@ angular.module('freeCoderApp')
     };
 
     var checkTasksCount = function () {
-      if ($scope.tasks.length == 0) {
+      if ($scope.tasks.length === 0) {
         $scope.uiText.noTasks = messagesContext.get('todo.list.no.tasks');
       } else if ($scope.uiText.noTasks) {
         delete $scope.uiText.noTasks;
@@ -60,7 +60,7 @@ angular.module('freeCoderApp')
           checkTasksCount();
         }, function (errResp) {
           alertRequestError(errResp);
-        })
+        });
     };
 
     $scope.deleteTask = function (index) {
@@ -100,7 +100,7 @@ angular.module('freeCoderApp')
           }
         }
 
-        if (value.length == 0 || remainDuration <= 0) {
+        if (value.length === 0 || remainDuration <= 0) {
           Pomodoro.create({startTime: now, taskId: task.id, type: 'work'}).$promise.then(function (value, respHeaders) {
             $state.go('pomodoro');
           }, function (errResp) {
@@ -160,13 +160,14 @@ angular.module('freeCoderApp')
           }
           var newPositionIdx = event.dest.index;
           var orderChangedTask = $scope[taskArray][newPositionIdx];
-          if (newPositionIdx == 0) {
+          var beforeTask;
+          if (newPositionIdx === 0) {
             orderChangedTask.order = new Date().getTime();
           } else if (newPositionIdx == $scope[taskArray].length - 1) {
-            var beforeTask = $scope[taskArray][newPositionIdx - 1];
+            beforeTask = $scope[taskArray][newPositionIdx - 1];
             orderChangedTask.order = beforeTask.order - 10000;
           } else {
-            var beforeTask = $scope[taskArray][newPositionIdx - 1];
+            beforeTask = $scope[taskArray][newPositionIdx - 1];
             var afterTask = $scope[taskArray][newPositionIdx + 1];
             orderChangedTask.order = afterTask.order + parseInt((beforeTask.order - afterTask.order) / 2);
             $log.debug("Moved task position, new order value to before:", beforeTask.order - orderChangedTask.order);

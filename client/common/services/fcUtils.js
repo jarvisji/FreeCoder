@@ -39,5 +39,5 @@ angular.module('fcUtils', [])
         var todayRange = this.getTodayTimestampRange();
         return dTime >= todayRange.start && dTime <= todayRange.end;
       }
-    }
+    };
   });

@@ -16,7 +16,7 @@ angular.module('freeCoderApp')
           filter: {where: {status: 'inProgress'}, include: {task: 'pomodoros'}}
         }).$promise.then(function (value, respHeader) {
             $log.debug('Query in progress pomodoro: ', value);
-            if (value.length == 0) {
+            if (value.length === 0) {
               element.text(messagesContext.get('pomodoro.directive.no.active'));
             } else {
               pomodoro = value[0];
@@ -56,7 +56,7 @@ angular.module('freeCoderApp')
             remainDuration = remainDuration - 1;
             var timeStr = formatDuration(remainDuration);
             $(element).find('.fc-pomodoro-timer').text(timeStr);
-            if (remainDuration == 0) {
+            if (remainDuration === 0) {
               stopTimer();
               $log.debug('Pomodoro time up, update status to finished.');
               Pomodoro.finishPomodoro({id: pomodoro.id});
@@ -95,5 +95,5 @@ angular.module('freeCoderApp')
           stopTimer();
         });
       }
-    }
+    };
   });

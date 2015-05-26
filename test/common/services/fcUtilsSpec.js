@@ -30,5 +30,5 @@ describe('Test methods in fcUtils.', function () {
     var oneDayMilliseconds = 24 * 60 * 60 * 1000;
     expect(fcDateUtils.isInToday(new Date().getTime() + oneDayMilliseconds)).toBeFalsy();
     expect(fcDateUtils.isInToday(new Date().getTime() - oneDayMilliseconds)).toBeFalsy();
-  })
+  });
 });
