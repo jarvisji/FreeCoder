@@ -114,5 +114,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-usemin');
 
   grunt.registerTask('default', ['jshint', 'copy', 'replace:forAliyun', 'useminPrepare', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'rev', 'usemin']);
+  grunt.registerTask('localhost', ['jshint', 'copy', 'replace:forLocalhost', 'useminPrepare', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'rev', 'usemin']);
 
 };
