@@ -1,5 +1,5 @@
 body {
-  padding-top: 15px
+  /*padding-top: 15px*/
 }
 
 .glyphicon-remove:hover {
@@ -7,19 +7,28 @@ body {
 }
 
 .nav-side {
-  margin-top: 20px;
+  /*margin-top: 20px;*/
 }
 
-.view-content {
-  margin-top: 20px;
+.fc-navbar-action {
+  position: absolute;
+  right: 15px;
+  top: 5px;
 }
 
-.action-buttons {
+.fc-listitem-action {
   position: absolute;
   right: 0;
   top: 0;
   bottom: 0;
   overflow: hidden;
+}
+
+.fc-pomodoro-timer {
+  color: red;
+  font-family: fantasy;
+  font-size: 50px;
+  text-align: center;
 }
 
 /* drag item in list-group, the list item upon placeholder hasn't border-bottom */
@@ -41,11 +50,4 @@ body {
   border: 0;
   min-height: 30px;
   background-color: #ffffff;
-}
-
-.fc-pomodoro-timer {
-  color: red;
-  font-family: fantasy;
-  font-size: 50px;
-  text-align: center;
 }
