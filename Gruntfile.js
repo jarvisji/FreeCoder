@@ -23,6 +23,30 @@ module.exports = function (grunt) {
         dest: 'dist'
       }
     },
+    replace: {
+      forAliyun: {
+        src: 'dist/server/config.json',
+        overwrite: true,
+        replacements: [{
+          from: '{$extHost}',
+          to: 'www.freecoder.net'
+        }, {
+          from: '{$extPort}',
+          to: ''
+        }]
+      },
+      forLocalhost: {
+        src: 'dist/server/config.json',
+        overwrite: true,
+        replacements: [{
+          from: '{$extHost}',
+          to: 'localhost'
+        }, {
+          from: '{$extPort}',
+          to: '3000'
+        }]
+      }
+    },
     useminPrepare: {
       html: 'dist/client/index.html'
     },
@@ -79,8 +103,9 @@ module.exports = function (grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  //grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-text-replace');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -88,6 +113,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-rev');
   grunt.loadNpmTasks('grunt-usemin');
 
-  grunt.registerTask('default', ['jshint', 'copy', 'useminPrepare', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'rev', 'usemin']);
+  grunt.registerTask('default', ['jshint', 'copy', 'replace:forAliyun', 'useminPrepare', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'rev', 'usemin']);
 
 };
