@@ -1,5 +1,5 @@
 body {
-  /*padding-top: 15px*/
+  background-color: #ffffff;
 }
 
 .glyphicon-remove:hover {
@@ -8,6 +8,11 @@ body {
 
 .nav-side {
   /*margin-top: 20px;*/
+}
+
+/* Overwrite ul margin-left at ace.css:166 */
+ul.nav {
+  margin-left: 0;
 }
 
 .fc-navbar-action {
