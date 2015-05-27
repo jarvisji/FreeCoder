@@ -54,9 +54,9 @@ module.exports = function (Member) {
     var redirect = encodeURIComponent('/#/reset');
     var resetHref;
     if (port) {
-      resetHref = protocol + '://' + host + ':' + port + '/#/reset' + '?uid=' + info.accessToken.userId + '&token=' + info.accessToken.id + '&redirect=' + redirect
+      resetHref = protocol + '://' + host + ':' + port + '/#/reset' + '?uid=' + info.accessToken.userId + '&token=' + info.accessToken.id + '&redirect=' + redirect;
     } else {
-      resetHref = protocol + '://' + host + '/#/reset' + '?uid=' + info.accessToken.userId + '&token=' + info.accessToken.id + '&redirect=' + redirect
+      resetHref = protocol + '://' + host + '/#/reset' + '?uid=' + info.accessToken.userId + '&token=' + info.accessToken.id + '&redirect=' + redirect;
     }
     var options = {
       type: 'email',
