@@ -35,11 +35,11 @@
             <span class="lbl" ui-tree-handle>  {{task.title}}</span>
             <!-- action buttons for mobile -->
             <span class="input-group-btn ">
-              <button class="btn btn-link" ng-click="startPomodoro(task)">
+              <button class="btn btn-link" ng-show="!task.isCompleted" ng-click="startPomodoro(task)">
                 <!-- 'hidden-sm' class put here instead of button upon, because we need 'ui-tree-handle' span get 100% width -->
                 <i class="fa fa-play blue hidden-sm"></i>
               </button>
-              <button class="btn btn-link " ng-click="deleteTask($index)">
+              <button class="btn btn-link" ng-click="deleteTask($index)">
                 <i class="fa fa-trash-o red hidden-sm"></i>
               </button>
             </span>
@@ -68,11 +68,11 @@
             <span class="lbl" ui-tree-handle>  {{task.title}}</span>
             <!-- action buttons for mobile -->
             <span class="input-group-btn ">
-              <button class="btn btn-link " ng-click="startPomodoro(task)">
+              <button class="btn btn-link" ng-show="!task.isCompleted" ng-click="startPomodoro(task)">
                 <!-- 'hidden-sm' class put here instead of button upon, because we need 'ui-tree-handle' span get 100% width -->
                 <i class="fa fa-play blue hidden-sm"></i>
               </button>
-              <button class="btn btn-link " ng-click="deleteTask($index)">
+              <button class="btn btn-link" ng-click="deleteTask($index)">
                 <i class="fa fa-trash-o red hidden-sm"></i>
               </button>
             </span>
