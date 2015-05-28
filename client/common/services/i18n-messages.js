@@ -19,6 +19,7 @@ angular.module('i18nMessages', [])
     'user.login.login': 'Login',
     'user.login.forgot': 'Forgot?',
     'user.login.sign.up': 'Sign up',
+    'user.login.email.not.verified': 'Please check email to activate your account.',
     'user.reset.page.header': 'Reset your password',
     'user.reset.password.new': 'Input a new password',
     'user.reset.password.again': 'Input the password again',

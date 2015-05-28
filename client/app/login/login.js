@@ -42,9 +42,14 @@ angular.module('freeCoderApp')
       // For remember me, refer to:
       // http://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK#AngularJSJavaScriptSDK-Persistingtheaccesstoken
       Member.login({rememberMe: $scope.rememberMe}, $scope.member).$promise.then(function (data) {
-        $scope.errorMsg = undefined;
-        $rootScope.sessionInfo.isLogin = Member.isAuthenticated();
-        $state.go('dashboard');
+        if (!data.user.emailVerified) {
+          Member.logout();
+          $scope.errorMsg = messagesContext.get('user.login.email.not.verified');
+        } else {
+          $scope.errorMsg = undefined;
+          $rootScope.sessionInfo.isLogin = Member.isAuthenticated();
+          $state.go('dashboard');
+        }
       }, function (error) {
         $scope.errorMsg = error && error.status == '401' ? error.data.error.message : messagesContext.get('common.error.unknown');
       });
