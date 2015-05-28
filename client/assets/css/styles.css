@@ -55,6 +55,10 @@ ul.nav {
   border: 0;
 }
 
+.angular-ui-tree {
+  -webkit-user-select: none; /* Disable selection/copy in UIWebView, when user dragging the item. */
+}
+
 .angular-ui-tree-empty {
   /*border: 1px dashed #bbb;*/
   border: 0;
