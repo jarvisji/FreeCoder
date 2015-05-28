@@ -33,6 +33,9 @@ module.exports = function (grunt) {
         }, {
           from: '{$extPort}',
           to: ''
+        }, {
+          from: '"host": "0.0.0.0"',
+          to: '"host": "127.0.0.1"'
         }]
       },
       forLocalhost: {
