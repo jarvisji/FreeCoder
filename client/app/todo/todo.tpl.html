@@ -37,7 +37,10 @@
             <span class="input-group-btn ">
               <button class="btn btn-link" ng-click="startPomodoro(task)">
                 <!-- 'hidden-sm' class put here instead of button upon, because we need 'ui-tree-handle' span get 100% width -->
-                <i class="fa fa-play hidden-sm"></i>
+                <i class="fa fa-play blue hidden-sm"></i>
+              </button>
+              <button class="btn btn-link " ng-click="deleteTask($index)">
+                <i class="fa fa-trash-o red hidden-sm"></i>
               </button>
             </span>
           </div>
@@ -67,7 +70,10 @@
             <span class="input-group-btn ">
               <button class="btn btn-link " ng-click="startPomodoro(task)">
                 <!-- 'hidden-sm' class put here instead of button upon, because we need 'ui-tree-handle' span get 100% width -->
-                <i class="fa fa-play hidden-sm"></i>
+                <i class="fa fa-play blue hidden-sm"></i>
+              </button>
+              <button class="btn btn-link " ng-click="deleteTask($index)">
+                <i class="fa fa-trash-o red hidden-sm"></i>
               </button>
             </span>
           </div>
