@@ -15,6 +15,11 @@ ul.nav {
   margin-left: 0;
 }
 
+/* Overwrite ace style, because we put fixed button group on the bottom of page for mobile device, it will override some content. */
+.page-content {
+  margin-bottom: 45px;
+}
+
 .fc-navbar-action {
   position: absolute;
   right: 15px;

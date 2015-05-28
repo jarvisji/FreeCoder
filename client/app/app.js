@@ -51,9 +51,14 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
     });
     $urlRouterProvider.otherwise('dashboard');
   }])
-  .controller('rootCtrl', ['$scope', '$rootScope', '$state', '$log', 'Member', function ($scope, $rootScope, $state, $log, Member) {
+  .controller('rootCtrl', ['$scope', '$rootScope', '$state', '$log', 'Member', 'messagesContext', function ($scope, $rootScope, $state, $log, Member, messagesContext) {
     $rootScope.sessionInfo = {isLogin: Member.isAuthenticated()};
 
+    $scope.menu = [
+      {label: messagesContext.get('dashboard.page.header'), location: 'dashboard'},
+      {label: messagesContext.get('pomodoro.page.header'), location: 'pomodoro'},
+      {label: messagesContext.get('todo.page.header'), location: 'todo'},
+      {label: messagesContext.get('user.profile.page.header'), location: 'profile'}];
     $scope.logout = function () {
       Member.logout().$promise.then(function (data) {
         $log.debug('logout success.');

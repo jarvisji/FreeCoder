@@ -34,15 +34,21 @@
   <div class="row">
     <nav class="hidden-xs col-sm-2 col-lg-1">
       <ul class="nav nav-pills nav-stacked">
-        <li><a ui-sref="dashboard">dashboard</a></li>
-        <li><a ui-sref="pomodoro" fc-i18n="pomodoro.page.header"></a></li>
-        <li><a ui-sref="todo">to-do</a></li>
-        <li><a ui-sref="profile">profile</a></li>
+        <li ng-repeat="item in menu"><a ui-sref="{{item.location}}">{{item.label}}</a></li>
       </ul>
     </nav>
 
     <div class="col-sm-10 col-lg-11">
       <div ui-view class="page-content"></div>
+    </div>
+  </div>
+
+  <div class="row visible-xs-block">
+    <div class="btn-group btn-group-justified navbar-fixed-bottom" role="group">
+      <a class="btn btn-yellow" ui-sref="{{item.location}}" aria-label="{{item.label}}" ng-repeat="item in menu">
+        <i class="ace-icon fa fa-lock bigger-160"></i><br/>
+        {{item.label}}
+      </a>
     </div>
   </div>
 </div>
