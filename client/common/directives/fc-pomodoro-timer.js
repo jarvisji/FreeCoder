@@ -66,7 +66,7 @@ angular.module('freeCoderApp')
 
         var setTimerValue = function (timeStr) {
           if (!timerElement) {
-            timerElement = $(element).find('.fc-pomodoro-timer')
+            timerElement = $(element).find('.fc-pomodoro-timer');
           }
           timerElement.text(timeStr);
         };
@@ -107,7 +107,7 @@ angular.module('freeCoderApp')
           Pomodoro.skipPomodoro({id: scope.pomodoro.id}).$promise.then(function (value, respHeaders) {
             scope.pomodoro = undefined;
             stopTimer();
-            $(element).find('.panel-body').text('Skipped. (todo: remove this message and show next timer to start)')
+            $(element).find('.panel-body').text('Skipped. (todo: remove this message and show next timer to start)');
           }, function (errResp) {
             $(element).find('.panel-body').text(errResp);
           });
