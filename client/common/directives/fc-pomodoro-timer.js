@@ -9,7 +9,7 @@ angular.module('freeCoderApp')
       templateUrl: 'common/directives/fc-pomodoro-timer.tpl.html',
       link: function (scope, element, attr) {
         $log.debug('fcPomodoroTimer:', arguments);
-        var timer, startTs, pomodoro;
+        var timer, timerElement, startTs;
         var userId = attr.userId || Member.getCurrentId();
         Member.pomodoros({
           id: userId,
@@ -19,11 +19,11 @@ angular.module('freeCoderApp')
             if (value.length === 0) {
               element.text(messagesContext.get('pomodoro.directive.no.active'));
             } else {
-              pomodoro = value[0];
-              if (!pomodoro.task) {
+              scope.pomodoro = value[0];
+              if (!scope.pomodoro.task) {
                 $(element).find('.panel-body').text(messagesContext.get('pomodoro.directive.no.task'));
               } else {
-                $(element).find('.panel-body').text(pomodoro.task.title + ' (' + pomodoro.task.pomodoros.length + 'Pomodoros)');
+                $(element).find('.panel-body').text(scope.pomodoro.task.title + ' (' + scope.pomodoro.task.pomodoros.length + 'Pomodoros)');
               }
               handlePomodoro();
             }
@@ -33,7 +33,7 @@ angular.module('freeCoderApp')
 
         var handlePomodoro = function () {
           var now = new Date().getTime();
-          var pomodoroEndTime = Date.parse(pomodoro.startTime) + pomodoro.duration;
+          var pomodoroEndTime = Date.parse(scope.pomodoro.startTime) + scope.pomodoro.duration;
           var remainDuration = parseInt((pomodoroEndTime - now) / 1000);
           $log.debug('handlePomodoro. now, pomodoroEndTime, remainDuration:', now, pomodoroEndTime, remainDuration);
           if (remainDuration > 1) {
@@ -42,7 +42,7 @@ angular.module('freeCoderApp')
           } else {
             // finish the timeout pomodoro
             $log.debug('Pomodoro timeout, update status to finished.');
-            Pomodoro.finishPomodoro({id: pomodoro.id});
+            Pomodoro.finishPomodoro({id: scope.pomodoro.id});
           }
         };
 
@@ -55,13 +55,20 @@ angular.module('freeCoderApp')
           timer = $interval(function () {
             remainDuration = remainDuration - 1;
             var timeStr = formatDuration(remainDuration);
-            $(element).find('.fc-pomodoro-timer').text(timeStr);
+            setTimerValue(timeStr);
             if (remainDuration === 0) {
               stopTimer();
               $log.debug('Pomodoro time up, update status to finished.');
-              Pomodoro.finishPomodoro({id: pomodoro.id});
+              Pomodoro.finishPomodoro({id: scope.pomodoro.id});
             }
           }, 1000);
+        };
+
+        var setTimerValue = function (timeStr) {
+          if (!timerElement) {
+            timerElement = $(element).find('.fc-pomodoro-timer')
+          }
+          timerElement.text(timeStr);
         };
 
         var stopTimer = function () {
@@ -69,6 +76,7 @@ angular.module('freeCoderApp')
             $interval.cancel(timer);
             timer = undefined;
             var realTs = new Date().getTime() - startTs;
+            setTimerValue(getTimeString(0, 0));
             $log.debug('Timer stopped. real spend time (ms): ', realTs);
           }
         };
@@ -88,6 +96,21 @@ angular.module('freeCoderApp')
           var minutesStr = minutes < 10 ? '0' + minutes : '' + minutes;
           var secondsStr = seconds < 10 ? '0' + seconds : '' + seconds;
           return minutesStr + " : " + secondsStr;
+        };
+
+        scope.skipPomodoro = function () {
+          $log.debug('Skipping pomodoro.');
+          if (!scope.pomodoro) {
+            $log.debug('No pomodoro to skip.');
+            return;
+          }
+          Pomodoro.skipPomodoro({id: scope.pomodoro.id}).$promise.then(function (value, respHeaders) {
+            scope.pomodoro = undefined;
+            stopTimer();
+            $(element).find('.panel-body').text('Skipped. (todo: remove this message and show next timer to start)')
+          }, function (errResp) {
+            $(element).find('.panel-body').text(errResp);
+          });
         };
 
         scope.$on('$destroy', function () {

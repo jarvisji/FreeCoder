@@ -1,9 +1,18 @@
 <div class="row">
   <div class="col-xs-12">
     <span class="fc-pomodoro-timer center-block"></span>
+
+    <div class="center">
+      <button class="btn btn-white btn-yellow btn-sm" ng-click="skipPomodoro()" ng-show="pomodoro!=undefined">
+        <i class="ace-icon fa fa-times red2"></i>Cancel
+      </button>
+    </div>
+    <p></p>
+
     <div class="panel panel-default">
       <div class="panel-body"></div>
     </div>
+
 
   </div>
 </div>
