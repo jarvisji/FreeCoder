@@ -1,34 +1,37 @@
+<header class="page-header">
+  <h1 fc-i18n="user.reset.page.header"></h1>
+</header>
 <div class="row">
-  <header class="page-header">
-    <h1 fc-i18n="user.reset.page.header"></h1>
-  </header>
-  <form name="resetForm" novalidate ng-submit="reset()" ng-show="!pageErrMessage">
-    <div class="form-group col-sm-8" ng-class="{'has-error': resetForm.password.$invalid && resetForm.password.$dirty}">
-      <input type="password" class="form-control" name="password" placeholder="{{uiText.placeholderResetPassword}}"
-             autocomplete="off"
-             required ng-model="resetOption.password">
+  <div class="col-xs-12">
+    <form name="resetForm" novalidate ng-submit="reset()" ng-show="!pageErrMessage">
+      <div class="form-group col-sm-8"
+           ng-class="{'has-error': resetForm.password.$invalid && resetForm.password.$dirty}">
+        <input type="password" class="form-control" name="password" placeholder="{{uiText.placeholderResetPassword}}"
+               autocomplete="off"
+               required ng-model="resetOption.password">
       <span class="has-error control-label" ng-show="resetForm.password.$invalid && resetForm.password.$dirty"
             fc-i18n="user.login.password.invalid"></span>
-    </div>
-    <div class="form-group col-sm-8"
-         ng-class="{'has-error': resetForm.repeatPassword.$invalid && resetForm.repeatPassword.$dirty}">
-      <input type="password" class="form-control" name="repeatPassword"
-             placeholder="{{uiText.placeholderResetPasswordAgain}}" autocomplete="off"
-             required ng-model="resetOption.repeatPassword">
+      </div>
+      <div class="form-group col-sm-8"
+           ng-class="{'has-error': resetForm.repeatPassword.$invalid && resetForm.repeatPassword.$dirty}">
+        <input type="password" class="form-control" name="repeatPassword"
+               placeholder="{{uiText.placeholderResetPasswordAgain}}" autocomplete="off"
+               required ng-model="resetOption.repeatPassword">
       <span class="has-error control-label"
             ng-show="resetForm.repeatPassword.$invalid && resetForm.repeatPassword.$dirty"></span>
-    </div>
+      </div>
 
-    <div class="alert col-sm-8" role="alert" ng-class="alert.style" ng-show="alert.message!=undefined">
-      {{alert.message}}
-    </div>
+      <div class="alert col-sm-8" role="alert" ng-class="alert.style" ng-show="alert.message!=undefined">
+        {{alert.message}}
+      </div>
 
-    <div class="col-sm-8">
-      <button class="btn btn-primary" ng-disabled="resetForm.$invalid" fc-i18n="user.reset.submit"></button>
-    </div>
-  </form>
+      <div class="col-sm-8">
+        <button class="btn btn-primary" ng-disabled="resetForm.$invalid" fc-i18n="user.reset.submit"></button>
+      </div>
+    </form>
 
-  <div class="alert alert-danger col-sm-8" role="alert" ng-show="pageErrMessage">
-    {{pageErrMessage}}
+    <div class="alert alert-danger col-sm-8" role="alert" ng-show="pageErrMessage">
+      {{pageErrMessage}}
+    </div>
   </div>
 </div>

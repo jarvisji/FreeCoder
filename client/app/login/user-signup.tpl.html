@@ -1,27 +1,29 @@
+<header class="page-header">
+  <h1 fc-i18n="user.register.page.header"></h1>
+</header>
 <div class="row">
-  <header class="page-header">
-    <h1 fc-i18n="user.register.page.header"></h1>
-  </header>
-  <form name="memberForm" novalidate ng-submit="register()">
-    <div class="form-group col-sm-8" ng-class="{'has-error': memberForm.email.$invalid && memberForm.email.$dirty}">
-      <input type="email" class="form-control focus" name="email" placeholder="{{uiText.placeholderLoginEmail}}"
-             autocomplete="off" required ng-model="newUser.email">
+  <div class="col-xs-12">
+    <form name="memberForm" novalidate ng-submit="register()">
+      <div class="form-group col-sm-8" ng-class="{'has-error': memberForm.email.$invalid && memberForm.email.$dirty}">
+        <input type="email" class="form-control focus" name="email" placeholder="{{uiText.placeholderLoginEmail}}"
+               autocomplete="off" required ng-model="newUser.email">
       <span class="has-error control-label" ng-show="memberForm.email.$invalid && memberForm.email.$dirty"
             fc-i18n="user.login.email.invalid"></span>
-    </div>
-    <div class="form-group col-sm-8"
-         ng-class="{'has-error': memberForm.password.$invalid && memberForm.password.$dirty}">
-      <input type="password" class="form-control" name="password" placeholder="{{uiText.placeholderLoginPassword}}"
-             autocomplete="off" required ng-model="newUser.password">
+      </div>
+      <div class="form-group col-sm-8"
+           ng-class="{'has-error': memberForm.password.$invalid && memberForm.password.$dirty}">
+        <input type="password" class="form-control" name="password" placeholder="{{uiText.placeholderLoginPassword}}"
+               autocomplete="off" required ng-model="newUser.password">
       <span class="has-error control-label" ng-show="memberForm.password.$invalid && memberForm.password.$dirty"
             fc-i18n="user.login.password.invalid"></span>
-    </div>
+      </div>
 
-    <div class="alert col-sm-8" role="alert" ng-class="alert.style" ng-show="alert">{{alert.message}}</div>
+      <div class="alert col-sm-8" role="alert" ng-class="alert.style" ng-show="alert">{{alert.message}}</div>
 
-    <div class="col-sm-8">
-      <button class="btn btn-primary" ng-disabled="memberForm.$invalid" fc-i18n="user.register.submit"></button>
-      <a ui-sref="login" fc-i18n="user.login.login"></a>
-    </div>
-  </form>
+      <div class="col-sm-8">
+        <button class="btn btn-primary" ng-disabled="memberForm.$invalid" fc-i18n="user.register.submit"></button>
+        <a ui-sref="login" fc-i18n="user.login.login"></a>
+      </div>
+    </form>
+  </div>
 </div>

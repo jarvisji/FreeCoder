@@ -1,11 +1,9 @@
-<div class="page-content-area">
-  <header class="page-header">
-    <h1 fc-i18n="pomodoro.page.header"></h1>
-  </header>
-
-
-  <div class="alert" role="alert" ng-class="alert.style" ng-if="alert.message">{{alert.message}}</div>
-
-  <fc-pomodoro-timer userId="userId"></fc-pomodoro-timer>
-
+<header class="page-header">
+  <h1 fc-i18n="pomodoro.page.header"></h1>
+</header>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="alert" role="alert" ng-class="alert.style" ng-if="alert.message">{{alert.message}}</div>
+    <fc-pomodoro-timer userId="userId"></fc-pomodoro-timer>
+  </div>
 </div>
