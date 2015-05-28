@@ -55,10 +55,10 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
     $rootScope.sessionInfo = {isLogin: Member.isAuthenticated()};
 
     $scope.menu = [
-      {label: messagesContext.get('dashboard.page.header'), location: 'dashboard'},
-      {label: messagesContext.get('pomodoro.page.header'), location: 'pomodoro'},
-      {label: messagesContext.get('todo.page.header'), location: 'todo'},
-      {label: messagesContext.get('user.profile.page.header'), location: 'profile'}];
+      {label: messagesContext.get('dashboard.page.header'), location: 'dashboard', icon: 'fa-tachometer'},
+      {label: messagesContext.get('pomodoro.page.header'), location: 'pomodoro', icon: 'fa-clock-o'},
+      {label: messagesContext.get('todo.page.header'), location: 'todo', icon: 'fa-tasks'},
+      {label: messagesContext.get('user.profile.page.header'), location: 'profile', icon: 'fa-user'}];
     $scope.logout = function () {
       Member.logout().$promise.then(function (data) {
         $log.debug('logout success.');

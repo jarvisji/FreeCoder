@@ -46,8 +46,8 @@
   <div class="row visible-xs-block">
     <div class="btn-group btn-group-justified navbar-fixed-bottom" role="group">
       <a class="btn btn-yellow" ui-sref="{{item.location}}" aria-label="{{item.label}}" ng-repeat="item in menu">
-        <i class="ace-icon fa fa-lock bigger-160"></i><br/>
-        {{item.label}}
+        <i class="ace-icon bigger-160 fa" ng-class="item.icon"></i><br/>
+        <small>{{item.label}}</small>
       </a>
     </div>
   </div>
