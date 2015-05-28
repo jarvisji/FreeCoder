@@ -34,6 +34,12 @@ ul.nav {
   overflow: hidden;
 }
 
+/* override ace: input[type=radio].ace + .lbl, because it will override cursor style for draggable tree node item */
+.angular-ui-tree-handle.lbl {
+  cursor: move !important;
+  width: 100%;
+}
+
 .fc-pomodoro-timer {
   color: red;
   font-family: fantasy;

@@ -33,6 +33,7 @@
 
 <div class="container-fluid">
   <div class="row">
+    <!-- left side bar for desktop -->
     <nav class="hidden-xs col-sm-2 col-lg-1">
       <ul class="nav nav-pills nav-stacked">
         <li ng-repeat="item in menu"><a ui-sref="{{item.location}}">{{item.label}}</a></li>
@@ -44,6 +45,7 @@
     </div>
   </div>
 
+  <!-- bottom action bar for mobile -->
   <div class="row visible-xs-block">
     <div class="btn-group btn-group-justified navbar-fixed-bottom" role="group">
       <a class="btn btn-yellow" ui-sref="{{item.location}}" aria-label="{{item.label}}" ng-repeat="item in menu">
