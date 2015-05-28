@@ -34,7 +34,7 @@ angular.module('freeCoderApp')
         var handlePomodoro = function () {
           var now = new Date().getTime();
           var pomodoroEndTime = Date.parse(pomodoro.startTime) + pomodoro.duration;
-          var remainDuration = Number.parseInt((pomodoroEndTime - now) / 1000);
+          var remainDuration = parseInt((pomodoroEndTime - now) / 1000);
           $log.debug('handlePomodoro. now, pomodoroEndTime, remainDuration:', now, pomodoroEndTime, remainDuration);
           if (remainDuration > 1) {
             // continue timer
