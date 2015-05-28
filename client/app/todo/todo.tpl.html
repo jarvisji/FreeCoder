@@ -26,30 +26,20 @@
       <ul class="list-group item-list" ui-tree-nodes ng-model="todayTasks"
           ng-init="scopes.todayTasksTreeNodesScopeId=$id">
         <li class="list-group-item" ui-tree-node
-            ng-repeat="task in todayTasks"
-            ng-class="{selected: task.isCompleted}"
-            ng-mouseover="mouseOverIndex=$index" ng-mouseleave="mouseOverIndex=undefined">
+            ng-repeat="task in todayTasks" ng-class="{selected: task.isCompleted}">
           <div class="input-group">
             <input type="checkbox" class="ace" name="chbTodayTask" ng-model="task.isCompleted"
                    ng-change="finishTask(task)">
             <span class="lbl" ui-tree-handle>  {{task.title}}</span>
-            <!-- action buttons for mobile -->
-            <span class="input-group-btn ">
-              <button class="btn btn-link" ng-show="!task.isCompleted" ng-click="startPomodoro(task)">
-                <!-- 'hidden-sm' class put here instead of button upon, because we need 'ui-tree-handle' span get 100% width -->
-                <i class="fa fa-play blue hidden-sm"></i>
+            <span class="input-group-btn">
+              <button class="btn btn-link" ng-show="!task.isCompleted" ng-click="startPomodoro(task)"
+                      title="{{uiText.pomodoro}}">
+                <i class="fa fa-play blue"></i>
               </button>
-              <button class="btn btn-link" ng-click="deleteTask($index)">
-                <i class="fa fa-trash-o red hidden-sm"></i>
+              <button class="btn btn-link" ng-click="deleteTask($index)" title="{{uiText.delete}}">
+                <i class="fa fa-trash-o red"></i>
               </button>
             </span>
-          </div>
-          <!-- action buttons for desktop -->
-          <div class="pull-right fc-listitem-action hidden-xs" ng-show="!dragging && mouseOverIndex == $index">
-            <button class="btn btn-success" ng-show="!task.isCompleted" ng-click="startPomodoro(task)">
-              {{uiText.pomodoro}}
-            </button>
-            <button class="btn btn-danger" ng-click="deleteTask($index)">{{uiText.delete}}</button>
           </div>
         </li>
       </ul>
@@ -66,23 +56,14 @@
           <div class="input-group">
             <input type="checkbox" class="ace" name="chbTask" ng-model="task.isCompleted" ng-change="finishTask(task)">
             <span class="lbl" ui-tree-handle>  {{task.title}}</span>
-            <!-- action buttons for mobile -->
             <span class="input-group-btn ">
               <button class="btn btn-link" ng-show="!task.isCompleted" ng-click="startPomodoro(task)">
-                <!-- 'hidden-sm' class put here instead of button upon, because we need 'ui-tree-handle' span get 100% width -->
-                <i class="fa fa-play blue hidden-sm"></i>
+                <i class="fa fa-play blue"></i>
               </button>
               <button class="btn btn-link" ng-click="deleteTask($index)">
-                <i class="fa fa-trash-o red hidden-sm"></i>
+                <i class="fa fa-trash-o red"></i>
               </button>
             </span>
-          </div>
-          <!-- action buttons for desktop -->
-          <div class="pull-right fc-listitem-action hidden-xs" ng-show="!dragging && mouseOverIndex == $index">
-            <button class="btn btn-success" ng-show="!task.isCompleted" ng-click="startPomodoro(task)">
-              {{uiText.pomodoro}}
-            </button>
-            <button class="btn btn-danger" ng-click="deleteTask($index)">{{uiText.delete}}</button>
           </div>
         </li>
       </ul>
