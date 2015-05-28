@@ -49,7 +49,7 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
       templateUrl: 'app/pomodoro/pomodoro.tpl.html',
       controller: 'pomodoroCtrl'
     });
-    $urlRouterProvider.otherwise('dashboard');
+    $urlRouterProvider.otherwise('login');
   }])
   .controller('rootCtrl', ['$scope', '$rootScope', '$state', '$log', 'Member', 'messagesContext', function ($scope, $rootScope, $state, $log, Member, messagesContext) {
     $rootScope.sessionInfo = {isLogin: Member.isAuthenticated()};

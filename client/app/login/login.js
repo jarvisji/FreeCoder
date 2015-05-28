@@ -47,7 +47,6 @@ angular.module('freeCoderApp')
           $scope.errorMsg = messagesContext.get('user.login.email.not.verified');
         } else {
           $scope.errorMsg = undefined;
-          $rootScope.sessionInfo.isLogin = Member.isAuthenticated();
           $state.go('dashboard');
         }
       }, function (error) {

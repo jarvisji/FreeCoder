@@ -31,7 +31,38 @@
   </div>
 </header>
 
-<div class="container-fluid">
+<div class="jumbotron" ng-if="!sessionInfo.isLogin">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1>Free Coder</h1>
+
+        <p class="lead">Task + Pomodoro</p>
+
+        <p>The simple and efficient way to improve productivity, free your time and life!</p>
+      </div>
+      <div class="col-sm-4">
+        <div ui-view class="fc-page-content"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" ng-if="!sessionInfo.isLogin">
+  <section>
+    quote pomodoro web site
+  </section>
+  <section>
+    <div class="row">
+      <div class="col-sm-6">feature</div>
+      <div class="col-sm-6">feature</div>
+      <div class="col-sm-6">feature</div>
+      <div class="col-sm-6">feature</div>
+    </div>
+  </section>
+</div>
+
+<div class="container-fluid" ng-if="sessionInfo.isLogin">
   <div class="row">
     <!-- left side bar for desktop -->
     <nav class="hidden-xs col-sm-2 col-lg-1">
@@ -55,6 +86,10 @@
     </div>
   </div>
 </div>
+
+<footer id="footer">
+  asdfa
+</footer>
 
 <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>

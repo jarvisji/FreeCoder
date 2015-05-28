@@ -1,24 +1,33 @@
 <header class="page-header">
-  <h1 fc-i18n="user.forget.page.header"></h1>
+  <h3 fc-i18n="user.forget.page.header"></h3>
 </header>
 <div class="row">
   <div class="col-xs-12">
     <form name="resetForm" novalidate ng-submit="forgot()">
-      <div class="form-group col-sm-8" ng-class="{'has-error': resetForm.email.$invalid && resetForm.email.$dirty}">
+      <div class="form-group" ng-class="{'has-error': resetForm.email.$invalid && resetForm.email.$dirty}">
         <input type="email" class="form-control focus" name="email" placeholder="{{uiText.placeholderEmail}}"
-               autocomplete="off"
-               required ng-model="resetOption.email">
-      <span class="has-error control-label" ng-show="resetForm.email.$invalid && resetForm.email.$dirty"
-            fc-i18n="user.forget.email.invalid"></span>
+               autocomplete="off" required ng-model="resetOption.email">
+        <span class="has-error control-label" ng-show="resetForm.email.$invalid && resetForm.email.$dirty"
+              fc-i18n="user.forget.email.invalid"></span>
       </div>
 
-      <div class="alert col-sm-8" role="alert" ng-class="alert.style"
+      <div class="row">
+        <div class="col-xs-6">
+          <button class="btn btn-yellow btn-sm btn-block" ng-disabled="resetForm.$invalid"
+                  fc-i18n="user.forget.submit"></button>
+        </div>
+        <div class="col-xs-3 btn-sm">
+          <a ui-sref="login" fc-i18n="user.login.login"></a>
+        </div>
+        <div class="col-xs-3 btn-sm">
+          <a ui-sref="sign-up" fc-i18n="user.login.sign.up"></a>
+        </div>
+      </div>
+
+      <div class="alert" role="alert" ng-class="alert.style"
            ng-show="alert">{{alert.message}}
       </div>
 
-      <div class="col-sm-8">
-        <button class="btn btn-primary" ng-disabled="resetForm.$invalid" fc-i18n="user.forget.submit"></button>
-      </div>
     </form>
   </div>
 </div>
