@@ -26,6 +26,7 @@ ul.nav {
   top: 5px;
 }
 
+/* make action buttons full height with the list item. */
 .fc-listitem-action {
   position: absolute;
   right: 0;
@@ -34,10 +35,15 @@ ul.nav {
   overflow: hidden;
 }
 
+.fc-listitem-action .btn {
+  height: 100%;
+}
+
 /* override ace: input[type=radio].ace + .lbl, because it will override cursor style for draggable tree node item */
 .angular-ui-tree-handle.lbl {
   cursor: move !important;
   width: 100%;
+  padding: 4px; /* to align with button on the right */
 }
 
 .fc-pomodoro-timer {
