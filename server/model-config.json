@@ -42,5 +42,9 @@
   "Pomodoro": {
     "dataSource": "mongolocal",
     "public": true
+  },
+  "Subscribe": {
+    "dataSource": "mongolocal",
+    "public": true
   }
 }
