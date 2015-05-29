@@ -10,6 +10,7 @@ angular.module('i18nMessages', [])
     'user.register.page.header': 'Sign up',
     'user.register.submit': 'Submit',
     'user.register.success': 'Thanks for sign up, and email is on its way with a link to activate your account, please check it.',
+    'user.register.error.email': 'Email send failed. {{msg}}',
     'user.login.page.header': 'Login',
     'user.login.email.placeholder': 'Email',
     'user.login.email.invalid': 'Email is required.',

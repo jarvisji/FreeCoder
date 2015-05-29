@@ -2,7 +2,7 @@
  * Created by Ting on 2015/5/7.
  */
 angular.module('freeCoderApp')
-  .controller('loginCtrl', ['$scope', '$rootScope', '$state', '$location', '$timeout', 'Member', 'messagesContext', function ($scope, $rootScope, $state, $location, $timeout, Member, messagesContext) {
+  .controller('loginCtrl', ['$scope', '$rootScope', '$state', '$location', '$timeout', '$log', 'Member', 'messagesContext', function ($scope, $rootScope, $state, $location, $timeout, $log, Member, messagesContext) {
     $scope.rememberMe = false;
     $scope.alert = {};
     $scope.uiText = {
@@ -30,8 +30,7 @@ angular.module('freeCoderApp')
         $scope.memberForm.email.$setPristine();
         $scope.memberForm.password.$setPristine();
       }, function (error) {
-        $scope.alert.message = error && error.status == '422' ? error.data.error.message : messagesContext.get('common.error.unknown');
-        $scope.alert.style = 'alert-danger';
+        handleError(error);
       });
     };
 
@@ -81,5 +80,25 @@ angular.module('freeCoderApp')
           $scope.alert.message = errorResp.data.error.message;
         });
       }
+    };
+
+    var handleError = function (errorResp) {
+      if (!errorResp && !errorResp.data.error) {
+        $scope.alert.message = undefined;
+        $scope.alert.style = undefined;
+        return;
+      }
+      var error = errorResp.data.error;
+      $log.error(error);
+      $scope.alert.style = 'alert-danger';
+      $scope.alert.message = error.message;
+
+      //if (error.status == 422) {
+      //  $scope.alert.message = error.data.error.message;
+      //} else if (error.responseCode == 503) {
+      //  $scope.alert.message = messagesContext.get('user.register.error.email', {msg: error.response});
+      //} else {
+      //  $scope.alert.message = messagesContext.get('common.error.unknown');
+      //}
     };
   }]);
