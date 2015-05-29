@@ -2,6 +2,10 @@ body {
   background-color: #ffffff;
 }
 
+section {
+  margin-top: 40px;
+}
+
 .glyphicon-remove:hover {
   cursor: pointer
 }
@@ -48,6 +52,24 @@ body {
   position: relative;
   top: -170px;
   right: -200px;
+}
+
+.fc-feature-list .col-md-4, .col-sm-6 {
+  margin-bottom: 22px;
+}
+
+.fc-feature-list h4 .fa:before {
+  vertical-align: -10%;
+  font-size: 28px;
+  display: inline-block;
+  width: 1.07142857em;
+  text-align: center;
+  margin-right: 5px;
+}
+
+#subscribe {
+  font-size: 24px;
+  height: 2em;
 }
 
 /* ------------------------------------------------/*
@@ -99,7 +121,8 @@ body {
   border-top: 1px solid #1b926c;
   color: #a5d8c7;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
-  margin-top: 60px;
+  min-height: 3em;
+  position: relative;
 }
 
 /* Overwrite ul margin-left at ace.css:166 */
