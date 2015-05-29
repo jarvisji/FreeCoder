@@ -58,13 +58,19 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
     // Listen to $stateChangeStart event to handle protected resources.
     // https://github.com/angular-ui/ui-router/wiki
     var noLoginCheckStates = ['login', 'sign-up', 'forgot', 'reset'];
+    var pageType = ['site', 'app'];
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+      $rootScope.sessionInfo.stateName = toState.name;
       if (noLoginCheckStates.indexOf(toState.name) == -1) {
         if (!Member.isAuthenticated()) {
           $log.debug('Need login first.');
           event.preventDefault();
           $state.go('login');
+        } else {
+          $rootScope.sessionInfo.pageType = pageType[1]; // app
         }
+      } else {
+        $rootScope.sessionInfo.pageType = pageType[0]; // website
       }
     });
 

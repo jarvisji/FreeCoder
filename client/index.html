@@ -55,64 +55,77 @@
   </div>
 </header>
 
-<div class="jumbotron" ng-if="!sessionInfo.isLogin">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8">
-        <h1>Free Coder</h1>
+<!-- Web site contents -->
+<div ng-if="sessionInfo.pageType == 'site'">
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <h1>Free Coder</h1>
 
-        <p class="lead">Task + Pomodoro</p>
+          <p class="lead">Task + Pomodoro</p>
 
-        <p>The simple and efficient way to improve productivity, free your time and life!</p>
+          <p>The simple and efficient way to improve productivity, free your time and life!</p>
+        </div>
+        <div class="col-sm-4" ng-hide="sessionInfo.stateName == 'reset'">
+          <div ui-view class="fc-page-content"></div>
+        </div>
       </div>
-      <div class="col-sm-4">
+    </div>
+  </div>
+
+  <div class="container" ng-hide="sessionInfo.stateName == 'reset'">
+    <section>
+      quote pomodoro web site
+    </section>
+    <section>
+      <div class="row">
+        <div class="col-sm-6">feature</div>
+        <div class="col-sm-6">feature</div>
+        <div class="col-sm-6">feature</div>
+        <div class="col-sm-6">feature</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="container" ng-show="sessionInfo.stateName == 'reset'">
+    <div class="row">
+      <div ui-view class="fc-page-content col-sm-8 col-lg-6"></div>
+    </div>
+  </div>
+
+  <footer id="footer">
+    asdfa
+  </footer>
+</div>
+
+<!-- App content -->
+<div ng-if="sessionInfo.pageType=='app'">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left side bar for desktop -->
+      <nav class="hidden-xs col-sm-2 col-lg-1">
+        <ul class="nav nav-pills nav-stacked">
+          <li ng-repeat="item in menu"><a ui-sref="{{item.location}}">{{item.label}}</a></li>
+        </ul>
+      </nav>
+
+      <div class="col-xs-12 col-sm-10 col-lg-11">
         <div ui-view class="fc-page-content"></div>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="container" ng-if="!sessionInfo.isLogin">
-  <section>
-    quote pomodoro web site
-  </section>
-  <section>
-    <div class="row">
-      <div class="col-sm-6">feature</div>
-      <div class="col-sm-6">feature</div>
-      <div class="col-sm-6">feature</div>
-      <div class="col-sm-6">feature</div>
-    </div>
-  </section>
-</div>
-
-<div class="container-fluid" ng-if="sessionInfo.isLogin">
-  <div class="row">
-    <!-- left side bar for desktop -->
-    <nav class="hidden-xs col-sm-2 col-lg-1">
-      <ul class="nav nav-pills nav-stacked">
-        <li ng-repeat="item in menu"><a ui-sref="{{item.location}}">{{item.label}}</a></li>
-      </ul>
-    </nav>
-
-    <div class="col-xs-12 col-sm-10 col-lg-11">
-      <div ui-view class="fc-page-content"></div>
-    </div>
-  </div>
-
-  <!-- bottom action bar for mobile -->
-  <div class="row visible-xs-block">
-    <div class="btn-group btn-group-justified navbar-fixed-bottom" role="group">
-      <a class="btn btn-yellow" ui-sref="{{item.location}}" aria-label="{{item.label}}" ng-repeat="item in menu">
-        <i class="ace-icon bigger-160 fa" ng-class="item.icon"></i><br/>
-        <small>{{item.label}}</small>
-      </a>
+    <!-- bottom action bar for mobile -->
+    <div class="row visible-xs-block">
+      <div class="btn-group btn-group-justified navbar-fixed-bottom" role="group">
+        <a class="btn btn-yellow" ui-sref="{{item.location}}" aria-label="{{item.label}}" ng-repeat="item in menu">
+          <i class="ace-icon bigger-160 fa" ng-class="item.icon"></i><br/>
+          <small>{{item.label}}</small>
+        </a>
+      </div>
     </div>
   </div>
 </div>
 
-<footer id="footer" ng-if="!sessionInfo.isLogin">
-  asdfa
-</footer>
 </body>
 </html>
