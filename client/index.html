@@ -68,16 +68,28 @@
           <p>The simple and efficient way to improve productivity, free your time and life!</p>
         </div>
         <div class="col-sm-4" ng-hide="sessionInfo.stateName == 'reset'">
-          <div ui-view class="fc-page-content"></div>
+          <div ui-view class="fc-embed-page-content"></div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="container" ng-hide="sessionInfo.stateName == 'reset'">
-    <section>
-      quote pomodoro web site
+
+    <p></p>
+    <section class="row">
+      <div class="col-xs-12 col-sm-4">
+        <img class="img-responsive" src="http://pomodorotechnique.com/wp-content/themes/pomodoro/img/logos/logo.png">
+      </div>
+      <div class="col-xs-12 col-sm-8">
+        <p style="height:20px"></p>
+        <blockquote>
+          <p>DO MORE AND HAVE FUN WITH TIME MANAGEMENT</p>
+          <small><a href="http://pomodorotechnique.com/">http://pomodorotechnique.com/</a></small>
+        </blockquote>
+      </div>
     </section>
+    <p></p>
     <section>
       <div class="row">
         <div class="col-sm-6">feature</div>

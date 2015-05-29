@@ -10,10 +10,13 @@ body {
   /*margin-top: 20px;*/
 }
 
-.fc-page-content {
-  margin-bottom: 45px;
-  position: relative;
+.fc-embed-page-content {
   z-index: 3000; /* when embed into jumbotron, need bring login page to front */
+}
+
+.fc-page-content {
+  position: relative;
+  margin-bottom: 45px;
 }
 
 .fc-navbar-action {
@@ -39,6 +42,12 @@ body {
   color: red;
   font-size: 50px;
   text-align: center;
+}
+
+.fc-pomodoro-logo {
+  position: relative;
+  top: -170px;
+  right: -200px;
 }
 
 /* ------------------------------------------------/*
