@@ -18,7 +18,7 @@ angular.module('freeCoderApp')
       var emailToken = $location.search();
       if (!emailToken || !emailToken.uid || !emailToken.token) {
         $scope.alert.message = messagesContext.get('user.reset.password.link.error');
-        $scope.alert.style = 'alert-danger'
+        $scope.alert.style = 'alert-danger';
       }
     }
 

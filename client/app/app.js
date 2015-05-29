@@ -51,7 +51,7 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
     });
     $urlRouterProvider.otherwise('login');
   }])
-  .controller('rootCtrl', ['$scope', '$rootScope', '$state', '$log', 'Member', 'messagesContext', function ($scope, $rootScope, $state, $log, Member, messagesContext) {
+  .controller('rootCtrl', ['$scope', '$rootScope', '$state', '$log', 'Member', 'Subscribe', 'messagesContext', function ($scope, $rootScope, $state, $log, Member, Subscribe, messagesContext) {
     // init sessionInfo object at the beginning, other pages can call its properties directly needn't worry about undefined error.
     $rootScope.sessionInfo = {isLogin: Member.isAuthenticated()};
 
@@ -85,6 +85,14 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
         $log.debug('logout success.');
         $rootScope.sessionInfo.isLogin = Member.isAuthenticated();
         $state.go('login');
+      });
+    };
+
+    $scope.subscribe = function () {
+      Subscribe.create({email: $scope.subscribe.email}).$promise.then(function (value, respHeader) {
+        console.log('thanks for subscribe');
+      }, function (errResp) {
+
       });
     };
   }]);

@@ -3365,6 +3365,512 @@
       return R;
     }]);
 
+  /**
+   * @ngdoc object
+   * @name lbServices.Subscribe
+   * @header lbServices.Subscribe
+   * @object
+   *
+   * @description
+   *
+   * A $resource object for interacting with the `Subscribe` model.
+   *
+   * ## Example
+   *
+   * See
+   * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+   * for an example of using this object.
+   *
+   */
+  module.factory(
+    "Subscribe",
+    ['LoopBackResource', 'LoopBackAuth', '$injector', function (Resource, LoopBackAuth, $injector) {
+      var R = Resource(
+        urlBase + "/Subscribes/:id",
+        {'id': '@id'},
+        {
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Subscribe#create
+           * @methodOf lbServices.Subscribe
+           *
+           * @description
+           *
+           * Create a new instance of the model and persist it into the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *   This method does not accept any parameters.
+           *   Supply an empty object or omit this argument altogether.
+           *
+           * @param {Object} postData Request data.
+           *
+           * This method expects a subset of model properties as request parameters.
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Subscribe` object.)
+           * </em>
+           */
+          "create": {
+            url: urlBase + "/Subscribes",
+            method: "POST"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Subscribe#upsert
+           * @methodOf lbServices.Subscribe
+           *
+           * @description
+           *
+           * Update an existing model instance or insert a new one into the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *   This method does not accept any parameters.
+           *   Supply an empty object or omit this argument altogether.
+           *
+           * @param {Object} postData Request data.
+           *
+           * This method expects a subset of model properties as request parameters.
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Subscribe` object.)
+           * </em>
+           */
+          "upsert": {
+            url: urlBase + "/Subscribes",
+            method: "PUT"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Subscribe#exists
+           * @methodOf lbServices.Subscribe
+           *
+           * @description
+           *
+           * Check whether a model instance exists in the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `id` – `{*}` - Model id
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * Data properties:
+           *
+           *  - `exists` – `{boolean=}` -
+           */
+          "exists": {
+            url: urlBase + "/Subscribes/:id/exists",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Subscribe#findById
+           * @methodOf lbServices.Subscribe
+           *
+           * @description
+           *
+           * Find a model instance by id from the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `id` – `{*}` - Model id
+           *
+           *  - `filter` – `{object=}` - Filter defining fields and include
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Subscribe` object.)
+           * </em>
+           */
+          "findById": {
+            url: urlBase + "/Subscribes/:id",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Subscribe#find
+           * @methodOf lbServices.Subscribe
+           *
+           * @description
+           *
+           * Find all instances of the model matched by filter from the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+           *
+           * @param {function(Array.<Object>,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Array.<Object>} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Subscribe` object.)
+           * </em>
+           */
+          "find": {
+            isArray: true,
+            url: urlBase + "/Subscribes",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Subscribe#findOne
+           * @methodOf lbServices.Subscribe
+           *
+           * @description
+           *
+           * Find first instance of the model matched by filter from the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Subscribe` object.)
+           * </em>
+           */
+          "findOne": {
+            url: urlBase + "/Subscribes/findOne",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Subscribe#updateAll
+           * @methodOf lbServices.Subscribe
+           *
+           * @description
+           *
+           * Update instances of the model matched by where from the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `where` – `{object=}` - Criteria to match model instances
+           *
+           * @param {Object} postData Request data.
+           *
+           * This method expects a subset of model properties as request parameters.
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * This method returns no data.
+           */
+          "updateAll": {
+            url: urlBase + "/Subscribes/update",
+            method: "POST"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Subscribe#deleteById
+           * @methodOf lbServices.Subscribe
+           *
+           * @description
+           *
+           * Delete a model instance by id from the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `id` – `{*}` - Model id
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * This method returns no data.
+           */
+          "deleteById": {
+            url: urlBase + "/Subscribes/:id",
+            method: "DELETE"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Subscribe#count
+           * @methodOf lbServices.Subscribe
+           *
+           * @description
+           *
+           * Count instances of the model matched by where from the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `where` – `{object=}` - Criteria to match model instances
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * Data properties:
+           *
+           *  - `count` – `{number=}` -
+           */
+          "count": {
+            url: urlBase + "/Subscribes/count",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Subscribe#prototype$updateAttributes
+           * @methodOf lbServices.Subscribe
+           *
+           * @description
+           *
+           * Update attributes for a model instance and persist it into the data source.
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `id` – `{*}` - PersistedModel id
+           *
+           * @param {Object} postData Request data.
+           *
+           * This method expects a subset of model properties as request parameters.
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Subscribe` object.)
+           * </em>
+           */
+          "prototype$updateAttributes": {
+            url: urlBase + "/Subscribes/:id",
+            method: "PUT"
+          },
+      }
+      );
+
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Subscribe#updateOrCreate
+       * @methodOf lbServices.Subscribe
+       *
+       * @description
+       *
+       * Update an existing model instance or insert a new one into the data source.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *   This method does not accept any parameters.
+       *   Supply an empty object or omit this argument altogether.
+       *
+       * @param {Object} postData Request data.
+       *
+       * This method expects a subset of model properties as request parameters.
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Subscribe` object.)
+       * </em>
+       */
+      R["updateOrCreate"] = R["upsert"];
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Subscribe#update
+       * @methodOf lbServices.Subscribe
+       *
+       * @description
+       *
+       * Update instances of the model matched by where from the data source.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `where` – `{object=}` - Criteria to match model instances
+       *
+       * @param {Object} postData Request data.
+       *
+       * This method expects a subset of model properties as request parameters.
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R["update"] = R["updateAll"];
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Subscribe#destroyById
+       * @methodOf lbServices.Subscribe
+       *
+       * @description
+       *
+       * Delete a model instance by id from the data source.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - Model id
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R["destroyById"] = R["deleteById"];
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Subscribe#removeById
+       * @methodOf lbServices.Subscribe
+       *
+       * @description
+       *
+       * Delete a model instance by id from the data source.
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - Model id
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R["removeById"] = R["deleteById"];
+
+
+      /**
+       * @ngdoc property
+       * @name lbServices.Subscribe#modelName
+       * @propertyOf lbServices.Subscribe
+       * @description
+       * The name of the model represented by this $resource,
+       * i.e. `Subscribe`.
+       */
+      R.modelName = "Subscribe";
+
+
+      return R;
+    }]);
+
 
   module
     .factory('LoopBackAuth', function () {

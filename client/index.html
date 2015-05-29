@@ -121,26 +121,30 @@
     </section>
   </div>
 
-  <!-- show reset for in main content area -->
+  <!-- show RESET form in main content area -->
   <div class="container" ng-show="sessionInfo.stateName == 'reset'">
     <div class="row">
       <div ui-view class="fc-page-content col-sm-8 col-lg-6"></div>
     </div>
   </div>
 
+  <!-- Subscribe -->
   <div class="container-fluid" ng-show="sessionInfo.stateName != 'reset'">
     <section class="row bg-success">
       <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-        <form>
-          <h3>New version is coming soon!</h3>
 
-          <h3>If you are interested in update information, please:</h3>
+        <h3>New version is coming soon!</h3>
 
+        <h3>If you are interested in update information, please:</h3>
+
+        <form name="subForm" novalidate>
           <div class="input-group">
-            <input id="subscribe" type="text" class="form-control"
-                   placeholder="Leave email to subscribe">
+            <input id="subscribe" type="email" class="form-control" ng-model="subscribe.email"
+                   placeholder="Leave email to subscribe" required>
             <span class="input-group-btn">
-              <button type="submit" class="btn btn-lg btn-yellow">Subscribe</button>
+              <button class="btn btn-lg btn-yellow" ng-disabled="subForm.$invalid" ng-click="subscribe()">
+                Subscribe
+              </button>
             </span>
           </div>
         </form>
