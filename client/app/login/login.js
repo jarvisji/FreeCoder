@@ -3,12 +3,8 @@
  */
 angular.module('freeCoderApp')
   .controller('loginCtrl', ['$scope', '$rootScope', '$state', '$location', '$timeout', 'Member', 'messagesContext', function ($scope, $rootScope, $state, $location, $timeout, Member, messagesContext) {
-    if (Member.isAuthenticated())
-      $state.go('dashboard');
-
     $scope.rememberMe = false;
     $scope.alert = {};
-    $rootScope.sessionInfo = {};
     $scope.uiText = {
       placeholderEmail: messagesContext.get('user.forget.email.placeholder'),
       placeholderLoginEmail: messagesContext.get('user.login.email.placeholder'),
@@ -47,6 +43,7 @@ angular.module('freeCoderApp')
           $scope.errorMsg = messagesContext.get('user.login.email.not.verified');
         } else {
           $scope.errorMsg = undefined;
+          $rootScope.sessionInfo = {isLogin: Member.isAuthenticated()};
           $state.go('dashboard');
         }
       }, function (error) {

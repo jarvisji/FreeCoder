@@ -4,7 +4,5 @@
 angular.module('freeCoderApp')
   .controller('pomodoroCtrl', ['$scope', '$state', 'Member', 'messagesContext', function ($scope, $state, Member, messagesContext) {
     $scope.userId = Member.getCurrentId();
-    if (!$scope.userId) {
-      $state.go('login');
-    }
+
   }]);

@@ -3,9 +3,6 @@
  */
 angular.module('freeCoderApp')
   .controller('userProfileCtrl', ['$scope', '$state', '$log', 'Member', 'messagesContext', function ($scope, $state, $log, Member, messagesContext) {
-    if (!Member.isAuthenticated()) {
-      $state.go('login');
-    }
 
     $scope.member = undefined;
     $scope.changePasswordOption = undefined;

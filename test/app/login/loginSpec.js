@@ -42,6 +42,7 @@ describe('Login controller cases.', function () {
 
     // here demonstrate to use 'this' to share variable with 'it' instead of declare global variable.
     this.$state = $state;
+    $rootScope.sessionInfo = {};
 
     // init controller
     $controller('loginCtrl', {

@@ -52,13 +52,28 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
     $urlRouterProvider.otherwise('login');
   }])
   .controller('rootCtrl', ['$scope', '$rootScope', '$state', '$log', 'Member', 'messagesContext', function ($scope, $rootScope, $state, $log, Member, messagesContext) {
+    // init sessionInfo object at the beginning, other pages can call its properties directly needn't worry about undefined error.
     $rootScope.sessionInfo = {isLogin: Member.isAuthenticated()};
+
+    // Listen to $stateChangeStart event to handle protected resources.
+    // https://github.com/angular-ui/ui-router/wiki
+    var noLoginCheckStates = ['login', 'sign-up', 'forgot', 'reset'];
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+      if (noLoginCheckStates.indexOf(toState.name) == -1) {
+        if (!Member.isAuthenticated()) {
+          $log.debug('Need login first.');
+          event.preventDefault();
+          $state.go('login');
+        }
+      }
+    });
 
     $scope.menu = [
       {label: messagesContext.get('dashboard.page.header'), location: 'dashboard', icon: 'fa-tachometer'},
       {label: messagesContext.get('pomodoro.page.header'), location: 'pomodoro', icon: 'fa-clock-o'},
       {label: messagesContext.get('todo.page.header'), location: 'todo', icon: 'fa-tasks'},
       {label: messagesContext.get('user.profile.page.header'), location: 'profile', icon: 'fa-user'}];
+
     $scope.logout = function () {
       Member.logout().$promise.then(function (data) {
         $log.debug('logout success.');
