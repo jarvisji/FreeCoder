@@ -18,6 +18,30 @@
   <link href="vendor/angular-ui-tree/dist/angular-ui-tree.min.css" rel="stylesheet">
   <link href="assets/css/styles.css" rel="stylesheet">
   <!-- endbuild -->
+
+  <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="http://cdn.bootcss.com/angular.js/1.3.15/angular.min.js"></script>
+  <script src="http://cdn.bootcss.com/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+  <!--<script src="http://cdn.bootcss.com/modernizr/2.8.3/modernizr.min.js"></script>-->
+  <!-- build:js assets/js/3rd.min.js -->
+  <script src="vendor/angular-resource/angular-resource.js"></script>
+  <script src="vendor/angular-cookies/angular-cookies.js"></script>
+  <script src="vendor/angular-ui-tree/dist/angular-ui-tree.js"></script>
+  <!-- endbuild -->
+  <!-- build:js assets/js/app.min.js -->
+  <script src="common/services/lb-services.js"></script>
+  <script src="app/app.js"></script>
+  <script src="common/services/i18n-messages.js"></script>
+  <script src="common/services/fcUtils.js"></script>
+  <script src="common/directives/fc-i18n.js"></script>
+  <script src="common/directives/fc-pomodoro-timer.js"></script>
+  <script src="app/login/login.js"></script>
+  <script src="app/dashboard/dashboard.js"></script>
+  <script src="app/todo/todo.js"></script>
+  <script src="app/profile/user-profile.js"></script>
+  <script src="app/pomodoro/pomodoro.js"></script>
+  <!-- endbuild -->
 </head>
 <body>
 <header class="navbar" role="banner">
@@ -87,32 +111,8 @@
   </div>
 </div>
 
-<footer id="footer">
+<footer id="footer" ng-if="!sessionInfo.isLogin">
   asdfa
 </footer>
-
-<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="http://cdn.bootcss.com/angular.js/1.3.15/angular.min.js"></script>
-<script src="http://cdn.bootcss.com/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-<!--<script src="http://cdn.bootcss.com/modernizr/2.8.3/modernizr.min.js"></script>-->
-<!-- build:js assets/js/3rd.min.js -->
-<script src="vendor/angular-resource/angular-resource.js"></script>
-<script src="vendor/angular-cookies/angular-cookies.js"></script>
-<script src="vendor/angular-ui-tree/dist/angular-ui-tree.js"></script>
-<!-- endbuild -->
-<!-- build:js assets/js/app.min.js -->
-<script src="common/services/lb-services.js"></script>
-<script src="app/app.js"></script>
-<script src="common/services/i18n-messages.js"></script>
-<script src="common/services/fcUtils.js"></script>
-<script src="common/directives/fc-i18n.js"></script>
-<script src="common/directives/fc-pomodoro-timer.js"></script>
-<script src="app/login/login.js"></script>
-<script src="app/dashboard/dashboard.js"></script>
-<script src="app/todo/todo.js"></script>
-<script src="app/profile/user-profile.js"></script>
-<script src="app/pomodoro/pomodoro.js"></script>
-<!-- endbuild -->
 </body>
 </html>
