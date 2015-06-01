@@ -5,6 +5,7 @@ Currently this is a personal project, all codes are maintained by myself (sure e
 
 I want to build a Question/Task Driven blog system for developers, especially for individual developers, freelancers. Record questions, manage tasks, fill answers, and publish posts. With integrated Pomodoro technology, users can manage tasks, review accomplishment, and keep improvement.
 
+# Have a try
 Feel free access demo site: http://www.freecoder.net, and post issues/suggestions. 
 
 Many thanks for your attention, care and advices.
