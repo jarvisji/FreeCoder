@@ -7,7 +7,8 @@ angular.module('freeCoderApp')
       newTaskTitlePlaceholder: messagesContext.get('todo.new.placeholder'),
       displayCompletedTasks: messagesContext.get('todo.filter.display.completed.tasks'),
       delete: messagesContext.get('todo.button.delete'),
-      pomodoro: messagesContext.get('todo.button.pomodoro')
+      pomodoro: messagesContext.get('todo.button.pomodoro'),
+      noTasks: messagesContext.get('todo.list.no.tasks')
     };
     $scope.alert = {};
     $scope.newTask = {};
@@ -33,19 +34,10 @@ angular.module('freeCoderApp')
       }
     };
 
-    var checkTasksCount = function () {
-      if ($scope.tasks.length === 0) {
-        $scope.uiText.noTasks = messagesContext.get('todo.list.no.tasks');
-      } else if ($scope.uiText.noTasks) {
-        delete $scope.uiText.noTasks;
-      }
-    };
-
     $scope.createTask = function () {
       Task.create($scope.newTask).$promise.then(function (value, responseHeaders) {
         $scope.newTask = {};
         $scope.tasks.unshift(value);
-        checkTasksCount();
       }, function (errResp) {
         alertRequestError(errResp);
       });
@@ -55,9 +47,8 @@ angular.module('freeCoderApp')
       Member.tasks({
         id: Member.getCurrentId(),
         filter: {order: 'order DESC'}
-      }).$promise.then(function (value, respHeaders) {
-          $scope.tasks = value;
-          checkTasksCount();
+      }).$promise.then(function (data, respHeaders) {
+          splitTasks(data);
         }, function (errResp) {
           alertRequestError(errResp);
         });
@@ -206,7 +197,6 @@ angular.module('freeCoderApp')
     };
 
     // controller init:
-    splitTasks(userTasks);
-    checkTasksCount();
+    $scope.getTasks();
   }]);
 
