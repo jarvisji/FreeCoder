@@ -1,5 +1,8 @@
 {
   "name": "Pomodoro",
+  "description": [
+    "refer to: https://docs.strongloop.com/display/public/LB/Model+definition+JSON+file"
+  ],
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -8,11 +11,15 @@
   "properties": {
     "startTime": {
       "type": "date",
-      "required": true
+      "defaultFn": "now"
     },
     "type": {
       "type": "string",
-      "required": true
+      "required": true,
+      "description": [
+        "valid value: 'work', 'break'",
+        "refer to pomodoro.js definition"
+      ]
     },
     "taskId": {
       "type": "string",
@@ -20,7 +27,11 @@
     },
     "status": {
       "type": "string",
-      "index": true
+      "index": true,
+      "description": [
+        "valid value: 'inProgress','skipped','finished'",
+        "refer to pomodoro.js definition"
+      ]
     },
     "duration": {
       "type": "number"
