@@ -122,11 +122,21 @@ angular.module('freeCoderApp')
     //  }
     //};
 
+    $scope.updateTaskTargetTime = function (taskId, newTargetTime) {
+      $log.debug('updateTaskTargetTime(), taskId: %s, newTargetTime: %s', taskId, newTargetTime);
+      Task.prototype$updateAttributes({id: taskId}, {targetTime: newTargetTime}).$promise.then(function (resp, respHeader) {
+        $log.debug('Update task target time successful: ', resp);
+      }, function (errResp) {
+        $log.error('Update task target time failed: ', errResp);
+        alertRequestError(errResp);
+      });
+    };
+
     $scope.treeOptions = {
       dropped: function (event) {
+        var targetChangedTask = event.source.nodeScope.$modelValue;
         if (event.dest.nodesScope.$id != event.source.nodesScope.$id) {
           // from a tree-nodes to another tree-nodes.
-          var targetChangedTask = event.source.nodeScope.$modelValue;
           if (event.dest.nodesScope.$id == $scope.scopes.todayTasksTreeNodesScopeId) {
             // move task to today.
             targetChangedTask.targetTime = fcDateUtils.getTodayTimestampRange().start;
@@ -134,13 +144,7 @@ angular.module('freeCoderApp')
             // move task to to-do.
             targetChangedTask.targetTime = 0;
           }
-          $log.debug('Update task target time:', targetChangedTask);
-          Task.prototype$updateAttributes({id: targetChangedTask.id}, {targetTime: targetChangedTask.targetTime}).$promise.then(function (value, respHeader) {
-            $log.debug('Update task target time successful: ', value);
-          }, function (errResp) {
-            $log.error('Update task target time failed: ', errResp);
-            alertRequestError(errResp);
-          });
+          $scope.updateTaskTargetTime(targetChangedTask.id, targetChangedTask.targetTime);
         }
 
         // recalculate 'order' value when changed task position in list.
@@ -150,28 +154,9 @@ angular.module('freeCoderApp')
             taskArray = 'todayTasks';
           }
           var newPositionIdx = event.dest.index;
-          var orderChangedTask = $scope[taskArray][newPositionIdx];
-          var beforeTask;
-          if (newPositionIdx === 0) {
-            orderChangedTask.order = new Date().getTime();
-          } else if (newPositionIdx == $scope[taskArray].length - 1) {
-            beforeTask = $scope[taskArray][newPositionIdx - 1];
-            orderChangedTask.order = beforeTask.order - 10000;
-          } else {
-            beforeTask = $scope[taskArray][newPositionIdx - 1];
-            var afterTask = $scope[taskArray][newPositionIdx + 1];
-            orderChangedTask.order = afterTask.order + parseInt((beforeTask.order - afterTask.order) / 2);
-            $log.debug("Moved task position, new order value to before:", beforeTask.order - orderChangedTask.order);
-            $log.debug(".. new order value to after:", orderChangedTask.order - afterTask.order);
-          }
+          var newOrderValue = calculateOrderValue(taskArray, newPositionIdx);
           // save to db.
-          $log.debug('Update task order:', orderChangedTask);
-          Task.prototype$updateAttributes({id: orderChangedTask.id}, {order: orderChangedTask.order}).$promise.then(function (value, respHeader) {
-            $log.debug('Update task order successful:', value);
-          }, function (errResp) {
-            $log.error('Update task target time failed: ', errResp);
-            alertRequestError(errResp);
-          });
+          updateTaskOrder(targetChangedTask.id, newOrderValue);
         }
       },
       dragStart: function (event) {
@@ -180,6 +165,41 @@ angular.module('freeCoderApp')
       dragStop: function (event) {
         $scope.dragging = false;
       }
+    };
+
+    /**
+     * Currently use 'timestemp' value to identify task order.
+     * @param oldIndex
+     * @param newIndex
+     */
+    var calculateOrderValue = function (taskArray, newIndex) {
+      var newOrderVal;
+      if (newIndex === 0) {
+        // thr first one
+        newOrderVal = new Date().getTime();
+      } else if (newIndex == $scope[taskArray].length - 1) {
+        // the last one
+        var beforeTask = $scope[taskArray][newIndex - 1];
+        newOrderVal = beforeTask.order - 10000;
+      } else {
+        // the middle one
+        beforeTask = $scope[taskArray][newIndex - 1];
+        var afterTask = $scope[taskArray][newIndex + 1];
+        newOrderVal = afterTask.order + parseInt((beforeTask.order - afterTask.order) / 2);
+        $log.debug("Moved task position, new order value to before:", beforeTask.order - newOrderVal);
+        $log.debug(".. new order value to after:", newOrderVal - afterTask.order);
+      }
+      return newOrderVal;
+    };
+
+    var updateTaskOrder = function (taskId, newOrder) {
+      $log.debug('updateTaskOrder(),', arguments);
+      Task.prototype$updateAttributes({id: taskId}, {order: newOrder}).$promise.then(function (value, respHeader) {
+        $log.debug('Update task order successful:', value);
+      }, function (errResp) {
+        $log.error('Update task target time failed: ', errResp);
+        alertRequestError(errResp);
+      });
     };
 
     var alertRequestError = function (errResp) {
