@@ -1,0 +1,11 @@
+
+.navbar .navbar-brand {
+  margin-top: 15px;
+  font-size: 24px;
+  color: #5B9BD1;
+}
+
+.navbar .navbar-brand:hover {
+  text-decoration: none;
+  color: #5B9BD1;
+}

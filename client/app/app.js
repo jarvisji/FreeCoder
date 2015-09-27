@@ -1,7 +1,7 @@
 /**
  * Created by Ting on 2015/5/7.
  */
-angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies', 'i18nMessages', 'fcUtils'])
+angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies', 'i18nMessages', 'fcUtils', 'fc.common.ui.pageHeader'])
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
     //$locationProvider.html5Mode(true);
     $stateProvider.state('sign-up', {
@@ -54,6 +54,32 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
   .controller('rootCtrl', ['$scope', '$rootScope', '$state', '$log', 'Member', 'Subscribe', 'messagesContext', function ($scope, $rootScope, $state, $log, Member, Subscribe, messagesContext) {
     // init sessionInfo object at the beginning, other pages can call its properties directly needn't worry about undefined error.
     $rootScope.sessionInfo = {isLogin: Member.isAuthenticated()};
+    console.log($scope);
+    // define data of fc-page-header directive..
+    $scope.pageHeaderData = {
+      "pageLogo": {
+        "text": "FreeCoder",
+        //"imgUrl": "http://www.keenthemes.com/preview/metronic/theme/assets/admin/layout3/img/logo-default.png", // if "src" defined, will override "text" property.
+        "href": "www.baidu.com"
+      },
+      "userMenu": {
+        "name": "Jarvis",
+        "avatar": "string of image url",
+        "menuItems": [
+          {
+            "iconClass": "icon-user",
+            "label": "My Profile",
+            "href": "profile.html"
+          },
+          "divider",
+          {
+            "iconClass": "icon-key",
+            "label": "Log Out",
+            "href": "login.html"
+          }
+        ]
+      }
+    };
 
     // Listen to $stateChangeStart event to handle protected resources.
     // https://github.com/angular-ui/ui-router/wiki

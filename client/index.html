@@ -17,6 +17,11 @@
   <!-- build:css assets/css/app.min.css -->
   <link href="vendor/angular-ui-tree/dist/angular-ui-tree.min.css" rel="stylesheet">
   <link href="assets/css/styles.css" rel="stylesheet">
+
+
+  <link href="common/directives/layout.css" rel="stylesheet">
+  <link href="common/directives/light.css" rel="stylesheet">
+  <link href="common/directives/fc-directives.css" rel="stylesheet">
   <!-- endbuild -->
 
   <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
@@ -42,8 +47,14 @@
   <script src="app/profile/user-profile.js"></script>
   <script src="app/pomodoro/pomodoro.js"></script>
   <!-- endbuild -->
+
+  <script src="common/directives/header.js"></script>
 </head>
 <body>
+
+<fc-page-header data="pageHeaderData"></fc-page-header>
+
+
 <header class="navbar" role="banner">
   <div class="container-fluid">
     <div class="navbar-header">
