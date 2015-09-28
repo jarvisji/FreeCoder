@@ -50,7 +50,8 @@ angular.module('fc.common.ui.pageHeader', [])
     return {
       restrict: 'E',
       scope: true,
-      templateUrl: 'common/directives/header.tpl.html',
+      replace: true,
+      templateUrl: 'common/directives/fc-page-header.tpl.html',
       // TODO:J why 'link' function will not be execute if 'compile' is defined.
       //compile: function (element, attributes) {
       //  $log.debug('fcPageHeader.compile(), element: %o, attributes: %o', element, attributes);
