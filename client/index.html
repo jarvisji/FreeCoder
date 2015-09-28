@@ -53,12 +53,17 @@
   <script src="common/directives/fc-page-header.js"></script>
   <script src="common/directives/fc-page-container.js"></script>
   <script src="common/directives/fc-page-sidebar.js"></script>
+  <script src="common/directives/fc-page-content.js"></script>
+  <script src="common/directives/fc-content-head.js"></script>
 </head>
 <body>
 
 <fc-page-header data="pageHeaderData" enable-search="true"></fc-page-header>
 <fc-page-container>
   <fc-page-sidebar data="pageMenuData"></fc-page-sidebar>
+  <fc-page-content>
+    <div ui-view></div>
+  </fc-page-content>
 </fc-page-container>
 
 <!-- Web site contents -->

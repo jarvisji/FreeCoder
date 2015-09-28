@@ -8,7 +8,8 @@ angular.module('freeCoderApp')
       displayCompletedTasks: messagesContext.get('todo.filter.display.completed.tasks'),
       delete: messagesContext.get('todo.button.delete'),
       pomodoro: messagesContext.get('todo.button.pomodoro'),
-      noTasks: messagesContext.get('todo.list.no.tasks')
+      noTasks: messagesContext.get('todo.list.no.tasks'),
+      pageHead: messagesContext.get('todo.page.header')
     };
     $scope.alert = {};
     $scope.newTask = {};
@@ -106,21 +107,21 @@ angular.module('freeCoderApp')
       });
     };
 
-    //$scope.filterCompletedTodayTasks = function () {
-    //  if ($scope.isShowCompletedTodayTasks) {
-    //    $scope.todayTasks = $scope.todayTasks.concat($scope.todayCompletedTasks);
-    //    $scope.todayCompletedTasks = [];
-    //    $filter('orderBy')($scope.todayTasks, 'order', true);
-    //  } else {
-    //    $scope.todayCompletedTasks = [];
-    //    for (var i = 0; i < $scope.todayTasks.length; i++) {
-    //      if ($scope.todayTasks[i].isCompleted) {
-    //        $scope.todayCompletedTasks.push($scope.todayTasks.splice(i, 1));
-    //      }
-    //    }
-    //    $filter('orderBy')($scope.todayCompletedTasks, 'order', true);
-    //  }
-    //};
+//$scope.filterCompletedTodayTasks = function () {
+//  if ($scope.isShowCompletedTodayTasks) {
+//    $scope.todayTasks = $scope.todayTasks.concat($scope.todayCompletedTasks);
+//    $scope.todayCompletedTasks = [];
+//    $filter('orderBy')($scope.todayTasks, 'order', true);
+//  } else {
+//    $scope.todayCompletedTasks = [];
+//    for (var i = 0; i < $scope.todayTasks.length; i++) {
+//      if ($scope.todayTasks[i].isCompleted) {
+//        $scope.todayCompletedTasks.push($scope.todayTasks.splice(i, 1));
+//      }
+//    }
+//    $filter('orderBy')($scope.todayCompletedTasks, 'order', true);
+//  }
+//};
 
     $scope.updateTaskTargetTime = function (taskId, newTargetTime) {
       $log.debug('updateTaskTargetTime(), taskId: %s, newTargetTime: %s', taskId, newTargetTime);
@@ -216,7 +217,8 @@ angular.module('freeCoderApp')
 
     };
 
-    // controller init:
+// controller init:
     $scope.getTasks();
-  }]);
+  }])
+;
 

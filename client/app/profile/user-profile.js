@@ -3,7 +3,8 @@
  */
 angular.module('freeCoderApp')
   .controller('userProfileCtrl', ['$scope', '$state', '$log', 'Member', 'messagesContext', function ($scope, $state, $log, Member, messagesContext) {
-
+    $scope.pageHead = messagesContext.get('user.profile.page.header');
+    $scope.pageHeadDesc = messagesContext.get('user.profile.page.sub.header');
     $scope.member = undefined;
     $scope.changePasswordOption = undefined;
     $scope.changePasswordResult = {};

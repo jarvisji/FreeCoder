@@ -1,7 +1,7 @@
 /**
  * Created by Ting on 2015/5/7.
  */
-angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies', 'i18nMessages', 'fcUtils', 'fc.common.ui.pageHeader', 'fc.common.ui.pageContainer', 'fc.common.ui.pageSidebar'])
+angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies', 'i18nMessages', 'fcUtils', 'fc.common.ui.pageHeader', 'fc.common.ui.pageContainer', 'fc.common.ui.pageSidebar', 'fc.common.ui.pageContent', 'fc.common.ui.contentHead'])
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
     //$locationProvider.html5Mode(true);
     $stateProvider.state('sign-up', {
