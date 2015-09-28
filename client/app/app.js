@@ -1,7 +1,7 @@
 /**
  * Created by Ting on 2015/5/7.
  */
-angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies', 'i18nMessages', 'fcUtils', 'fc.common.ui.pageHeader', 'fc.common.ui.pageContainer'])
+angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies', 'i18nMessages', 'fcUtils', 'fc.common.ui.pageHeader', 'fc.common.ui.pageContainer', 'fc.common.ui.pageSidebar'])
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
     //$locationProvider.html5Mode(true);
     $stateProvider.state('sign-up', {
@@ -54,7 +54,7 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
   .controller('rootCtrl', ['$scope', '$rootScope', '$state', '$log', 'Member', 'Subscribe', 'messagesContext', function ($scope, $rootScope, $state, $log, Member, Subscribe, messagesContext) {
     // init sessionInfo object at the beginning, other pages can call its properties directly needn't worry about undefined error.
     $rootScope.sessionInfo = {isLogin: Member.isAuthenticated()};
-    console.log($scope);
+
     // define data of fc-page-header directive..
     $scope.pageHeaderData = {
       "pageLogo": {
@@ -82,6 +82,37 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
         ]
       }
     };
+
+    // define data of fc-page-sidebar directive.
+    $scope.pageMenuData = [
+      {
+        "href": "dashboard",
+        "iconClass": "icon-home",
+        "title": "Dashboard"
+      },
+      {
+        "href": "todo",
+        "iconClass": "icon-list",
+        "title": "Todo"
+      },
+      {
+        "href": "pomodoro",
+        "iconClass": "icon-clock",
+        "title": "Pomodoro"
+      },
+      {
+        "href": "#",
+        "iconClass": "icon-user",
+        "title": "User",
+        "subMenu": [
+          {
+            "href": "profile",
+            "iconClass": "icon-user",
+            "title": "Profile"
+          }
+        ]
+      }
+    ];
 
     // Listen to $stateChangeStart event to handle protected resources.
     // https://github.com/angular-ui/ui-router/wiki

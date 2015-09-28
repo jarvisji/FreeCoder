@@ -11,7 +11,7 @@ angular.module('fc.common.ui.pageContainer', [])
       compile: function (element, attributes) {
         $log.debug('fcPageContainer.compile(), element: %o, attributes: %o', element, attributes);
         var html = element.html();
-        var newElement = $('<div class="page-container">' + html + '</div>');
+        var newElement = $('<div class="clearfix"></div><div class="page-container">' + html + '</div>');
         element.replaceWith(newElement);
       }
     };

@@ -1,0 +1,23 @@
+<div class="page-sidebar-wrapper">
+  <div class="page-sidebar navbar-collapse collapse">
+    <!-- BEGIN SIDEBAR MENU -->
+    <ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+      <li ng-class="{'active': item.isActive, 'open': item.isOpen}" ng-repeat="item in menu">
+        <a href="" ng-click="onMenuItemClick($index)">
+          <i ng-class="item.iconClass"></i>
+          <span class="title">{{item.title}}</span>
+          <span class="arrow" ng-class="{'open': item.isOpen}" ng-if="item.subMenu"></span>
+        </a>
+        <ul class="sub-menu" ng-style="item.subMenuStyle" ng-if="item.subMenu">
+          <li ng-class="{'active': item.isActive}" ng-repeat="subItem in item.subMenu">
+            <a href="" ng-click="onSubMenuItemClick(item, $index)">
+              <i ng-class="subItem.iconClass"></i>
+              {{subItem.title}}
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!-- END SIDEBAR MENU -->
+  </div>
+</div>
