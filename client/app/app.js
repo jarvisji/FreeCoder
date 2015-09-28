@@ -64,18 +64,20 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
       },
       "userMenu": {
         "name": "Jarvis",
-        "avatar": "string of image url",
+        "avatar": "assets/img/avatar9.jpg",
         "menuItems": [
           {
             "iconClass": "icon-user",
             "label": "My Profile",
-            "href": "profile.html"
+            "handler": "profile"  // $state
           },
           "divider",
           {
             "iconClass": "icon-key",
             "label": "Log Out",
-            "href": "login.html"
+            "handler": function () {
+              $scope.logout();
+            }
           }
         ]
       }
@@ -107,6 +109,7 @@ angular.module('freeCoderApp', ['lbServices', 'ui.router', 'ui.tree', 'ngCookies
       {label: messagesContext.get('user.profile.page.header'), location: 'profile', icon: 'fa-user'}];
 
     $scope.logout = function () {
+      $log.debug('app.logout().');
       Member.logout().$promise.then(function (data) {
         $log.debug('logout success.');
         $rootScope.sessionInfo.isLogin = Member.isAuthenticated();

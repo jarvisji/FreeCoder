@@ -11,14 +11,16 @@
   <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
   <link href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- build:css assets/css/ace.min.css -->
-  <link href="assets/css/ace-fonts.css" rel="stylesheet">
-  <link href="assets/css/ace.css" rel="stylesheet">
+  <!--<link href="assets/css/ace-fonts.css" rel="stylesheet">-->
+  <!--<link href="assets/css/ace.css" rel="stylesheet">-->
   <!-- endbuild -->
   <!-- build:css assets/css/app.min.css -->
   <link href="vendor/angular-ui-tree/dist/angular-ui-tree.min.css" rel="stylesheet">
   <link href="assets/css/styles.css" rel="stylesheet">
 
 
+  <link href="common/directives/simple-line-icons/simple-line-icons.min.css" rel="stylesheet">
+  <link href="common/directives/components-rounded.css" rel="stylesheet">
   <link href="common/directives/layout.css" rel="stylesheet">
   <link href="common/directives/light.css" rel="stylesheet">
   <link href="common/directives/fc-directives.css" rel="stylesheet">
@@ -52,19 +54,8 @@
 </head>
 <body>
 
-<fc-page-header data="pageHeaderData"></fc-page-header>
+<fc-page-header data="pageHeaderData" enable-search="true"></fc-page-header>
 
-
-<header class="navbar" role="banner">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#" fc-i18n="app.name"></a>
-    </div>
-    <div class="fc-navbar-action">
-      <button class="btn btn-yellow btn-sm" ng-click="logout()" ng-show="sessionInfo.isLogin">Sign out</button>
-    </div>
-  </div>
-</header>
 
 <!-- Web site contents -->
 <div ng-if="sessionInfo.pageType == 'site'">

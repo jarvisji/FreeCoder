@@ -3,28 +3,37 @@
  * fc-common-ui-header
  *
  * Attributes:
- * - data: Object. // data of page header.
+ * - data: string. // Object name of data of page header.
  * - [enable-search]:true[|false]
  *
  *
  *
  * Bind JSON data in $scope:
- *  {
- *    "pageLogo": {
- *      "src": "string",
- *      "href": "string"
- *    },
- *    "userMenu": {
- *      "name": "string",
- *      "avatar": "string of image url",
- *      "menuItems": [
- *        {
- *          "iconClass": "icon-user",
- *          "label": "string",
- *          "href": "string"
+ * {
+ *     "pageLogo": {
+ *       "text": "FreeCoder",
+ *       //"imgUrl": "http://www.keenthemes.com/preview/metronic/theme/assets/admin/layout3/img/logo-default.png", // if "src" defined, will override "text" property.
+ *     "href": "www.baidu.com"
+ *   },
+ *   "userMenu": {
+ *     "name": "Jarvis",
+ *     "avatar": "assets/img/avatar9.jpg",
+ *     "menuItems": [
+ *       {
+ *         "iconClass": "icon-user",
+ *         "label": "My Profile",
+ *         "handler": "profile"  // $state
+ *       },
+ *       "divider",
+ *       {
+ *        "iconClass": "icon-key",
+ *        "label": "Log Out",
+ *        "handler": function () {
+ *          $scope.logout();
  *        }
- *      ]
- *    }
+ *      }
+ *    ]
+ *  }
  * }
  *
  * Created by Ting on 2015/9/26.
@@ -33,9 +42,10 @@ angular.module('fc.common.ui.pageHeader', [])
   //.config(['$logProvider', function ($logProvider) {
   //  $logProvider.debugEnabled(false);
   //}])
-  .directive('fcPageHeader', ['$log', function ($log) {
+  .directive('fcPageHeader', ['$log', '$state', function ($log, $state) {
     var supportAttributes = {
-      "data": 'data'
+      "data": "data",
+      "enableSearch": "enableSearch"
     };
     return {
       restrict: 'E',
@@ -46,9 +56,25 @@ angular.module('fc.common.ui.pageHeader', [])
       //  $log.debug('fcPageHeader.compile(), element: %o, attributes: %o', element, attributes);
       //},
       link: function (scope, element, attr) {
+        scope.uiFlag = {isSearchInputOpen: false};
         $log.debug('fcPageHeader.link(), scope: %o, element: %o, attributes: %o', scope, element, attr);
         scope.data = scope.$parent[attr[supportAttributes.data]];
-        console.log(scope.data);
+        scope.uiFlag.isEnableSearch = attr[supportAttributes.enableSearch];
+
+        scope.onSearchBtnClicked = function () {
+          if (scope.uiFlag.isSearchInputOpen) {
+            $log.debug('do search... not implemented yet.');
+          }
+          scope.uiFlag.isSearchInputOpen = !scope.uiFlag.isSearchInputOpen;
+        };
+
+        scope.onMenuItemClick = function (item) {
+          if (typeof(item.handler) == 'string') {
+            $state.go(item.handler);
+          } else if (typeof(item.handler) == 'function') {
+            item.handler();
+          }
+        }
       }
     };
   }]);
